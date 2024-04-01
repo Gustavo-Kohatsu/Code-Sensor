@@ -53,14 +53,15 @@ PRIMARY KEY PK_idVeiculo (idVeiculo),
 FOREIGN KEY ForeignKey_idEmpresa (FK_idEmpresa) REFERENCES Empresa (idEmpresa)
 );
 
-CREATE TABLE Carne (
-idCarne INT AUTO_INCREMENT,
-Tipo 
+CREATE TABLE Lote (
+idLote INT AUTO_INCREMENT,
+tipoCarne 
 	VARCHAR(45),
-	CHECK (Tipo IN ('Bovina', 'Suína', 'Carne de ave')),
+	CHECK (tipoCarne IN ('Bovina', 'Suína', 'Carne de ave')),
+quantidadeCarne INT,
 FK_idVeiculo INT,
 
-PRIMARY KEY PK_idCarne (idCarne),
+PRIMARY KEY PK_idLote (idLote),
 FOREIGN KEY ForeignKey_idVeiculo (FK_idVeiculo) REFERENCES Veiculo (idVeiculo)
 );
 
@@ -130,15 +131,15 @@ VALUES
 (1800, 'MNO9012', 3),
 (2200, 'PQR3456', 1);
 
--- Inserindo dados na tabela Carne
-INSERT INTO Carne (Tipo, FK_idVeiculo)
+-- Inserindo dados na tabela Lote
+INSERT INTO Lote (tipoCarne, quantidadeCarne, FK_idVeiculo)
 VALUES 
-('Bovina', 1),
-('Suína', 2),
-('Carne de ave', 3),
-('Carne de ave', 4),
-('Suína', 5),
-('Bovina', 6);
+('Bovina', 300, 1),
+('Suína', 200, 2),
+('Carne de ave', 300 , 3),
+('Carne de ave', 500, 4),
+('Suína', 150, 5),
+('Bovina', 700, 6);
 
 -- Inserindo dados na tabela Sensor
 INSERT INTO Sensor (Modelo, Tipo, dtInstalacao, FK_idVeiculo)
@@ -160,9 +161,15 @@ VALUES
 ('2024-03-30 12:00:00', 4.0, 68.0, 5),
 ('2024-03-30 13:00:00', 3.5, 70.0, 6);
 
+-- ===========================================
+-- SELECT de todas as tabelas INDIVIDUALMENTE:
 SELECT * FROM Empresa;
 SELECT * FROM Filial;
 SELECT * FROM Funcionario;
+SELECT * FROM Veiculo;
+SELECT * FROM Lote;
+SELECT * FROM Sensor;
+SELECT * FROM Leitura;
 
 -- ===========================================
 -- SELECT JOIN das tabelas Filial + Empresa:
@@ -197,21 +204,23 @@ INNER JOIN Empresa AS EMP
 ON Veic.FK_idEmpresa = EMP.idEmpresa;
 
 -- ===========================================
--- SELECT JOIN das tabelas Veiculo + Empresa + Carne:
+-- SELECT JOIN das tabelas Veiculo + Empresa + Lote:
 SELECT
 	Veic.idVeiculo,
     Veic.Placa,
     Veic.FK_idEmpresa,
     EMP.idEmpresa,
     EMP.nome_fantasia,
-    Carne.Tipo,
-    Carne.FK_idVeiculo
+    Lote.idLote,
+    Lote.tipoCarne,
+    Lote.quantidadeCarne,
+    Lote.FK_idVeiculo
 FROM Veiculo AS Veic
 INNER JOIN Empresa AS EMP
 ON EMP.idEmpresa = Veic.FK_idEmpresa
 
-INNER JOIN Carne
-ON Veic.idVeiculo = Carne.FK_idVeiculo
+INNER JOIN Lote
+ON Veic.idVeiculo = Lote.FK_idVeiculo
 WHERE EMP.idEmpresa = 1;
 
 -- ===========================================
@@ -243,8 +252,8 @@ SELECT
     Fil.FK_idEmpresa,
 -- Colunas da tabela Veiculo:
 	Veic.idVeiculo, Veic.Placa, Veic.FK_idEmpresa,
--- Colunas da tabela Carne:
-	Carne.idCarne, Carne.Tipo,
+-- Colunas da tabela Lote:
+	Lote.idLote, Lote.tipoCarne, Lote.quantidadeCarne,
 -- Colunas da tabela Leitura:
 	Leit.idLeitura, Leit.dtLeitura, Leit.temperatura, Leit.umidade, 
     Leit.FK_idSensor,
@@ -261,12 +270,13 @@ ON Fil.idFilial = Func.FK_idFilial
 INNER JOIN Veiculo AS Veic
 ON EMP.idEmpresa = Veic.FK_idEmpresa
 
-INNER JOIN Carne
-ON Veic.idVeiculo = Carne.FK_idVeiculo
+INNER JOIN Lote
+ON Veic.idVeiculo = Lote.FK_idVeiculo
 
 INNER JOIN Sensor
 ON Veic.idVeiculo = Sensor.FK_idVeiculo
 
 INNER JOIN Leitura AS Leit
 ON Sensor.idSensor = Leit.FK_idSensor;
+
  

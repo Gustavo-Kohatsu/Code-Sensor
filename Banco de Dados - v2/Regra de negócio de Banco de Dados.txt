@@ -14,3 +14,27 @@ Ex.:
 O Gustavo trabalha nas empresas Friboi e Swift como um Analista dos dados que estarão na dashboard do nosso site, ou seja, ele tem a disponibilidade de tempo para trabalhar em 2 empresas. 
 
 Então nesse caso, o Gustavo deve ter duas contas, uma com acesso para a dashboard da Friboi, e uma com acesso a dashboard da Swift.
+--------------------------------------
+======================================
+REGRAS de NEGÓCIOS do PROJETO CodeSensor:
+
+1. 1 Empresa tem 1 ou mais Funcionários.
+   Cada Funcionário é de apenas 1 Empresa.
+
+2. 1 Empresa tem 1 ou mais Filiais.
+   Cada Filial é de apenas 1 Empresa.
+
+3. 1 Filial tem 1 ou mais Funcionários.
+   Cada Funcionário é de apenas 1 Filial.
+
+4. 1 Empresa tem 1 ou mais Veículos.
+   Cada Veículo é de apenas 1 Empresa.
+
+5. 1 Veículo tem 1 ou mais Lotes.
+   Cada Lote é de apenas 1 Veículo.
+
+6. 1 Veículo tem apenas 1 Sensor.
+   Cada Sensor é de apenas 1 Veículo.
+
+7. 1 Sensor tem 1 ou mais Leituras.
+   Cada Leitura é de apenas 1 Sensor.
