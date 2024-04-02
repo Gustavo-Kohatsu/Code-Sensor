@@ -147,15 +147,30 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
+    /* justify-content: space-between; */
     border: #000 1px solid;
     text-align: center;
 
     width: 70%;
-    height: 200px;
+    height: 100%;
 
     background-color: #FFF;
 
     margin: 20px;
 }
 
+.textoVerde {
+
+    font-size: 30pt;
+    font-weight: bold;
+    color: rgb(0, 158, 0);
+
+}
+
+.textoVermelho {
+
+    font-size: 30pt;
+    font-weight: bold;
+    color: rgb(180, 0, 0);
+
+}
