@@ -75,7 +75,7 @@ body {
     gap: 10px;
 }
 
-.perguntaCalc input {
+.input_text {
     height: 30px;
     width: 100%;
     padding: 5px;

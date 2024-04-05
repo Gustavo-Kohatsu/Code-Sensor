@@ -8,10 +8,6 @@
     <title>Calculadora Financeira - CodeSensor</title>
 </head>
 
-<!--• Colocar checkbox
-    • Mudar a lógica no final (60% - Quanto estaria economizando)
-    • Verificação de valor inválido -->
-
 <body>
     <div class="calculadora">
         <div class="tituloCalc">
@@ -22,32 +18,32 @@
             <div class="perguntaCalc">
                 <h3>Selecione o tipo de carne que será transportado</h3>
 
-                <input type="checkbox" name="bovina" id="check_bovina"><label for="bovina">Bovina</label>
+                <label for="bovina"><input type="checkbox" name="bovina" id="check_bovina"> Bovina</label>
 
-                <input type="checkbox" name="suina" id="check_suina"><label for="suina">Suina</label>
+                <label for="suina"><input type="checkbox" name="suina" id="check_suina"> Suina</label>
 
-                <input type="checkbox" name="aves" id="check_aves"><label for="aves">Aves</label>
+                <label for="aves"><input type="checkbox" name="aves" id="check_aves"> Aves</label>
+
+                <br>
 
                 <p>Quantidade da Frota de Caminhões:</p>
+                <input type="number" id="input_qtd_veiculos" placeholder="15" class="input_text"><br>
 
-                <input type="number" id="input_qtd_veiculos" placeholder="15"><br>
-            </div>
-            <div class="perguntaCalc">
                 <p>Em média, qual é a carga máxima durante o transporte? (Em kg)</p>
-                <input type="number" id="input_max_carga" placeholder="10000"><br>
-            </div>
-            <div class="perguntaCalc">
+                <input type="number" id="input_max_carga" placeholder="10000" class="input_text"><br>
+
                 <p>Em média, quantos carregamentos CADA caminhão executa diariamente?</p>
-                <input type="number" id="input_carregamentos_dia" placeholder="4"><br>
+                <input type="number" id="input_carregamentos_dia" placeholder="4" class="input_text"><br>
 
             </div>
 
             <button onclick="calcularPerdas()">Calcular</button>
         </div>
     </div>
+    
     <div id="div_resultado">
 
-
+    </div>
 
 </body>
 
