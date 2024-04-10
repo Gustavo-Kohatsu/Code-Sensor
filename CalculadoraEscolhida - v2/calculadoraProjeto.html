@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style2.css">
     <title>Calculadora Financeira - CodeSensor</title>
 </head>
 
 <body>
     <div class="calculadora">
         <div class="tituloCalc">
-            <h1>Calculadora Financeira</h1>
+            <h1 class="titu_calc">Calculadora Financeira</h1><br><br>
             <p>Entenda o porquê de nossa solução ser NECESSÁRIA para o seu negócio!</p>
         </div>
         <div class="inputsCalc">
@@ -27,13 +27,13 @@
                 <br>
 
                 <p>Quantidade da Frota de Caminhões:</p>
-                <input type="number" id="input_qtd_veiculos" placeholder="15" class="input_text"><br>
+                <input type="number" id="input_qtd_veiculos" placeholder="(15)" class="input_text"><br>
 
                 <p>Em média, qual é a carga máxima durante o transporte? (Em kg)</p>
-                <input type="number" id="input_max_carga" placeholder="10000" class="input_text"><br>
+                <input type="number" id="input_max_carga" placeholder="(10000)" class="input_text"><br>
 
                 <p>Em média, quantos carregamentos CADA caminhão executa diariamente?</p>
-                <input type="number" id="input_carregamentos_dia" placeholder="4" class="input_text"><br>
+                <input type="number" id="input_carregamentos_dia" placeholder="(4)" class="input_text"><br>
 
             </div>
 
@@ -52,6 +52,7 @@
 <script>
 
     function calcularPerdas() {
+        
         const qtd_veiculos = Number(input_qtd_veiculos.value);
         const maxCarga = Number(input_max_carga.value);
         const carregamentosDia = Number(input_carregamentos_dia.value);
