@@ -41,29 +41,29 @@
 <script>
 
     function calcularPerdas() {
-        var qtd_veiculos = Number(input_qtd_veiculos.value)
-        var maxCarga = Number(input_max_carga.value)
-        var carregamentosDia = Number(input_carregamentos_dia.value)
+        const qtd_veiculos = Number(input_qtd_veiculos.value);
+        const maxCarga = Number(input_max_carga.value);
+        const carregamentosDia = Number(input_carregamentos_dia.value);
         // Criação de variáveis sobre os inputs inseridos.
 
-        var valorBovinaKG = 30 // Valor de Carnes do tipo Bovina.
-        var valorSuinaKG = 20 // Valor de Carnes do tipo Suina.
-        var valorAvesKG = 16 // Valor de Carnes do tipo Aves.
+        const valorBovinaKG = 30 // Valor de Carnes do tipo Bovina.
+        const valorSuinaKG = 20 // Valor de Carnes do tipo Suina.
+        const valorAvesKG = 16 // Valor de Carnes do tipo Aves.
 
-        valorCarnes = (valorAvesKG + valorBovinaKG + valorSuinaKG) / 3
+        valorCarnes = (valorAvesKG + valorBovinaKG + valorSuinaKG) / 3;
         // Cálculo de média dos valores dos três tipos de carnes -> Bovina, Suína e Aves.
 
-        var transportadoPorCarregamento = (maxCarga * valorCarnes)
+        let transportadoPorCarregamento = (maxCarga * valorCarnes);
         // Cálculo de valor total sendo transportado por carregamento, sendo a multiplicação do valor médio das carnes e a máxima de carga dos caminhões. Individualmente.
 
-        var perdasDuranteTransporte = transportadoPorCarregamento * 0.08
-        // Cálculo de valor perdido por carregamento 
+        let perdasDuranteTransporte = transportadoPorCarregamento * 0.08;
+        // Cálculo de valor perdido por carregamento
         // "Carregamento" = Uma viagem ou entrega de um único caminhão.
 
-        var valorPerdidoMensalmente = (perdasDuranteTransporte * qtd_veiculos) * (carregamentosDia * 30)
+        let valorPerdidoMensalmente = (perdasDuranteTransporte * qtd_veiculos) * (carregamentosDia *30);
         // Cálculo do valor perdido mensalmente, sendo o total por carregamento multiplicado pela quantidade de veículos e, depois, este resultado foi multiplicado pela quantidade de carregamentos por dia de cada caminhão.
 
-        var diminuicaoPerdas = (perdasDuranteTransporte * qtd_veiculos) * (carregamentosDia *30) * 0.40
+        let diminuicaoPerdas = (perdasDuranteTransporte * qtd_veiculos) * (carregamentosDia *30) * 0.40;
         // Cálculo de perdas diminuindo 60% de perdas, com a utilização da nossa solução.
 
         div_resultado.innerHTML =
@@ -117,4 +117,5 @@
         h1_resultado4.innerHTML = `R$${diminuicaoPerdas.toLocaleString('pt-BR')}`
         descrição4.innerHTML = `perdidos mensalmente, um valor menor do que anteriormente.`
     }
+
 </script>

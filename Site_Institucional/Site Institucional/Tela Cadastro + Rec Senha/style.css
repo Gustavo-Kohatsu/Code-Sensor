@@ -1,0 +1,193 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+body {
+
+    margin: 0;
+
+    background-color: #0B1014;
+    background-image: url(imagens/CodeSendorFundo.png);
+    background-repeat: no-repeat;
+    background-position: 40vw 20vh;
+    height: 100vh;
+    width: 100vw;
+}
+
+#voltar {
+
+    padding: 1%;
+    width: 12%;
+    height: 12%;
+
+    background: none;
+    border: none;
+
+    color: #A60000;
+    font-weight: bolder;
+    font-size: 33pt;
+
+    font-family: "Lexend", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    text-decoration: none;
+
+}
+
+button img {
+
+    width: 18%;
+
+}
+
+.containerPai {
+
+    /* background-color: aqua; */
+
+    padding-top: 8%;
+
+    width: 100vw;
+    height: 75vh;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.container {
+
+    background-color: #161A1D;
+
+    height: 50vh;
+    width: 35vw;
+
+    align-self: center;
+
+    border: #880000 solid;
+    border-radius: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+
+.container h1 {
+
+    color: #A60000;
+
+    font-size: 30pt;
+    font-weight: bolder;
+
+    text-align: left;
+    margin-bottom: 0;
+
+    font-family: "Lexend", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+
+}
+
+.container p {
+
+    color: #FAFAFA;
+
+    width: 75%;
+
+    font-family: "Roboto Mono", monospace;
+    font-optical-sizing: auto;
+    font-weight: 500px;
+
+}
+
+#div_input {
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: start;
+
+    width: 70%;
+    height: 13%;
+
+}
+
+#div_input input {
+
+    border-radius: 20px;
+    border: none;
+
+    width: 95%;
+    height: 100%;
+
+    padding-left: 3%;
+
+    font-size: 13pt;
+
+}
+
+.inputLinha {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+.inputLinha .linha {
+    position: absolute;
+    border-bottom: 1px solid rgb(250, 59, 59); 
+    width: 23%;
+    height: 3%;
+    pointer-events: none;
+    
+}
+
+
+#div_input input:hover {
+
+    background-color: rgb(238, 238, 238);
+
+}
+
+
+.container span {
+
+    color: #CBCBCB;
+
+    padding-left: 3%;
+
+    font-family: "Roboto Mono", monospace;
+    font-optical-sizing: auto;
+    font-weight: 500px;
+
+}
+
+.container button {
+
+    background-color: #880000;
+    color: #FFFFFF;
+
+    border: none;
+    border-radius: 20px;
+
+    height: 9%;
+    width: 35%;
+
+    cursor: pointer;
+
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 15pt;
+
+}
+
+.container button:hover {
+
+    background-color: #9c0000;
+
+}
