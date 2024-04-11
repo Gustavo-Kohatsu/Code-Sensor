@@ -35,15 +35,11 @@ body {
 }
 
 button img {
-
     width: 18%;
 
 }
 
 .containerPai {
-
-    /* background-color: aqua; */
-
     padding-top: 8%;
 
     width: 100vw;
@@ -80,7 +76,7 @@ button img {
 
     color: #A60000;
 
-    font-size: 30pt;
+    font-size: 40px;
     font-weight: bolder;
 
     text-align: left;
@@ -104,64 +100,47 @@ button img {
 
 }
 
-#div_input {
-
-    display: flex;
-    flex-direction: column;
-
-    align-items: start;
-
-    width: 70%;
-    height: 13%;
-
-}
-
-#div_input input {
-
-    border-radius: 20px;
-    border: none;
-
-    width: 95%;
-    height: 100%;
-
-    padding-left: 3%;
-
-    font-size: 13pt;
-
-}
-
 .inputLinha {
-    width: 100%;
+    width: 50%;
     height: 50%;
     display: flex;
     justify-content: center;
+    background-color: white;
+    border-radius: 20px;
 }
 
-.inputLinha .linha {
-    position: absolute;
-    border-bottom: 1px solid rgb(250, 59, 59); 
-    width: 23%;
-    height: 3%;
-    pointer-events: none;
-    
+input {
+    width: 90%;
+    height: 80%;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1.8px solid #b90101;
+    margin-bottom: 10%;
 }
 
+input:valid {
+    color: rgb(0, 0, 0);
+    outline: none;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 1.05rem;
+}
 
-#div_input input:hover {
-
-    background-color: rgb(238, 238, 238);
+label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 20%;
 
 }
 
-
-.container span {
-
+span {
+    text-align: start;
+    width: 45%;
     color: #CBCBCB;
-
-    padding-left: 3%;
-
     font-family: "Roboto Mono", monospace;
-    font-optical-sizing: auto;
     font-weight: 500px;
 
 }
