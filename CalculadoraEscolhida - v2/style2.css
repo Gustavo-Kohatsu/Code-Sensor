@@ -12,12 +12,11 @@
         transform: translateY(0%);
         user-select: none;
         z-index: -1;
-        /* margin-right: 10px; */
     }
 }
 
 
-@keyframes animarDivVermelha {
+/* @keyframes animarDivVermelha {
     from {
         opacity: 0;
         transform: translateX(10%);
@@ -30,7 +29,7 @@
         margin-right: 15px;
     }
 
-}
+} */
 
 
 
@@ -42,8 +41,8 @@
 
 body {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
 
     width: 99vw;
@@ -51,10 +50,39 @@ body {
     background-color: #0B1014;
     background-image: url('imagens/CodeSendorFundo.png');
     background-repeat: no-repeat;
-    background-position-y: center;
-    background-position-x: right;
+
+    overflow: auto;
+    position: absolute;
+    background-size: cover;
+    
 
     font-family: "Roboto", sans-serif;
+}
+
+::placeholder{
+    /* color: #880000; */
+    font-weight:800;
+    font-size: 1.2em;
+    font-style: italic;
+}
+
+.header{
+    display:flex;
+    height: 80vw;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: whitesmoke;
+   
+}
+
+.container{
+    margin-top: 40px;
+    display: flex;
+    width:100%;
+    flex-direction: row;
+    margin-bottom: 50px;
+    
 }
 
 .calculadora {

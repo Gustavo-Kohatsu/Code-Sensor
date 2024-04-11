@@ -8,42 +8,51 @@
     <title>Calculadora Financeira - CodeSensor</title>
 </head>
 
+
 <body>
-    <div class="calculadora">
-        <div class="tituloCalc">
-            <h1 class="titu_calc">Calculadora Financeira</h1><br><br>
-            <p>Entenda o porquê de nossa solução ser NECESSÁRIA para o seu negócio!</p>
-        </div>
-        <div class="inputsCalc">
-            <div class="perguntaCalc">
-                <h3>Selecione o tipo de carne que será transportado</h3>
 
-                <label for="bovina"><input type="checkbox" name="bovina" id="check_bovina"> Bovina</label>
+    <header class="header"> HEADERHEADERHEADERHEADERHEADERHEADERHEADERHEADERHEADERHEADERHEADERHEADERHEADERHEADERHEADERHEADERHEADERHEADERHEADERHEADERHEADERHEADERHEADERHEADERHEADERHEADERHEADERHEADER
+         </header>
 
-                <label for="suina"><input type="checkbox" name="suina" id="check_suina"> Suina</label>
-
-                <label for="aves"><input type="checkbox" name="aves" id="check_aves"> Aves</label>
-
-                <br>
-
-                <p>Quantidade da Frota de Caminhões:</p>
-                <input type="number" id="input_qtd_veiculos" placeholder="(15)" class="input_text"><br>
-
-                <p>Em média, qual é a carga máxima durante o transporte? (Em kg)</p>
-                <input type="number" id="input_max_carga" placeholder="(10000)" class="input_text"><br>
-
-                <p>Em média, quantos carregamentos CADA caminhão executa diariamente?</p>
-                <input type="number" id="input_carregamentos_dia" placeholder="(4)" class="input_text"><br>
-
+    <div class="container">
+        <div class="calculadora">
+            <div class="tituloCalc">
+                <h1 class="titu_calc">Calculadora Financeira</h1><br><br>
+                <p>Entenda o porquê de nossa solução ser NECESSÁRIA para o seu negócio!</p>
             </div>
+            <div class="inputsCalc">
+                <div class="perguntaCalc">
+                    <h3>Selecione o tipo de carne que será transportado</h3>
 
-            <button onclick="calcularPerdas()">Calcular</button>
+                    <label for="bovina"><input type="checkbox" name="bovina" id="check_bovina"> Bovina</label>
+
+                    <label for="suina"><input type="checkbox" name="suina" id="check_suina"> Suina</label>
+
+                    <label for="aves"><input type="checkbox" name="aves" id="check_aves"> Aves</label>
+
+                    <br>
+
+                    <p>Quantidade da Frota de Caminhões:</p>
+                    <input type="number" id="input_qtd_veiculos" placeholder="15" class="input_text"><br>
+
+                    <p>Em média, qual é a carga máxima durante o transporte? (Em kg)</p>
+                    <input type="number" id="input_max_carga" placeholder="10000" class="input_text"><br>
+
+                    <p>Em média, quantos carregamentos CADA caminhão executa diariamente?</p>
+                    <input type="number" id="input_carregamentos_dia" placeholder="4" class="input_text"><br>
+
+                </div>
+
+                <button onclick="calcularPerdas()">Calcular</button>
+            </div>
         </div>
-    </div>
-    
-    <div id="div_resultado">
 
+        <div id="div_resultado">
+
+        </div>
+        
     </div>
+    <img src="imagens/LogoBranca.png">
 
 </body>
 
@@ -52,7 +61,7 @@
 <script>
 
     function calcularPerdas() {
-        
+
         const qtd_veiculos = Number(input_qtd_veiculos.value);
         const maxCarga = Number(input_max_carga.value);
         const carregamentosDia = Number(input_carregamentos_dia.value);
@@ -147,11 +156,11 @@
         } else if (qtd_veiculos <= 0 || maxCarga <= 0 || carregamentosDia <= 0) {
 
             alert(`Algum valor inserido é inválido. Por favor, verifique todos os valores e tente novamente.`);
-            
+
         } else if (qtdCarnes == 0) {
-            
+
             alert(`Por favor, selecione o tipo de carne`)
-            
+
         }
 
     }
