@@ -2,6 +2,37 @@
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 
+@keyframes animarDiv {
+    from {
+        opacity: 0;
+        transform: translateY(-50%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0%);
+        user-select: none;
+        z-index: -1;
+        /* margin-right: 10px; */
+    }
+}
+
+
+@keyframes animarDivVermelha {
+    from {
+        opacity: 0;
+        transform: translateX(10%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0%);
+        user-select: none;
+        z-index: -1;
+        margin-right: 15px;
+    }
+
+}
+
+
 
 * {
     border: none;
@@ -49,6 +80,8 @@ body {
     animation-name: animarDivVermelha;
     animation-duration: 1.4s; 
 }
+ 
+    
     .tituloCalc {
         display: flex;
         flex-direction: column;
@@ -58,11 +91,11 @@ body {
 
 
 
+
     }
 
     .tituloCalc p {
         font-size: 20px;
-
         width: 80%;
     }
 
@@ -135,10 +168,12 @@ body {
     }
 
     .inputsCalc button:hover {
-        background-color: #ffb5b5;
+        /* background-color: #ffb5b5; */
+        background-color: #880000;
         color: #000000;
-        width: 60%;
+        width: 40%;
         cursor: pointer;
+        
 
     }
 
@@ -150,8 +185,8 @@ body {
     }
 
     .resultadoCalc {
-        background-color: #FFDBDB;
-        border-left: 25px solid #FFAAAA;
+        /* background-color: #FFDBDB;
+        border-left: 25px solid #FFAAAA; */
 
         width: 820px;
         height: 645px;
@@ -177,6 +212,7 @@ body {
         /* justify-content: space-between; */
         border: #000 1px solid;
         text-align: center;
+        border-radius: 25px;
 
         width: 70%;
         height: 100%;
@@ -209,42 +245,12 @@ body {
     }
 
 
-    @keyframes animarDiv {
+    .cardResultado p {
 
-        from {
-            opacity: 0;
-            transform: translate(10%);
-        }
-
-        to {
-            opacity: 1;
-            transform: translateY(0%);
-            user-select: none;
-            z-index: -1;
-            margin-right: 15px;
-
-        }
-
-
+        margin-top: 10px;
 
     }
 
 
-    @keyframes animarDivVermelha {
-
-        from {
-            opacity: 0;
-            transform: translateX(10%);
-        }
-
-        to {
-            opacity: 1;
-            transform: translateX(0%);
-            user-select: none;
-            z-index: -1;
-            margin-right: 15px;
-
-        }
-
-    }
+    
 
