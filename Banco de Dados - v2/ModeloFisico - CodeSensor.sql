@@ -174,11 +174,11 @@ CNPJ CHAR(18) UNIQUE,
 CEP CHAR(9),
 Telefone VARCHAR(15) UNIQUE,
 Email VARCHAR(345)UNIQUE,
-fkEmpresa INT, -- Essa FK é para sabermos qual filial é de qual empresa
+fkFilial INT, -- Essa FK é para sabermos qual filial é de qual empresa
 			   -- Fazendo o AUTO-RELACIONAMENTO da tabela Empresa...
 
 PRIMARY KEY PK_idEmpresa (idEmpresa),
-FOREIGN KEY ForeignKey_fkEmpresa (fkEmpresa) REFERENCES Empresa (idEmpresa)
+FOREIGN KEY ForeignKey_fkEmpresa (fkFilial) REFERENCES Empresa (idEmpresa)
 );
 
 
@@ -245,7 +245,7 @@ FOREIGN KEY ForeignKey_idSensor (fkSensor) REFERENCES Sensor (idSensor)
 );
 
 -- Inserindo dados na tabela Empresa
-INSERT INTO Empresa (nome_fantasia, CNPJ, CEP, Telefone, Email, fkEmpresa)
+INSERT INTO Empresa (nome_fantasia, CNPJ, CEP, Telefone, Email, fkFilial)
 VALUES 
 ('Empresa A', '12345678901234', '12345-678', '(11) 1234-5678', 'empresaA@example.com', NULL),
 ('Empresa B', '56789012345678', '98765-432', '(22) 9876-5432', 'empresaB@example.com', NULL),
@@ -257,7 +257,7 @@ VALUES
 -- Inserindo na mesma tabela (por causa do auto-relacionamento), as filiais
 -- e de que empresas elas são. LEMBRANDO: Teremos então 
 -- 6 (de cima) + 4 (abaixo) = 10 Linhas de dados da tabela Empresa
-INSERT INTO Empresa (nome_fantasia, CNPJ, CEP, Telefone, Email, fkEmpresa)
+INSERT INTO Empresa (nome_fantasia, CNPJ, CEP, Telefone, Email, fkFilial)
 VALUES
 ('Filial G Empresa C', '23456999034345', '43210-007', '(77) 1321-0387', 'filialG@example.com', 3),
 ('Filial H Empresa A', '23456829034345', '43210-747', '(88) 1321-0387', 'filialH@example.com', 1),
@@ -317,21 +317,39 @@ VALUES
 ('2024-04-05 10:00:00', 64.2, 6);
 
 -- ===========================================
+-- SELECT com INNER JOIN de auto relacionamento da tabela Empresa:
+
+SELECT Matriz.*, Filial.*
+FROM Empresa AS Matriz
+INNER JOIN Empresa AS Filial
+ON Matriz.fkFilial = Filial.idEmpresa;
+-- ===========================================
+-- SELECT com INNER JOIN das tabelas Empresa e Funcionario:
+SELECT *
+FROM Funcionario AS Func
+INNER JOIN Empresa AS EMP
+ON Func.fkEmpresa = EMP.idEmpresa;
+-- ===========================================
+-- SELECT com INNER JOIN das tabelas Empresa (matriz e filial) + Funcionario:
+/*
+SELECT 
+FROM Funcionario AS Func
+LEFT JOIN Empresa AS Matriz
+ON Func.fkEmpresa = Matriz.idEmpresa
+LEFT JOIN Empresa AS Filial
+ON Func.fkEmpresa = Filial.fkFilial;
+*/
+-- ===========================================
+-- SELECT com INNER JOIN das tabelas Veiculo com Lote:
+
+SELECT *
+FROM Veiculo AS Veic
+INNER JOIN Lote AS L
+ON Veic.idVeiculo = L.fkVeiculo;
+-- ===========================================
 -- Select com INNER JOIN das tabelas Sensor e Leitura:
 
 SELECT *
 FROM Sensor AS S
 INNER JOIN Leitura AS Leit
 ON S.idSensor = Leit.fkSensor;
--- ===========================================
--- SELECT com INNER JOIN de auto relacionamento da tabela Empresa:
-
-SELECT Matriz.*, Filial.*
-FROM Empresa AS Matriz
-INNER JOIN Empresa AS Filial
-ON Matriz.fkEmpresa = Filial.idEmpresa;
-
-SELECT *
-FROM Veiculo as vei
-inner join Lote as lo
-on vei.idVeiculo = lo.fkVeiculo;
