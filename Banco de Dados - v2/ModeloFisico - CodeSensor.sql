@@ -166,7 +166,6 @@ ON Matriz.fkEmpresa = Filial.idEmpresa;
 CREATE DATABASE CodeSensor2;
 USE CodeSensor2;
 
-
 CREATE TABLE Empresa (
 idEmpresa INT AUTO_INCREMENT,
 nome_fantasia VARCHAR(45) UNIQUE,
@@ -174,14 +173,12 @@ CNPJ CHAR(18) UNIQUE,
 CEP CHAR(9),
 Telefone VARCHAR(15) UNIQUE,
 Email VARCHAR(345)UNIQUE,
-fkFilial INT, -- Essa FK é para sabermos qual filial é de qual empresa
+fkMatriz INT, -- Essa FK é para sabermos qual filial é de qual empresa
 			   -- Fazendo o AUTO-RELACIONAMENTO da tabela Empresa...
 
 PRIMARY KEY PK_idEmpresa (idEmpresa),
-FOREIGN KEY ForeignKey_fkEmpresa (fkFilial) REFERENCES Empresa (idEmpresa)
+FOREIGN KEY ForeignKey_fkEmpresa (fkMatriz) REFERENCES Empresa (idEmpresa)
 );
-
-
 
 CREATE TABLE Funcionario (
 idFuncionario INT AUTO_INCREMENT,
@@ -245,7 +242,7 @@ FOREIGN KEY ForeignKey_idSensor (fkSensor) REFERENCES Sensor (idSensor)
 );
 
 -- Inserindo dados na tabela Empresa
-INSERT INTO Empresa (nome_fantasia, CNPJ, CEP, Telefone, Email, fkFilial)
+INSERT INTO Empresa (nome_fantasia, CNPJ, CEP, Telefone, Email, fkMatriz)
 VALUES 
 ('Empresa A', '12345678901234', '12345-678', '(11) 1234-5678', 'empresaA@example.com', NULL),
 ('Empresa B', '56789012345678', '98765-432', '(22) 9876-5432', 'empresaB@example.com', NULL),
@@ -257,14 +254,12 @@ VALUES
 -- Inserindo na mesma tabela (por causa do auto-relacionamento), as filiais
 -- e de que empresas elas são. LEMBRANDO: Teremos então 
 -- 6 (de cima) + 4 (abaixo) = 10 Linhas de dados da tabela Empresa
-INSERT INTO Empresa (nome_fantasia, CNPJ, CEP, Telefone, Email, fkFilial)
+INSERT INTO Empresa (nome_fantasia, CNPJ, CEP, Telefone, Email, fkMatriz)
 VALUES
 ('Filial G Empresa C', '23456999034345', '43210-007', '(77) 1321-0387', 'filialG@example.com', 3),
 ('Filial H Empresa A', '23456829034345', '43210-747', '(88) 1321-0387', 'filialH@example.com', 1),
 ('Filial I Empresa D', '23456289034345', '43210-127', '(99) 1321-0387', 'filialI@example.com', 4),
 ('Filial J Empresa F', '23456719034345', '43210-547', '(00) 1321-0387', 'filialJ@example.com', 6);
-
-
 
 -- Inserts para a tabela Funcionario
 INSERT INTO Funcionario (Nome, Email, chaveAcesso, CPF, fkEmpresa) 
@@ -322,23 +317,44 @@ VALUES
 SELECT Matriz.*, Filial.*
 FROM Empresa AS Matriz
 INNER JOIN Empresa AS Filial
-ON Matriz.fkFilial = Filial.idEmpresa;
+ON Matriz.fkMatriz = Filial.idEmpresa;
 -- ===========================================
 -- SELECT com INNER JOIN das tabelas Empresa e Funcionario:
 SELECT *
 FROM Funcionario AS Func
 INNER JOIN Empresa AS EMP
 ON Func.fkEmpresa = EMP.idEmpresa;
+-- ==============
+-- TESTE:
+SELECT *
+FROM Funcionario AS Func
+RIGHT JOIN Empresa AS EMP
+ON EMP.idEmpresa = Func.fkEmpresa
+
+RIGHT JOIN Empresa AS Filial
+ON Filial.idEmpresa = EMP.fkMatriz;
+
+SELECT
+	EMP.idEmpresa AS 'ID Empresa', EMP.nome_fantasia AS 'Nome fantasia', EMP.CNPJ, EMP.CEP, EMP.Telefone, EMP.Email, EMP.fkMatriz AS 'FK Matriz',
+    Filial.idEmpresa AS 'ID Empresa', Filial.nome_fantasia AS 'Nome fantasia', Filial.CNPJ, Filial.CEP, Filial.Telefone, Filial.Email, Filial.fkMatriz AS 'FK Matriz',
+    Func.idFuncionario AS 'ID Funcionário', Func.Nome AS 'Nome funcionário', Func.Email, Func.chaveAcesso AS 'Chave de acesso', Func.CPF, Func.fkEmpresa AS 'FK Empresa'
+FROM Empresa AS EMP
+LEFT JOIN Empresa AS Filial
+ON Filial.idEmpresa = EMP.fkMatriz
+
+LEFT JOIN Funcionario AS Func
+ON EMP.idEmpresa = Func.fkEmpresa;
+
 -- ===========================================
 -- SELECT com INNER JOIN das tabelas Empresa (matriz e filial) + Funcionario:
-/*
-SELECT 
+
+SELECT *
 FROM Funcionario AS Func
 LEFT JOIN Empresa AS Matriz
 ON Func.fkEmpresa = Matriz.idEmpresa
+
 LEFT JOIN Empresa AS Filial
-ON Func.fkEmpresa = Filial.fkFilial;
-*/
+ON Func.fkEmpresa = Filial.fkMatriz;
 -- ===========================================
 -- SELECT com INNER JOIN das tabelas Veiculo com Lote:
 
