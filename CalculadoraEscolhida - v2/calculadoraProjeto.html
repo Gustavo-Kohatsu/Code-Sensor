@@ -26,7 +26,7 @@
 
                     <label for="bovina"><input type="checkbox" name="bovina" id="check_bovina"> Bovina</label>
 
-                    <label for="suina"><input type="checkbox" name="suina" id="check_suina"> Suina</label>
+                    <label for="suina"><input type="checkbox" name="suina" id="check_suina"> Suína</label>
 
                     <label for="aves"><input type="checkbox" name="aves" id="check_aves"> Aves</label>
 
@@ -131,27 +131,27 @@
 
             p_introducao1.innerHTML = `Com uma carga média de ${maxCarga}kg por veículo, você terá:
             <br>
-            <span class = textoVerde>R$${transportadoPorCarregamento.toLocaleString('pt-BR')}</span>
+            <span class = textoVerde>${transportadoPorCarregamento.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</span>
             <br>
             sendo transportado por carregamento.`
 
             p_introducao2.innerHTML = `De acordo com a nossa equipe em média é estimado <b>8% de perdas</b> durante transporte:
             <br>
-            <span class = textoVermelho>R$${perdasDuranteTransporte.toLocaleString('pt-BR')}</span>
+            <span class = textoVermelho>${perdasDuranteTransporte.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</span>
             <br>
             em média será perdido a cada carregamento.`
 
             p_introducao3.innerHTML = `Com ${qtd_veiculos} veículos, executando ${carregamentosDia} carregamentos <b>por dia</b>, <br> você terá em média:
             <br>
-            <span class = textoVermelho>R$${valorPerdidoMensalmente.toLocaleString('pt-BR')}</span>
+            <span class = textoVermelho>${valorPerdidoMensalmente.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</span>
             <br>
             perdidos mensalmente.`
 
             p_introducao4.innerHTML = `Com a nossa solução, você conseguirá <b>uma diminuição de 60% das suas perdas</b>, conseguindo uma economia de até:
             <br>
-            <span class = textoVerde>R$${diminuicaoPerdas.toLocaleString('pt-BR')}</span>
+            <span class = textoVerde>${diminuicaoPerdas.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</span>
             <br>
-            ou seja, diminuindo a perda de R$${valorPerdidoMensalmente.toLocaleString('pt-BR')} para R$${(valorPerdidoMensalmente - diminuicaoPerdas).toLocaleString('pt-BR')} mensalmente.`
+            ou seja, diminuindo a perda de ${valorPerdidoMensalmente.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })} para ${(valorPerdidoMensalmente - diminuicaoPerdas).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })} mensalmente.`
 
         } else if (qtd_veiculos <= 0 || maxCarga <= 0 || carregamentosDia <= 0) {
 
