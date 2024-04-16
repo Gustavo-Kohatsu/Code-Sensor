@@ -7,7 +7,7 @@ body {
     margin: 0;
 
     background-color: #0B1014;
-    background-image: url(imagens/CodeSendorFundo.png);
+    background-image: url(../imagens/CodeSendorFundo.png);
     background-repeat: no-repeat;
     background-position: 40vw 20vh;
     height: 100vh;

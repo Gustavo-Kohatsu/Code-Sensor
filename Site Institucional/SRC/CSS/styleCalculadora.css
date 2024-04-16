@@ -50,7 +50,7 @@ body {
     width: 99vw;
     height: 95vh;
     background-color: #0B1014;
-    background-image: url('imagens/CodeSendorFundo.png');
+    background-image: url('../imagens/CodeSendorFundo.png');
     background-repeat: no-repeat;
 
     overflow: auto;
