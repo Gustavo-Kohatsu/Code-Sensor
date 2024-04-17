@@ -194,7 +194,7 @@ FOREIGN KEY ForeignKey_fkEmpresa (fkEmpresa) REFERENCES Empresa (idEmpresa)
 
 CREATE TABLE Veiculo (
 idVeiculo INT AUTO_INCREMENT,
-cargaMaxima FLOAT,
+carga FLOAT,
 Placa VARCHAR(10) UNIQUE, -- são 10 caracteres na Alemanha...
 fkEmpresa INT,
 
@@ -221,8 +221,6 @@ idSensor INT AUTO_INCREMENT,
 Modelo 
 	VARCHAR(5),
 	CHECK (Modelo IN ('LM35', 'DHT11')),
-Tipo
-	VARCHAR(12),
 	CHECK (Tipo IN ('Temperatura', 'Umidade')),
 dtInstalacao DATETIME,
 fkVeiculo INT,
