@@ -26,20 +26,20 @@
           <div id="inputsCadastro">
             <div id="colunaInputs1">
               <div class="inputPadronizado">
-                <label for="nome">Nome</label>
+                <label for="input_nome">Nome</label>
                 <div class="inputLinha">
-                  <input id="nome" />
+                  <input id="input_nome" />
                 </div>
               </div>
               <div class="inputPadronizado">
-                <label for="senha">Senha</label>
+                <label for="input_senha">Senha</label>
                 <div class="inputLinha">
                   <input id="input_senha" type="text" onkeyup="validarSenha()" />
                 </div>
                 <div class="validacaoSenha"></div>
               </div>
               <div class="inputPadronizado">
-                <label for="confirmarSenha">Confirme a Senha</label>
+                <label for="input_confirmarSenha">Confirme a Senha</label>
                 <div class="inputLinha">
                   <input id="input_confirmarSenha" type="password" />
                 </div>
@@ -49,21 +49,21 @@
             <div id="colunaInputs2">
 
               <div class="inputPadronizado">
-                <label for="email">E-mail</label>
+                <label for="input_email">E-mail</label>
                 <div class="inputLinha">
-                  <input id="email" />
+                  <input id="input_email" />
                 </div>
               </div>
               <div class="inputPadronizado">
-                <label for="cpf">CPF</label>
+                <label for="input_cpf">CPF</label>
                 <div class="inputLinha">
-                  <input id="cpf" />
+                  <input id="input_cpf" />
                 </div>
               </div>
               <div class="inputPadronizado">
-                <label for="empresa">Empresa</label>
+                <label for="input_empresa">Empresa</label>
                 <div class="inputLinha">
-                  <input id="empresa" />
+                  <input id="input_empresa" />
                 </div>
               </div>
             </div>
@@ -94,15 +94,47 @@
   caracteresEspeciais = /[!|@|#|$|%|^|&|*|(|)|-|_]/;
 
   function validarCampos() {
+    const nome = input_nome.value;
     const senha = input_senha.value;
     const confirmarSenha = input_confirmarSenha.value;
+    const email = input_email.value;
+    const cpf = input_cpf.value;
+    let nomeEmpresa = input_empresa.value;
 
-    if (senha == confirmarSenha) {
-      alert('Cadastro criado!')
-    } else {
-      alert('Coloque a mesma senha nos campos.')
+    if (nomeEmpresa.indexOf('0') > -1 ||
+        nomeEmpresa.indexOf('1') > -1 ||
+        nomeEmpresa.indexOf('2') > -1 ||
+        nomeEmpresa.indexOf('3') > -1 ||
+        nomeEmpresa.indexOf('4') > -1 ||
+        nomeEmpresa.indexOf('5') > -1 ||
+        nomeEmpresa.indexOf('6') > -1 ||
+        nomeEmpresa.indexOf('7') > -1 ||
+        nomeEmpresa.indexOf('8') > -1 ||
+        nomeEmpresa.indexOf('9') > -1 ) {
+      nomeEmpresa = Number(nomeEmpresa);
     }
-  }
+
+    if (nome           != '' && senha       != '' &&
+        confirmarSenha != '' && email       != '' &&
+        cpf            != '' && nomeEmpresa != '') {
+          if (cpf.length == 11) {
+            if (typeof nomeEmpresa == 'string') {
+              if (senha == confirmarSenha) {
+                alert('Cadastro Criado!');
+                window.location.href = "login.html";
+              } else {
+                alert('A senha deve ser igual nos campos "Senha" e "Confirme a Senha"');
+              }
+            } else {
+              alert('Campo Empresa inválido!')
+            }
+          } else {
+            alert('CPF Inválido!')
+          }
+        } else {
+          alert('Campos inválidos!')
+        }
+      }
 
   function validarSenha() {
     document.querySelector('.validacaoSenha').innerHTML = '';
@@ -112,16 +144,16 @@
       document.querySelector('.validacaoSenha').innerHTML = `<span style="color: red"><strong>- - Fraca</strong></span>`
     } else if (senhaValidacao.length >= 8 && senhaValidacao.length <= 11 &&
       (letrasMaiusculas.test(senhaValidacao) ||
-      letrasMinusculas.test(senhaValidacao) ||
-      numeros.test(senhaValidacao)          ||
-      caracteresEspeciais.test(senhaValidacao))
+        letrasMinusculas.test(senhaValidacao) ||
+        numeros.test(senhaValidacao) ||
+        caracteresEspeciais.test(senhaValidacao))
     ) {
       document.querySelector('.validacaoSenha').innerHTML = `<span style="color: yellow;"><strong>- - - Média</strong></span>`
     } else if (senhaValidacao.length >= 12 &&
-              (letrasMaiusculas.test(senhaValidacao) &&
-               letrasMinusculas.test(senhaValidacao) &&
-               numeros.test(senhaValidacao) &&
-               caracteresEspeciais.test(senhaValidacao)) 
+      (letrasMaiusculas.test(senhaValidacao) &&
+        letrasMinusculas.test(senhaValidacao) &&
+        numeros.test(senhaValidacao) &&
+        caracteresEspeciais.test(senhaValidacao))
     ) {
       document.querySelector('.validacaoSenha').innerHTML = `<span style="color: #44e235;"><strong>- - - - - Forte</strong></span>`
     }
