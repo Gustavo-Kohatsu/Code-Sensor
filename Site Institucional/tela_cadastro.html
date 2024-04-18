@@ -63,7 +63,7 @@
               <div class="inputPadronizado">
                 <label for="input_empresa">Empresa</label>
                 <div class="inputLinha">
-                  <input id="input_empresa" />
+                  <input type="email" id="input_empresa" />
                 </div>
               </div>
             </div>
@@ -101,24 +101,11 @@
     const cpf = input_cpf.value;
     let nomeEmpresa = input_empresa.value;
 
-    if (nomeEmpresa.indexOf('0') > -1 ||
-        nomeEmpresa.indexOf('1') > -1 ||
-        nomeEmpresa.indexOf('2') > -1 ||
-        nomeEmpresa.indexOf('3') > -1 ||
-        nomeEmpresa.indexOf('4') > -1 ||
-        nomeEmpresa.indexOf('5') > -1 ||
-        nomeEmpresa.indexOf('6') > -1 ||
-        nomeEmpresa.indexOf('7') > -1 ||
-        nomeEmpresa.indexOf('8') > -1 ||
-        nomeEmpresa.indexOf('9') > -1 ) {
-      nomeEmpresa = Number(nomeEmpresa);
-    }
-
     if (nome           != '' && senha       != '' &&
         confirmarSenha != '' && email       != '' &&
         cpf            != '' && nomeEmpresa != '') {
           if (cpf.length == 11) {
-            if (typeof nomeEmpresa == 'string') {
+            if (email.indexOf('@') != -1) {
               if (senha == confirmarSenha) {
                 alert('Cadastro Criado!');
                 window.location.href = "login.html";
@@ -126,7 +113,7 @@
                 alert('A senha deve ser igual nos campos "Senha" e "Confirme a Senha"');
               }
             } else {
-              alert('Campo Empresa inválido!')
+              alert('Email inválido!')
             }
           } else {
             alert('CPF Inválido!')
