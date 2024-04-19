@@ -92,7 +92,7 @@
   letrasMinusculas = /[a-z]/;
   numeros = /[0-9]/;
   caracteresEspeciais = /[!|@|#|$|%|^|&|*|(|)|-|_]/;
-
+  
   function validarCampos() {
     const nome = input_nome.value;
     const senha = input_senha.value;
@@ -125,21 +125,32 @@
 
   function validarSenha() {
     document.querySelector('.validacaoSenha').innerHTML = '';
+    
     const senhaValidacao = input_senha.value;
+    let arrayNumbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+
+    let numberInPasswd = false;
+
+    for (let i = 0; i <= senhaValidacao.length; i++) {
+      if (arrayNumbers[i] == senhaValidacao[i]) {
+        numberInPasswd = true;
+        
+      }
+    }
 
     if (senhaValidacao.length >= 1 && senhaValidacao.length <= 7) {
       document.querySelector('.validacaoSenha').innerHTML = `<span style="color: red"><strong>- - Fraca</strong></span>`
     } else if (senhaValidacao.length >= 8 && senhaValidacao.length <= 11 &&
       (letrasMaiusculas.test(senhaValidacao) ||
         letrasMinusculas.test(senhaValidacao) ||
-        numeros.test(senhaValidacao) ||
+        (numberInPasswd) ||
         caracteresEspeciais.test(senhaValidacao))
     ) {
       document.querySelector('.validacaoSenha').innerHTML = `<span style="color: yellow;"><strong>- - - Média</strong></span>`
     } else if (senhaValidacao.length >= 12 &&
       (letrasMaiusculas.test(senhaValidacao) &&
         letrasMinusculas.test(senhaValidacao) &&
-        numeros.test(senhaValidacao) &&
+        (numberInPasswd) &&
         caracteresEspeciais.test(senhaValidacao))
     ) {
       document.querySelector('.validacaoSenha').innerHTML = `<span style="color: #44e235;"><strong>- - - - - Forte</strong></span>`
