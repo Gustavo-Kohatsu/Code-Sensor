@@ -5,7 +5,7 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: #0B1014;
+    background-color: #F4EFEB;
 }
 
 /* Configurações padrões dos botões - Mudar a largura (se necessário) ou qualquer outra configuração por ID!!!!!! */
@@ -40,6 +40,16 @@ body {
 
 }
 
+.texto {
+
+    font-family: "Roboto Mono", monospace;
+    color: #050505;
+    font-size: 20pt;
+
+    font-weight: 600;
+
+}
+
 
 /* ------------------- MENU ------------------- */
 
@@ -47,18 +57,21 @@ body {
     display: flex;
     align-items: center;
     justify-content: flex-start;
+
     padding-left: 20px;
     padding-top: 5px;
     padding-bottom: 5px;
     padding-right: 20px;
+
     font-family: "Roboto Mono", monospace;
     font-optical-sizing: auto;
     font-weight: 500px;
-    background-color: #161A1D;
+    
+    background-color: #E9E5E2;
 }
 .headerContainerDireita{
     width: 50%;
-    /* background-color: #880000; */
+    
     display: flex;
     justify-content: flex-end;
     padding-left:290px ;
@@ -77,7 +90,8 @@ body {
 .header_nav{
     display: flex;
     gap: 70px;
-    color: white;
+    color: #050505;
+    font-weight: 600;
     width: 50%;
 }
 #botaoHeader {
@@ -103,7 +117,7 @@ ul{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-evenly;
 
 }
 
@@ -114,6 +128,7 @@ ul{
     font-size: 43pt;
     font-family: "Lexend", sans-serif;
     font-weight: 500;
+    width: 90%;
     
 }
 
@@ -177,11 +192,105 @@ ul{
 
     position: absolute;
 
-    top: 326.5%;
-    left: 42.5%;
+    top: 279%;
+    left: 43.5vw;
 
     width: 200px;
     height: 45px;
+
+}
+
+
+/* ------------------- TERCEIRA PARTE - SOBRE A CODESENSOR ------------------- */
+
+.sobreCodeSensor {
+
+    background-color: #E7E5E4;
+    background-image: url(../imagens/work.png);
+    background-repeat: no-repeat;
+    background-position: 80% 50%;
+
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+
+    margin: 0;
+}
+
+#tituloSobreCodeSensor {
+
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    background-color: #DFDFDF;
+
+    height: 25vh;
+
+    background-image: url(../imagens/CodeSensorTransparentePreto.png);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+#containerMissao {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+} 
+
+#missao {
+
+    width: 70%;
+    text-align: center;
+
+}
+
+#containerVisao {
+
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+
+    padding: 10%;
+
+    width: 30%;
+}
+
+
+
+#h1Valores {
+
+    background-color: #DFDFDF;
+    height: 10vh;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tituloValor {
+
+    color: #A60000;
+    font-size: 25pt;
+
+}
+
+#valores {
+
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.textoValores {
+
+    width: 20%;
+    /* background-color:#880000; */
 
 }
 
