@@ -29,7 +29,7 @@ body {
 .titulos {
 
     color: #A60000;
-    font-size: 40pt;
+    font-size: 50pt;
     font-family: "Lexend", sans-serif;
     font-weight: bold;
 
@@ -109,11 +109,11 @@ ul{
 
 .primeiraParteIndex {
 
-    background-image: url(../imagens/fundo.png);
+    background-image: url(../imagens/fundoPaginaInicial.png);
     width: 100%;
     height: 750px;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100% 100%;
 
     display: flex;
     flex-direction: column;
@@ -300,12 +300,10 @@ ul{
 /* 
 Terminar de ajeitar todos os cards, verificar espaçando entre texto e icones
 Terminar de arrumar a segunda linha inteira: Colocar imagens, segundo texto, icones
-Arrumar o espaçamento entre os cards
+Arrumar o espaçamento entre os cards.
 
-Verificar o espaçamento dos texto passados (troquei a margem)
-
+Verificar o espaçamento dos texto passados (troquei a margem).
 */
-
 
 #nossaEquipe {
 
@@ -323,10 +321,15 @@ Verificar o espaçamento dos texto passados (troquei a margem)
 
     background-color: #E0DCD8;
     width: 33%;
+    height: 10vh;
     /* height: 35%; */
 
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
 }
 
@@ -354,16 +357,30 @@ Verificar o espaçamento dos texto passados (troquei a margem)
     background-color: #F2F2F2;
     /* background-repeat: no-repeat; */
     border-radius: 5px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+
+    margin: 3%;
 
     height: 50vh;
-    width: 18.2vw;
+    width: 20vw;
 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
 
-    /* margin: 5%; */
+}
+
+.cardMembro img {
+
+    width: 100%;
+
+}
+
+.cardMembro p {
+
+    text-align: center;
 
 }
 
@@ -376,13 +393,69 @@ Verificar o espaçamento dos texto passados (troquei a margem)
 
 .redesSociais {
 
-    width: 53%;
+    width: 70%;
 
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
 
     padding-bottom: 10%;
 
+}
+
+.redesSociais img {
+
+    width: 20%;
+
+}
+
+/* ------------------- QUINTA PARTE - ENTRE EM CONTATO ------------------- */
+
+.entreEmContato {
+
+    background-image: url(../imagens/fundoEntreEmContato.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+
+    height: 125vh;
+
+    padding: 2%;
+
+}
+
+.containerEntreEmContato {
+
+    background-color: #F4EFEB;
+    height: 120vh;
+
+    border-radius: 20px;
+    border: #880000 7px solid;
+
+    text-align: left;
+
+    display: flex;
+    flex-direction: column;
+
+    padding-left: 4%;
+
+}
+
+#tituloContato {
+
+    text-align: left;
+
+}
+
+.inputs {
+
+    border-radius: 20px;
+    border: 1px solid black;
+
+    width: 30%;
+    height: 6vh;
+
+    font-size: 20pt;
+
+    padding-left: 5%;
 }
 
 /* -------------------- */
