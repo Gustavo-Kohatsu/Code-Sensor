@@ -134,11 +134,24 @@
     
     // VERIFICAÇÃO letras minúsculas
     let arrayLower = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']; 
-    
+    let lowerInPasswd = false;
+
+    for (let l= 0; l < arrayLower.length; l++){
+      if(senhaValidacao.includes(arrayLower[l])){
+        lowerInPasswd = true;
+      }
+    }
     
     // VERIFICAÇÃO letras maiúsculas
     let arrayUpper = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+    let upperInPasswd = false;
 
+    for(let u = 0; u < arrayUpper.length; u++){
+      if(senhaValidacao.includes(arrayUpper[u])){
+        upperInPasswd = true;
+      }
+
+    }
 
     // VERIFICAÇÃO NUMÉRICA 
     let arrayNumbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
@@ -147,7 +160,6 @@
     for (let n = 0; n < arrayNumbers.length; n++) {
       if (senhaValidacao.includes(arrayNumbers[n])) {
         numberInPasswd = true;
-        
       }
     }
 
@@ -162,16 +174,16 @@
       }
 
     if (senhaValidacao.length >= 12 &&
-       (letrasMaiusculas.test(senhaValidacao) &&
-        letrasMinusculas.test(senhaValidacao) &&
+       ((upperInPasswd) &&
+        (lowerInPasswd) &&
        (numberInPasswd) &&
         (specialCharInPasswd))
     ) {
       document.querySelector('.validacaoSenha').innerHTML = `<span style="color: #44e235;"><strong>- - - - - Forte</strong></span>`
 
     } else if (senhaValidacao.length >= 8 &&
-      (letrasMaiusculas.test(senhaValidacao) ||
-        letrasMinusculas.test(senhaValidacao) ||
+      ((upperInPasswd) ||
+        (lowerInPasswd) ||
         (numberInPasswd) ||
         (specialCharInPasswd))
     ) {
