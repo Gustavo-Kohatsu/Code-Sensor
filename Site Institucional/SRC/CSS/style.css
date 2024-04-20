@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 body {
     margin: 0;
@@ -12,11 +12,9 @@ body {
 
 .botao {
     background-color: #880000;
-
-        height: 50px;
-    /* width: 100%; */
+    height: 50px;
     color: #FFFFFF;
-    font-size: 20px;
+    font-size: 25px;
     font-family: "Lexend", sans-serif;
     font-weight: 500;
     cursor: pointer;
@@ -29,7 +27,7 @@ body {
 .titulos {
 
     color: #A60000;
-    font-size: 50pt;
+    font-size: 60pt;
     font-family: "Lexend", sans-serif;
     font-weight: bold;
 
@@ -67,9 +65,11 @@ body {
     font-family: "Roboto Mono", monospace;
     font-optical-sizing: auto;
     font-weight: 500px;
+    font-size: 15pt;
     
     background-color: #E9E5E2;
 }
+
 .headerContainerDireita{
     width: 50%;
     
@@ -77,6 +77,7 @@ body {
     justify-content: flex-end;
     padding-left:290px ;
 }
+
 .logoHeader {
 
     height: 40px;
@@ -88,6 +89,7 @@ body {
     list-style: none;
     cursor: pointer;
 }
+
 .header_nav{
     display: flex;
     gap: 70px;
@@ -95,11 +97,13 @@ body {
     font-weight: 600;
     width: 50%;
 }
+
 #botaoHeader {
-    cursor: pointer;
-    width: 135px;
-    height: 40px;
+
+    width: 150px;
+
 }
+
 ul{
     display: flex;
     gap: 40px;
@@ -109,11 +113,14 @@ ul{
 
 .primeiraParteIndex {
 
-    background-image: url(../imagens/fundoPaginaInicial.png);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4),
+    rgba(0, 0, 0, 0.4)), url(../imagens/fundoPaginaInicial.jpg);
+    background-repeat: no-repeat;
+    background-position: 80%;
+    background-size: 100% 150%;
+    
     width: 100%;
     height: 750px;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
 
     display: flex;
     flex-direction: column;
@@ -167,8 +174,8 @@ ul{
 
 #botaoSimulador {
 
-    width: 290px;
-
+    width: 330px;
+    height: 60px;
 }
 
 
@@ -189,15 +196,27 @@ ul{
 
 }
 
+.diagramaFundo {
+
+    background-image: url(../imagens/Diagrama.png);
+    background-repeat: no-repeat;
+    background-position: 50% 180%;
+
+    height: 160vh;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: end;
+
+    padding-bottom: 1%;
+
+}
+
 #botaoDiagrama {
 
-    position: absolute;
-
-    top: 279%;
-    left: 43.5vw;
-
     width: 200px;
-    height: 45px;
+    height: 50px;
 
 }
 
@@ -240,6 +259,7 @@ ul{
     display: flex;
     align-items: center;
     justify-content: center;
+    padding-top: 3%;
 
 } 
 
@@ -268,6 +288,8 @@ ul{
 
     background-color: #DFDFDF;
     height: 10vh;
+
+    font-size: 40pt;
     
     display: flex;
     align-items: center;
@@ -291,6 +313,7 @@ ul{
 .textoValores {
 
     width: 20%;
+    padding: 3%;
     /* background-color:#880000; */
 
 }
@@ -308,7 +331,7 @@ Verificar o espaçamento dos texto passados (troquei a margem).
 #nossaEquipe {
 
     background-color: #9c202080;
-    height: 100%;
+    height: 142vh;
 
     display: flex;
     flex-direction: column;
@@ -316,12 +339,11 @@ Verificar o espaçamento dos texto passados (troquei a margem).
 
 }
 
-
 #tituloEquipe {
 
     background-color: #E0DCD8;
-    width: 33%;
-    height: 10vh;
+    width: 43%;
+    height: 11vh;
     /* height: 35%; */
 
     border-top-left-radius: 10px;
@@ -332,6 +354,8 @@ Verificar o espaçamento dos texto passados (troquei a margem).
     justify-content: center;
 
 }
+
+/* MALDITOS CARDS */
 
 #containerCards {
 
@@ -350,20 +374,27 @@ Verificar o espaçamento dos texto passados (troquei a margem).
 
 }
 
+.separacao2 {
+
+    display: flex;
+    justify-content: center;
+
+}
+
+/* AAAAAAAAAAAAAAAAAAAAAAAAAAAA */
+
 .cardMembro {
 
-    /* background-image: url(../imagens/Kohatsu.png);
-    background-position: 50% 0%; */
     background-color: #F2F2F2;
-    /* background-repeat: no-repeat; */
+
     border-radius: 5px;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
 
-    margin: 3%;
+    margin: 2%;
 
-    height: 50vh;
-    width: 20vw;
+    height: 55vh;
+    width: 30vw;
 
     display: flex;
     flex-direction: column;
@@ -372,24 +403,73 @@ Verificar o espaçamento dos texto passados (troquei a margem).
 
 }
 
-.cardMembro img {
+.cardMembroSegundaParte {
+
+    background-color: #F2F2F2;
+
+    border-radius: 5px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+
+    margin: 2%;
+
+    height: 55vh;
+    width: 22vw;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.separacao img {
 
     width: 100%;
 
 }
 
-.cardMembro p {
+.separacao2 img {
+
+    width: 100%;
+
+}
+
+.textoCards {
+
+    padding-bottom: 5%;
+
+}
+
+.tituloCard {
 
     text-align: center;
-
-}
-
-.subTexto {
-
     font-size: large;
-    font-weight: 400;
+
+    font-family: "Roboto Mono", monospace;
+    color: #050505;
+    font-size: 28pt;
+
+    font-weight: 600;
+
+    margin: 0;
+    padding-bottom: 2%;
 
 }
+
+.textoCard {
+
+    text-align: center;
+    font-size: large;
+
+    font-family: "Roboto Mono", monospace;
+    color: #050505;
+    font-size: 20pt;
+
+    margin: 0;
+
+}
+
 
 .redesSociais {
 
@@ -412,18 +492,24 @@ Verificar o espaçamento dos texto passados (troquei a margem).
 
 .entreEmContato {
 
-    background-image: url(../imagens/fundoEntreEmContato.png);
-    background-size: 100%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2),
+    rgba(0, 0, 0, 0.2)), url(../imagens/fundoEntreEmContato.jpg);
+    background-size: 120% 100%;
     background-repeat: no-repeat;
 
-    height: 125vh;
+    height: 127vh;
 
     padding: 2%;
+    padding-top: 5%;
 
 }
 
 .containerEntreEmContato {
 
+    background-image: url(../imagens/fundoContato.png);
+    background-repeat: no-repeat;
+    background-position: 100% -1%;
+    background-size: 30%;
     background-color: #F4EFEB;
     height: 120vh;
 
@@ -441,7 +527,24 @@ Verificar o espaçamento dos texto passados (troquei a margem).
 
 #tituloContato {
 
+    padding-left: 1%;
     text-align: left;
+
+}
+
+.containerInputs {
+
+    padding: 1%;
+
+}
+
+.textoContato {
+
+    font-family: "Roboto Mono", monospace;
+    color: #050505;
+    font-size: 25pt;
+
+    margin: 0;
 
 }
 
@@ -450,12 +553,88 @@ Verificar o espaçamento dos texto passados (troquei a margem).
     border-radius: 20px;
     border: 1px solid black;
 
+    background-color: #F2F2F2;
+
     width: 30%;
     height: 6vh;
 
     font-size: 20pt;
 
-    padding-left: 5%;
+    padding-left: 1%;
+    padding-right: 1%;
+
+    font-family: "Roboto Mono", monospace;
+    color: #050505;
+    font-size: 20pt;
+}
+
+#textarea_mensagem {
+
+    width: 70%;
+    height: 30vh;
+
+    border-radius: 20px;
+    border: 1px solid black;
+
+    background-color: #F2F2F2;
+
+    padding: 1%;
+
+
+    font-family: "Roboto Mono", monospace;
+    color: #050505;
+    font-size: 20pt;
+
+    resize: none;
+    
+}
+
+.FICANOLUGARBOTAO {
+
+    padding: 5%;
+
+}
+
+#enviar {
+
+    width: 10%;
+
+}
+
+#centralizarBotao {
+
+    display: flex;
+    justify-content: center;
+
+}
+
+/* RODAPÉ AAAAAAAAAAAAAAAAA */
+
+footer {
+
+    background-image: url(../imagens/Logo\ e\ CodeSensor.png);
+    background-repeat: no-repeat;
+    background-position: 2% 50%;
+
+    height: 20px;
+    padding: 2%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+footer p {
+
+    font-family: "Roboto", sans-serif;
+    color: #050505;
+    font-size: 13pt;
+
+    text-align: center;
+
+    width: 10%;
+
 }
 
 /* -------------------- */
