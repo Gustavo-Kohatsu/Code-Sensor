@@ -127,7 +127,15 @@
     document.querySelector('.validacaoSenha').innerHTML = '';
     
     const senhaValidacao = input_senha.value;
+    letrasMaiusculas = /[A-Z]/;
+    letrasMinusculas = /[a-z]/;
+    numeros = /[0-9]/;
+    caracteresEspeciais = /[!|@|#|$|%|^|&|*|(|)|-|_]/;
+  
     let arrayNumbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    let array
+
+
 
     let numberInPasswd = false;
 
