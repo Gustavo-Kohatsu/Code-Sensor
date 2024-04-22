@@ -10,15 +10,17 @@
 </head>
 
 <body>
-    <div class="header">
+    <div class="header" id="header">
 
-        <img src="SRC/imagens/LogoPreta.png" alt="logoCodeSensor" class="logoHeader">
+        <a href="#header">
+            <img src="SRC/imagens/LogoPreta.png" alt="logoCodeSensor" class="logoHeader">
+        </a>
         <nav class="header_nav">
             <ul class="navbar">
                 <li><a href="#diagrama">Entenda o processo</a></li>
                 <li><a href="#sobreCodeSensor">Sobre nós</a></li>
-                <li><a href="">Equipe</a></li>
-                <li><a href="">Contato</a></li>
+                <li><a href="#nossaEquipe">Equipe</a></li>
+                <li><a href="#entreEmContato">Contato</a></li>
             </ul>
         </nav>
         <a href="login.html" id="id_login">
@@ -40,9 +42,11 @@
         </div>
         <a href="calculadoraProjeto.html" id="id_calculadoraProjeto">
             <div id="alinharBotao">
-                <button class="botao" id="botaoSimulador">
-                    Simulador Financeiro ⇾
-                </button>
+                <a href="calculadoraProjeto.html">
+                    <button class="botao" id="botaoSimulador">
+                        Simulador Financeiro <img src="SRC/imagens/setaBranca.png" alt="">
+                    </button>
+                </a>
         </a>
     </div>
 
@@ -91,29 +95,23 @@
             <h1 class="titulos" id="h1Valores">NOSSOS VALORES</h1>
 
             <div id="valores">
-                <span class="textoValores">
-                    <p class="texto" class="textoValores">
-                        <span class="tituloValor">Resiliência</span>
-                        <br>
-                        Seguir em frente, mesmo quando está difícil.
-                    </p>
-                </span>
+                <p class="texto textoValores">
+                    <span class="tituloValor">Resiliência</span>
+                    <br>
+                    Seguir em frente, mesmo quando está difícil.
+                </p>
 
-                <span class="textoValores">
-                    <p class="texto">
-                        <span class="tituloValor">União</span>
-                        <br>
-                        Convivendo em harmonia como um time.
-                    </p>
-                </span>
+                <p class="texto textoValores">
+                    <span class="tituloValor">União</span>
+                    <br>
+                    Convivendo em harmonia como um time.
+                </p>
 
-                <span class="textoValores">
-                    <p class="texto" class="textoValores">
-                        <span class="tituloValor">Excelência</span>
-                        <br>
-                        Sempre em busca de fazer o melhor para os nossos clientes.
-                    </p>
-                </span>
+                <p class="texto textoValores">
+                    <span class="tituloValor">Excelência</span>
+                    <br>
+                    Sempre em busca de fazer o melhor para os nossos clientes.
+                </p>
             </div>
 
         </div>
@@ -124,13 +122,15 @@
 
     <div id="nossaEquipe">
 
-        <h1 class="titulos" id="tituloEquipe">NOSSA EQUIPE</h1>
+        <div id="tituloEquipe">
+
+            <h1 class="titulos">NOSSA EQUIPE</h1>
+
+        </div>
 
         <div id="containerCards">
 
             <div class="separacao">
-
-                <!-- AAAAAAAAAAAAAAAAAAAAAAAA -->
 
                 <div class="cardMembro">
                     <img src="SRC/imagens/Kohatsu.png" alt="">
@@ -147,8 +147,6 @@
                     </div>
                 </div>
 
-                <!-- AAAAAAAAAAAAAAAAAAAAAA -->
-
                 <div class="cardMembro">
                     <img src="SRC/imagens/Igor.png" alt="">
 
@@ -164,8 +162,6 @@
                     </div>
                 </div>
 
-                <!-- AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA -->
-
                 <div class="cardMembro">
                     <img src="SRC/imagens/João.png" alt="">
 
@@ -180,8 +176,6 @@
                         <img src="SRC/imagens/instagram.png" alt="">
                     </div>
                 </div>
-
-                <!-- AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA -->
 
                 <div class="cardMembro">
                     <img src="SRC/imagens/Fonseca.png" alt="">
@@ -200,7 +194,7 @@
 
             </div>
 
-            <!-- Segunda Parte AAAAAAAAAAAAAAAAAAA -->
+            <!-- Segunda Parte -->
 
             <div class="separacao2">
 
@@ -219,8 +213,6 @@
                     </div>
                 </div>
 
-                <!-- AAAAAAAAAAAAAAAAAAAAAAAAAAA -->
-
                 <div class="cardMembroSegundaParte">
                     <img src="SRC/imagens/Rafael.png" alt="">
 
@@ -235,8 +227,6 @@
                         <img src="SRC/imagens/instagram.png" alt="">
                     </div>
                 </div>
-
-                <!-- AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA -->
 
                 <div class="cardMembroSegundaParte">
                     <img src="SRC/imagens/Raíne.png" alt="">
@@ -259,7 +249,7 @@
 
     </div>
 
-    <div class="entreEmContato">
+    <div class="entreEmContato" id="entreEmContato">
 
         <div class="containerEntreEmContato">
             <h1 class="titulos" id="tituloContato">ENTRE EM CONTATO</h1>
@@ -297,7 +287,7 @@
 
     <footer>
 
-       <p>CodeSensor @ 2024. All rights reserved.</p>
+        <p>CodeSensor @ 2024. All rights reserved.</p>
 
     </footer>
 
