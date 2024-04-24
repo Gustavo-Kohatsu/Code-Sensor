@@ -182,12 +182,13 @@ FOREIGN KEY ForeignKey_fkEmpresa (fkMatriz) REFERENCES Empresa (idEmpresa)
 
 CREATE TABLE Funcionario (
 idFuncionario INT AUTO_INCREMENT,
+tipo VARCHAR (11) default "funcionario",
 Nome VARCHAR(50), 
 Email VARCHAR(345) UNIQUE,
 chaveAcesso CHAR(10) UNIQUE,
 CPF CHAR(12) UNIQUE,
 fkEmpresa INT,
-
+constraint chk_tipo CHECK(tipo in("superior", "funcionario")),
 PRIMARY KEY PK_idFuncionario (idFuncionario),
 FOREIGN KEY ForeignKey_fkEmpresa (fkEmpresa) REFERENCES Empresa (idEmpresa)
 );
