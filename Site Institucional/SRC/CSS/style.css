@@ -5,6 +5,8 @@
 html {
 
     scroll-behavior: smooth;
+    left: 100;
+    bottom: 500;
 
 }
 
@@ -61,6 +63,7 @@ body {
 /* ------------------- MENU ------------------- */
 
 .header{
+    scroll-behavior: smooth;
     display: flex;
     align-items: center;
     justify-content: flex-start;
