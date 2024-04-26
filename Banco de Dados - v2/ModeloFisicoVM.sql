@@ -1,82 +1,82 @@
-CREATE DATABASE CodeSensor2;
-USE CodeSensor2;
+CREATE DATABASE codesensor2;
+USE codesensor2;
 
-CREATE TABLE Empresa (
+CREATE TABLE empresa (
 idEmpresa INT AUTO_INCREMENT,
 nome_fantasia VARCHAR(45) UNIQUE,
-CNPJ CHAR(18) UNIQUE,
-CEP CHAR(9),
-Telefone VARCHAR(15) UNIQUE,
-Email VARCHAR(345)UNIQUE,
+cnpj CHAR(18) UNIQUE,
+cep CHAR(9),
+telefone VARCHAR(15) UNIQUE,
+email VARCHAR(345)UNIQUE,
 fkMatriz INT, -- Essa FK é para sabermos qual filial é de qual empresa
 			   -- Fazendo o AUTO-RELACIONAMENTO da tabela Empresa...
 
 PRIMARY KEY PK_idEmpresa (idEmpresa),
-FOREIGN KEY ForeignKey_fkEmpresa (fkMatriz) REFERENCES Empresa (idEmpresa)
+FOREIGN KEY ForeignKey_fkEmpresa (fkMatriz) REFERENCES empresa (idEmpresa)
 );
 
-CREATE TABLE Funcionario (
+CREATE TABLE funcionario (
 idFuncionario INT AUTO_INCREMENT,
 tipo VARCHAR (11) default "funcionario",
-Nome VARCHAR(50), 
-Email VARCHAR(345) UNIQUE,
+nome VARCHAR(50), 
+email VARCHAR(345) UNIQUE,
 chaveAcesso CHAR(10) UNIQUE,
-CPF CHAR(12) UNIQUE,
+cpf CHAR(12) UNIQUE,
 fkEmpresa INT,
 constraint chk_tipo CHECK(tipo in("superior", "funcionario")),
 PRIMARY KEY PK_idFuncionario (idFuncionario),
-FOREIGN KEY ForeignKey_fkEmpresa (fkEmpresa) REFERENCES Empresa (idEmpresa)
+FOREIGN KEY ForeignKey_fkEmpresa (fkEmpresa) REFERENCES empresa (idEmpresa)
 );
 
-CREATE TABLE Veiculo (
+CREATE TABLE veiculo (
 idVeiculo INT AUTO_INCREMENT,
 carga FLOAT,
-Placa VARCHAR(10) UNIQUE, -- são 10 caracteres na Alemanha...
+placa VARCHAR(10) UNIQUE, -- são 10 caracteres na Alemanha...
 fkEmpresa INT,
 
 PRIMARY KEY PK_idVeiculo (idVeiculo),
-FOREIGN KEY ForeignKey_idEmpresa (fkEmpresa) REFERENCES Empresa (idEmpresa)
+FOREIGN KEY ForeignKey_idEmpresa (fkEmpresa) REFERENCES empresa (idEmpresa)
 );
 
-CREATE TABLE Lote (
+CREATE TABLE lote (
 idLote INT AUTO_INCREMENT,
 tipoCarne 
 	VARCHAR(12),
-	CHECK (tipoCarne IN ('Bovina', 'Suína', 'Carne de ave')),
+	CHECK (tipoCarne IN ('bovina', 'suína', 'carne de ave')),
 quantidadeCarne INT, -- qtdCarne nos referimos as peças de carne, e não quantas carnes por KG.
 dataPartida DATE,
 dataChegada date,
 fkVeiculo INT,
 
 PRIMARY KEY PK_idLote (idLote),
-FOREIGN KEY ForeignKey_idVeiculo (fkVeiculo) REFERENCES Veiculo (idVeiculo)
+FOREIGN KEY ForeignKey_idVeiculo (fkVeiculo) REFERENCES veiculo (idVeiculo)
 );
 
-CREATE TABLE Sensor (
+CREATE TABLE sensor (
 idSensor INT AUTO_INCREMENT,
-Modelo 
+modelo 
 	VARCHAR(5),
-	CHECK (Modelo IN ('LM35', 'DHT11')),
+	CHECK (modelo IN ('LM35', 'DHT11')),
 dtInstalacao DATETIME,
 fkVeiculo INT,
 
 PRIMARY KEY PK_idSensor (idSensor),
-FOREIGN KEY ForeignKey_idVeiculo (fkVeiculo) REFERENCES Veiculo (idVeiculo)
+FOREIGN KEY ForeignKey_idVeiculo (fkVeiculo) REFERENCES veiculo (idVeiculo)
 );
 
-CREATE TABLE Leitura (
+CREATE TABLE leitura (
 idLeitura INT AUTO_INCREMENT,
-dtLeitura DATETIME,
+dtLeitura timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
 temperatura DECIMAL(5, 2) DEFAULT NULL,
 umidade DECIMAL(5, 2) DEFAULT NULL,
 fkSensor INT,
 
 PRIMARY KEY PK_idLeitura (idLeitura),
-FOREIGN KEY ForeignKey_idSensor (fkSensor) REFERENCES Sensor (idSensor)
+FOREIGN KEY ForeignKey_idSensor (fkSensor) REFERENCES sensor (idSensor)
 );
 
 -- Inserindo dados na tabela Empresa
-INSERT INTO Empresa (nome_fantasia, CNPJ, CEP, Telefone, Email, fkMatriz)
+INSERT INTO empresa (nome_fantasia, cnpj, cep, telefone, email, fkMatriz)
 VALUES 
 ('Empresa A', '12345678901234', '12345-678', '(11) 1234-5678', 'empresaA@example.com', NULL),
 ('Empresa B', '56789012345678', '98765-432', '(22) 9876-5432', 'empresaB@example.com', NULL),
@@ -88,7 +88,7 @@ VALUES
 -- Inserindo na mesma tabela (por causa do auto-relacionamento), as filiais
 -- e de que empresas elas são. LEMBRANDO: Teremos então 
 -- 6 (de cima) + 4 (abaixo) = 10 Linhas de dados da tabela Empresa
-INSERT INTO Empresa (nome_fantasia, CNPJ, CEP, Telefone, Email, fkMatriz)
+INSERT INTO empresa (nome_fantasia, cnpj, cep, telefone, email, fkMatriz)
 VALUES
 ('Filial G Empresa C', '23456999034345', '43210-007', '(77) 1321-0387', 'filialG@example.com', 3),
 ('Filial H Empresa A', '23456829034345', '43210-747', '(88) 1321-0387', 'filialH@example.com', 1),
@@ -96,7 +96,7 @@ VALUES
 ('Filial J Empresa F', '23456719034345', '43210-547', '(00) 1321-0387', 'filialJ@example.com', 6);
 
 -- Inserts para a tabela Funcionario
-INSERT INTO Funcionario (Nome, Email, chaveAcesso, CPF, fkEmpresa) 
+INSERT INTO funcionario (nome, email, chaveAcesso, cpf, fkEmpresa) 
 VALUES 
 ('Funcionario 1', 'funcionario1@example.com', 'chave123', '123456789-01', 1),
 ('Funcionario 2', 'funcionario2@example.com', 'chave456', '987654321-09', 1),
@@ -106,7 +106,7 @@ VALUES
 ('Funcionario 6', 'funcionario6@example.com', 'chave321', '321654987-32', 6);
 
 -- Inserts para a tabela Veiculo
-INSERT INTO Veiculo (cargaMaxima, Placa, fkEmpresa) 
+INSERT INTO veiculo (carga, placa, fkEmpresa) 
 VALUES 
 (1000.50, 'ABC1234', 1),
 (750.25, 'DEF5678', 1),
@@ -116,34 +116,35 @@ VALUES
 (600.60, 'PQR1234', 6);
 
 -- Inserts para a tabela Lote
-INSERT INTO Lote (tipoCarne, quantidadeCarne,dataChegada,dataPartida,fkVeiculo) 
+INSERT INTO lote (tipoCarne, quantidadeCarne, dataChegada, dataPartida, fkVeiculo) 
 VALUES 
-('Bovina',100,'2024-10-10','2024-10-03', 1),
-('Suína', 150,'2024-09-10','2024-09-05', 2),
-('Carne de ave',200,'2024-09-18','2024-09-15', 3),
-('Bovina',120,'2024-09-13','2024-09-12',  4),
-('Suína', 180,'2024-09-26','2024-09-22', 5),
-('Carne de ave', 220,'2024-09-27','2024-09-24', 6);
+('bovina',100,'2024-10-10','2024-10-03', 1),
+('suína', 150,'2024-09-10','2024-09-05', 2),
+('carne de ave',200,'2024-09-18','2024-09-15', 3),
+('bovina',120,'2024-09-13','2024-09-12',  4),
+('suína', 180,'2024-09-26','2024-09-22', 5),
+('carne de ave', 220,'2024-09-27','2024-09-24', 6);
 
 -- Inserts para a tabela Sensor
-INSERT INTO Sensor (Modelo, Tipo, dtInstalacao, fkVeiculo) 
+INSERT INTO sensor (modelo, dtInstalacao, fkVeiculo) 
 VALUES 
-('LM35', 'Temperatura', '2024-04-01 10:00:00', 1),
-('LM35', 'Temperatura', '2024-04-01 10:00:00', 2),
-('DHT11', 'Umidade', '2024-04-01 10:00:00', 3),
-('DHT11', 'Umidade', '2024-04-01 10:00:00', 4),
-('LM35', 'Temperatura', '2024-04-01 10:00:00', 5),
-('DHT11', 'Umidade', '2024-04-01 10:00:00', 6);
+('LM35', '2024-04-01 10:00:00', 1),
+('LM35', '2024-04-01 10:00:00', 2),
+('DHT11', '2024-04-01 10:00:00', 3),
+('DHT11', '2024-04-01 10:00:00', 4),
+('LM35', '2024-04-01 10:00:00', 5),
+('DHT11', '2024-04-01 10:00:00', 6);
 
 -- Inserts para a tabela Leitura
-INSERT INTO Leitura (dtLeitura, dados,  fkSensor) 
+
+INSERT INTO leitura (dtLeitura, umidade, temperatura, fkSensor)
 VALUES 
-('2024-04-05 10:00:00', 25.5, 1),
-('2024-04-05 10:00:00', 4.2, 2),
-('2024-04-05 10:00:00',  58.9, 3),
-('2024-04-05 10:00:00', 62.4, 4),
-('2024-04-05 10:00:00', 25.8, 5),
-('2024-04-05 10:00:00', 64.2, 6);
+('2024-04-05 10:00:00', 25.5, 4.2, 1),
+('2024-04-05 10:00:00', 25.5, 4.2, 2),
+('2024-04-05 10:00:00', 58.9, 4.2, 3),
+('2024-04-05 10:00:00', 62.4, 2.5, 4),
+('2024-04-05 10:00:00', 25.8, 3.2 ,5),
+('2024-04-05 10:00:00', 64.2, 5.1 ,6);
 
 -- ===========================================
 -- SELECT com INNER JOIN de auto relacionamento da tabela Empresa:

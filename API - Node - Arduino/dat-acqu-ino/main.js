@@ -26,9 +26,9 @@ const serial = async (
             // altere!
             // Credenciais do banco de dados
             host: '10.18.33.88',
-            user: 'Codesensor',
+            user: 'codesensor',
             password: 'Codesensor@123',
-            database: 'CodeSensor2',
+            database: 'codesensor2',
             port: 3307
         }
     ).promise();
@@ -70,7 +70,7 @@ const serial = async (
             // altere!
             // Este insert irá inserir os dados na tabela "medida"
             await poolBancoDados.execute(
-                'INSERT INTO leitura (dht11_umidade,lm35_temperatura) VALUES (?, ?)',
+                'INSERT INTO leitura (umidade, temperatura) VALUES (?, ?)',
                 [dht11Umidade, lm35Temperatura]
             );
             console.log("valores inseridos no banco: ", dht11Umidade + ", " +  lm35Temperatura )
