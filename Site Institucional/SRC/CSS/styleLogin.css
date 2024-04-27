@@ -14,8 +14,9 @@ body {
     background-image: url('../imagens/Group\ 4.png');
     background-repeat: no-repeat;
     background-position-y: center;
-    background-position-x: right;
-    margin-left: 17.5%;
+    background-position-x: center;
+    background-size: 90%;
+
 }
 
 #voltar {
