@@ -165,10 +165,8 @@ input {
     height: 50%;
     background-color: transparent;
     border: none;
-    border-bottom: 1.8px solid #b90101;
+    border-bottom: 1.95px solid #b90101;
     margin-top: 4%;
-
-    
 }
 
 input:valid {
