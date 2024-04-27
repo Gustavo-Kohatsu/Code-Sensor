@@ -6,12 +6,15 @@ body {
 
     margin: 0;
 
-    background-color: #0B1014;
-    background-image: url(../imagens/CodeSendorFundo.png);
+    background-color: #F4EFEB;
+    background-image: url(../imagens/Group\ 4.png);
     background-repeat: no-repeat;
-    background-position: 40vw 20vh;
+    background-position-y: center;
+    background-position-x: right;
     height: 100vh;
     width: 100vw;
+    background-size: 90%;
+    
 }
 
 #voltar {
@@ -55,7 +58,7 @@ button img {
 
 .container {
 
-    background-color: #161A1D;
+    background-color: #E9E5E2;
 
     height: 50vh;
     width: 35vw;
@@ -90,7 +93,7 @@ button img {
 
 .container p {
 
-    color: #FAFAFA;
+    color: black;
 
     width: 75%;
 
@@ -139,7 +142,7 @@ label {
 span {
     text-align: start;
     width: 45%;
-    color: #CBCBCB;
+    color: black;
     font-family: "Roboto Mono", monospace;
     font-weight: 500px;
 
