@@ -10,11 +10,12 @@
 body {
     width: 99vw;
     height: 95vh;
-    background-color: #0B1014;
-    background-image: url('../imagens/CodeSendorFundo.png');
+    background-color: #F4EFEB;
+    background-image: url('../imagens/Group\ 4.png');
     background-repeat: no-repeat;
     background-position-y: center;
     background-position-x: right;
+    margin-left: 17.5%;
 }
 
 #voltar {
@@ -60,7 +61,7 @@ body {
 #card-main {
     border: 3px solid #A60000;
     margin: 40px 0 40px 0;
-    background-color: #161A1D;
+    background-color: #E9E5E2;
     height: 800px;
     width: 600px;
     display: flex;
@@ -98,14 +99,14 @@ body {
 
 #titulos h2 {
     font-size: 25px;
-    color: white;
+    color: black;
     font-family: "Lexend", sans-serif;
     font-optical-sizing: auto;
     font-weight: 400;
 }
 
 #inputsCadastro {
-    color: white;
+    color: black;
     height: 80%;
     width: 100%;
     display: flex;
@@ -119,7 +120,7 @@ body {
 
 #esquecerSenha {
     width: 90%;
-    color: white;
+    color: black;
     display: flex;
     justify-content: flex-start;
     margin-left: 20px;
@@ -145,11 +146,13 @@ body {
 
 .inputLinha {
     width: 455px;
-    height: 67px;
+    height: 50px;
     display: flex;
     justify-content: center;
     background-color: white;
     border-radius: 20px;
+   
+
 }
 
 .inputLinha:hover {
@@ -158,10 +161,12 @@ body {
 
 input {
     width: 95%;
-    height: 90%;
+    height: 50%;
     background-color: transparent;
     border: none;
     border-bottom: 1.8px solid #b90101;
+    margin-top: 4%;
+
     
 }
 
@@ -250,7 +255,7 @@ label {
 }
 
 .textoFazerLogin span {
-    color: white;
+    color: black;
 }
 
 .textoFazerLogin a{
