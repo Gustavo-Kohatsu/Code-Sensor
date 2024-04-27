@@ -26,7 +26,7 @@ const serial = async (
             // altere!
             // Credenciais do banco de dados
             host: '10.18.33.88',
-            user: 'codesensor',
+            user: 'Codesensor',
             password: 'Codesensor@123',
             database: 'codesensor2',
             port: 3307
@@ -73,7 +73,7 @@ const serial = async (
                 'INSERT INTO leitura (umidade, temperatura) VALUES (?, ?)',
                 [dht11Umidade, lm35Temperatura]
             );
-            console.log("valores inseridos no banco: ", dht11Umidade + ", " +  lm35Temperatura )
+            console.log("valores inseridos no banco: ", dht11Umidade + ", " +  lm35Temperatura);
         
         }
         
