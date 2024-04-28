@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeSensor | Cadastro de Caminhão</title>
+    <link rel="stylesheet" href="SRC/CSS/styleCadastroFunc.css">
+    <link rel="shortcut icon" href="SRC/imagens/favicon.png" type="image/x-icon">
+</head>
+
+<body>
+
+    <div id="menuLateral">
+
+        <h1>Code<br><span id="sensor">Sensor</span></h1>
+
+        <h2>Olá, Claudio</h2>
+
+        <div id="containerBotoes">
+
+            <button id="botaoInicial">PÁGINA INICIAL</button>
+            <button class="botao">CAMINHÕES</button>
+            <button class="botao">CADASTRO</button>
+
+            <button id="botaoSair">SAIR</button>
+
+        </div>
+
+    </div>
+
+    <div id="containerTudo">
+
+        <div class="containerTitulo">
+
+            <h1 class="titulo">
+                CADASTRO DE FUNCIONÁRIO
+            </h1>
+
+        </div>
+
+
+        <div id="main">
+            <div id="card-main">
+              <div id="card">
+                <div id="titulos">
+                  <h1>INSIRA OS DADOS DO <br>FUNCIONÁRIO</h1>
+                  
+                </div>
+      
+                <div id="inputsCadastro">
+                  <div id="colunaInputs1">
+                    <div class="inputPadronizado">
+                      <label for="input_nome">Nome</label>
+                      <div class="inputLinha">
+                        <input id="input_nome" />
+                      </div>
+                    </div>                  
+                  </div>
+      
+                  <div id="colunaInputs2">
+      
+                    <div class="inputPadronizado">
+                      <label for="input_email">E-mail</label>
+                      <div class="inputLinha">
+                        <input id="input_email" />
+                      </div>
+                    </div>
+                    <div class="inputPadronizado">
+                      <label for="input_cpf">CPF</label>
+                      <div class="inputLinha">
+                        <input id="input_cpf" />
+                      </div>
+                    </div>
+                    <div class="inputPadronizado">
+                      <label for="input_empresa">Empresa</label>
+                      <div class="inputLinha">
+                        <input type="text" id="input_empresa" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="selectType">
+                  <label for="input_empresa">Tipo de Funcionário</label>
+                  <div class="inputLinha">
+                    <select name="" class="selectTipo">
+                    <option value="vazio" selected>Selecione o tipo</option>
+                    <option value="superior">Superior</option>
+                    <option value="funcionario">Funcionário</option></select>
+                  </div>
+                </div>
+      
+                <div id="botaoCriar">
+                  <button onclick="validarCampos()">Cadastrar Funcionário</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+    </div>
+
+</body>
+
+</html>
