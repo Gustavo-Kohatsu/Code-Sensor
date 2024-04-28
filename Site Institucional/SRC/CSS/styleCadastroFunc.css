@@ -190,9 +190,9 @@ body {
 
 #main {
 
-    background-image: url(../imagens/Group\ 4.png);
+    background-image: url(../imagens/);
 
-    
+
     display: flex;
     text-align: center;
     justify-content: center;
@@ -232,4 +232,27 @@ body {
     justify-content: center;
     background-color: white;
     border-radius: 20px;
+}
+
+input:valid {
+    color: rgb(0, 0, 0);
+    outline: none;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 1.05rem;
+}
+
+input {
+    width: 90%;
+    height: 50%;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1.95px solid #b90101;
+    margin-top: 5%;
+}
+
+.selectType {
+    display: flex;
+    flex-direction: column;
 }
