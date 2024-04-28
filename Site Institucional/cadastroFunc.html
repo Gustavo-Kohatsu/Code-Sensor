@@ -36,7 +36,7 @@
         <div id="card-main">
           <div id="card">
             <div id="titulos">
-              <h1>INSIRA OS DADOS DO <br />FUNCIONÁRIO</h1>
+              <h1 class="titu">INSIRA OS DADOS DO <br />FUNCIONÁRIO</h1>
             </div>
 
             <div id="inputsCadastro">
@@ -46,7 +46,7 @@
                   <div class="inputLinha">
                     <input id="input_nome" />
                   </div>
-                </div>
+                
               </div>
 
               <div class="inputPadronizado">
@@ -67,9 +67,9 @@
                   <input type="text" id="input_empresa" />
                 </div>
               </div>
-            
+            </div>
             <div class="selectType">
-              <label for="input_empresa">Tipo de Funcionário</label>
+              <label for="input_empresa">Tipo de Funcionário</label><br>
 
               <select name="" class="selectTipo">
                 <option value="vazio" selected>Selecione o tipo</option>
@@ -77,7 +77,9 @@
                 <option value="funcionario">Funcionário</option>
               </select>
             </div>
+            
           </div>
+            
               <button onclick="validarCampos()" class="botaoCriar">Cadastrar Funcionário</button>
             
           </div>
