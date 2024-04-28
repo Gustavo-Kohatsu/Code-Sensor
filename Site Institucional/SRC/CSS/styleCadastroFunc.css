@@ -4,9 +4,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 body {
+
+    background-image: url("../imagens/Group2422.png");
+    background-repeat: no-repeat;
+    background-position-y: center;
+    background-position-x: right;
+    background-size: 80%;
+    background-color: #EDE3DA;
     margin: 0;
     padding: 0;
-    background-color: #EDE3DA;
 
     height: 100vh;
     width: 100vw;
@@ -196,19 +202,15 @@ body {
 
 #main {
 
-    background-image: url(../imagens/Group2422.png);
-    background-repeat: no-repeat;
-
-
     display: flex;
     text-align: center;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    padding-top: 10%;
+    /* flex-direction: column; */
+    padding-top: 7%;
     gap: 100px;
     margin-bottom: 1000px;
-    background-color: #E9E5E2;
+    
 
 
     
@@ -227,6 +229,7 @@ body {
     width: 560px;
     height: 627px;
     padding-bottom: 1%;
+    background-color: #E1E1E1;
 
 }
 
@@ -238,7 +241,8 @@ body {
     font-family: "Roboto", sans-serif;
     font-weight: bold;
     font-size: 13pt;
-    border: solid 2px black;
+    outline: none;
+    border: none;
     border-radius: 20px;
     width: 40%;
     height: 8%;
