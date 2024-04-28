@@ -244,7 +244,7 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 7.6%;
+    margin-bottom: 6.5%;
 }
 
 
@@ -273,7 +273,7 @@ a {
 
 #divBotaoFacaParte {
     position: absolute;
-    top: 281%;
+    top: 275%;
     right: 43.5%;
     height: 10%;
     width: 15%;
