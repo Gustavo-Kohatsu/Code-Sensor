@@ -183,6 +183,8 @@ body {
     width: 85%;
     display: flex;
     flex-direction: column;
+    background-image: url(../imagens/Group2422.png);
+    background-repeat: no-repeat;
     
 
 
@@ -190,9 +192,9 @@ body {
 
 #main {
 
-    background-image: url(../imagens/Group\ 4.png);
-
     
+
+
     display: flex;
     text-align: center;
     justify-content: center;
@@ -200,6 +202,8 @@ body {
     flex-direction: column;
     padding-top: 10%;
     gap: 100px;
+    margin-bottom: 1000px;
+    background-color: #E9E5E2;
 
 
     
@@ -211,9 +215,13 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 2px #880000;
+    border: solid 2px #880000;
+    border-radius: 20px;
     gap: 20px;
     flex-direction: column;
+    width: 550px;
+    height: 650px;
+
 }
 
 #botaoCriar {
@@ -232,4 +240,32 @@ body {
     justify-content: center;
     background-color: white;
     border-radius: 20px;
+    border: solid 1px #000;
+}
+
+input:valid {
+    color: rgb(0, 0, 0);
+    outline: none;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 1.05rem;
+}
+
+input {
+    width: 90%;
+    height: 50%;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1.95px solid #000;
+    margin-top: 4%;
+}
+
+.selectType {
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    color: #A60000;
 }

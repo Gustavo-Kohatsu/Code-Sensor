@@ -60,7 +60,7 @@ body {
 
 /* ------------------- MENU ------------------- */
 
-.header{
+.header {
     scroll-behavior: smooth;
     display: flex;
     align-items: center;
@@ -81,6 +81,7 @@ body {
     position: fixed;
     width: 100%;
     height: 8vh;
+    z-index: 1000;
 }
 
 .headerContainerDireita{
@@ -225,6 +226,27 @@ a {
 
 /* ------------------- SEGUNDA PARTE - DIAGRAMA ------------------- */
 
+#container-diagrama {
+    margin-top: 5%;
+    height: 100%;
+    width: 100%;
+}
+
+.diagramaFundo {
+
+    /* background-image: url(../imagens/Diagrama.png);
+    background-repeat: no-repeat;
+    background-position: 50% 180%; */
+
+    height: 165.5vh;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 7.6%;
+}
+
 
 .diagrama {
 
@@ -240,25 +262,31 @@ a {
 
 }
 
-.diagramaFundo {
-
-    background-image: url(../imagens/Diagrama.png);
-    background-repeat: no-repeat;
-    background-position: 50% 180%;
-
-    height: 160vh;
+#diagrama-imagem {
+    height: 75%;
     width: 100%;
-
     display: flex;
     justify-content: center;
-    align-items: end;
+    align-items: center;
+}
 
-    padding-bottom: 1%;
 
+#divBotaoFacaParte {
+    position: absolute;
+    top: 281%;
+    right: 43.5%;
+    height: 10%;
+    width: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    margin-bottom: 30%;
+    z-index: 500;
+    
 }
 
 #botaoDiagrama {
-
     width: 200px;
     height: 50px;
 
@@ -467,7 +495,7 @@ a {
     margin: 2%;
 
     height: 55vh;
-    width: 22vw;
+    width: 21vw;
 
     display: flex;
     flex-direction: column;
@@ -639,7 +667,6 @@ a {
     font-family: "Roboto Mono", monospace;
     color: #050505;
     font-size: 20pt;
-
     resize: none;
     
 }
@@ -658,6 +685,7 @@ a {
 
 #centralizarBotao {
 
+    width: 100%;
     display: flex;
     justify-content: center;
 
