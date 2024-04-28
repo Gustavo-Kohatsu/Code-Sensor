@@ -42,7 +42,7 @@
               <div class="inputPadronizado">
                 <label for="input_telefone">Telefone</label>
                 <div class="inputLinha">
-                  <input id="input_telefone" type="password" />
+                  <input id="input_telefone"/>
                 </div>
               </div>
             </div>
@@ -50,16 +50,16 @@
             <div id="colunaInputs2">
 
               <div class="inputPadronizado">
-                <label for="input_empresa">CNPJ</label>
+                <label for="input_cnpj">CNPJ</label>
                 <div class="inputLinha">
-                  <input type="text" id="input_empresa" />
+                  <input type="text" id="input_cnpj" />
                 </div>
               </div>
 
               <div class="inputPadronizado">
-                <label for="input_cpf">CEP</label>
+                <label for="input_cep">CEP</label>
                 <div class="inputLinha">
-                  <input id="input_cpf" />
+                  <input id="input_cep" />
                 </div>
               </div>
 
@@ -101,31 +101,27 @@
   function validarCampos() {
     const nome = input_nome.value;
     const senha = input_senha.value;
-    const confirmarSenha = input_confirmarSenha.value;
+    const telefone = input_telefone.value;
     const email = input_email.value;
-    const cpf = input_cpf.value;
-    let nomeEmpresa = input_empresa.value;
+    const cep = input_cep.value;
+    let cnpj = input_cnpj.value;
 
-    if (nome           != '' && senha       != '' &&
-        confirmarSenha != '' && email       != '' &&
-        cpf            != '' && nomeEmpresa != '') {
-          if (cpf.length == 11) {
+    if (nome     != '' && senha != '' &&
+        telefone != '' && email != '' &&
+        cep      != '' && cnpj  != '') {
+          if (cep.length == 8 && cnpj == 14) {
             if (email.indexOf('@') != -1) {
-              if (senha == confirmarSenha) {
-                if (senha.length <= 16) {
-                  alert('Cadastro Criado!');
-                  window.location.href = "login.html";
-                } else {
-                  alert('A senha deve conter no máximo 16 caracteres!');
-                }
+              if (senha.length <= 16) {
+                alert('Cadastro Criado!');
+                window.location.href = "login.html";
               } else {
-                alert('A senha deve ser igual nos campos "Senha" e "Confirme a Senha"');
+                alert('A senha deve conter no máximo 16 caracteres!');
               }
             } else {
               alert('Email inválido!')
             }
           } else {
-            alert('CPF Inválido!')
+            alert('CEP ou CNPJ Inválido!')
           }
         } else {
           alert('Campos inválidos!')
@@ -184,7 +180,7 @@
        (numberInPasswd) &&
         (specialCharInPasswd))
     ) {
-      document.querySelector('.validacaoSenha').innerHTML = `<span style="color: #44e235;"><strong>- - - - - Forte</strong></span>`
+      document.querySelector('.validacaoSenha').innerHTML = `<span style="color: #188F05;"><strong>- - - - - Forte</strong></span>`
 
     } else if (senhaValidacao.length >= 8 &&
       ((upperInPasswd) ||
@@ -192,10 +188,10 @@
         (numberInPasswd) ||
         (specialCharInPasswd))
     ) {
-      document.querySelector('.validacaoSenha').innerHTML = `<span style="color: yellow;"><strong>- - - Média</strong></span>`
+      document.querySelector('.validacaoSenha').innerHTML = `<span style="color: #F88206;"><strong>- - - Média</strong></span>`
 
     } else if (senhaValidacao.length >= 1) {
-      document.querySelector('.validacaoSenha').innerHTML = `<span style="color: red"><strong>- - Fraca</strong></span>`
+      document.querySelector('.validacaoSenha').innerHTML = `<span style="color: #B2101F"><strong>- - Fraca</strong></span>`
     }
   }
 </script>

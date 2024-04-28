@@ -197,6 +197,8 @@ body {
 
 .titu {
     color: #A60000;
+    font-family: "Lexend", sans-serif;
+    font-weight: bold;
 }
 
 
@@ -343,6 +345,8 @@ input {
 
 .selectTipo {
     height: 30px;
+    width: 190px;
+    border-radius: 20px;
 }
 
 label {

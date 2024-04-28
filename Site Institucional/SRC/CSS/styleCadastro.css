@@ -176,7 +176,7 @@ body {
 }
 
 .inputLinha:hover {
-    outline: 2px solid rgb(219, 10, 10);
+    border: 2px solid rgb(219, 10, 10);
 }
 
 input {
@@ -206,6 +206,7 @@ label {
 
 .validacaoSenha {
     padding-left: 20px;
+    padding-top: 12px;
     font-size: medium;
 }
 

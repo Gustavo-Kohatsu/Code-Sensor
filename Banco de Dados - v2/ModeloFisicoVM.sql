@@ -4,10 +4,11 @@ USE codesensor2;
 CREATE TABLE empresa (
 idEmpresa 		INT 			AUTO_INCREMENT,
 nome_fantasia 	VARCHAR(45) 	not null,
+email 			VARCHAR(345) 	not null UNIQUE,
+telefone 		VARCHAR(15) 	not null,
 cnpj 			CHAR(18) 		not null UNIQUE,
 cep 			CHAR(9) 		not null UNIQUE,
-telefone 		VARCHAR(15) 	not null,
-email 			VARCHAR(345) 	not null UNIQUE,
+senha			VARCHAR(16) 	not null, -- no código colocamos um limite de 16 caracteres
 fkMatriz 		INT, -- Essa FK é para sabermos qual filial é de qual empresa
 			   -- Fazendo o AUTO-RELACIONAMENTO da tabela Empresa...
 
@@ -22,7 +23,7 @@ nome VARCHAR(50) not null,
 email VARCHAR(345) not null UNIQUE,
 cpf CHAR(12) not null UNIQUE,
 tipo VARCHAR(11) not null default "funcionario",
-chaveAcesso CHAR(10) not null UNIQUE,
+senha VARCHAR(16) not null,
 fkEmpresa INT,
 
 constraint chk_tipo CHECK(tipo IN ("superior", "funcionario")),
@@ -77,34 +78,34 @@ FOREIGN KEY ForeignKey_idSensor (fkSensor) REFERENCES sensor (idSensor)
 );
 
 -- Inserindo dados na tabela Empresa
-INSERT INTO empresa (nome_fantasia, cnpj, cep, telefone, email, fkMatriz)
-VALUES 
-('Empresa A', '12345678901234', '12345-678', '(11) 1234-5678', 'empresaA@example.com', NULL),
-('Empresa B', '56789012345678', '98765-432', '(22) 9876-5432', 'empresaB@example.com', NULL),
-('Empresa C', '90123456789012', '54321-098', '(33) 5432-1098', 'empresaC@example.com', NULL),
-('Empresa D', '34567890123456', '13579-246', '(44) 1357-9246', 'empresaD@example.com', NULL),
-('Empresa E', '78901234567890', '92365-432', '(55) 9876-5432', 'empresaE@example.com', NULL),
-('Empresa F', '23456789012345', '43210-987', '(66) 4321-0987', 'empresaF@example.com', NULL);
+INSERT INTO empresa (nome_fantasia, email, telefone, cnpj, cep, senha, fkMatriz)
+VALUES
+('Empresa A', 'empresaA@example.com', '(11) 1234-5678', '012345678912343678', '12345-678', '2211203##@cC', NULL),
+('Empresa B', 'empresaB@example.com', '(22) 9876-5432', '012345678912344672', '98765-432', '2299133##@Aa', NULL),
+('Empresa C', 'empresaC@example.com', '(33) 5432-1098', '012345678912347671', '54321-098', '2213133##@Ba', NULL),
+('Empresa D', 'empresaD@example.com', '(44) 1357-9246', '012345617912345670', '13579-246', '4713133##@Aa', NULL),
+('Empresa E', 'empresaE@example.com', '(55) 9876-5432', '045345678912345674', '92365-432', '2217633##@Aa', NULL),
+('Empresa F', 'empresaF@example.com', '(66) 4321-0987', '012385678912345676', '43210-987', '2213133##@Aa', NULL);
 
 -- Inserindo na mesma tabela (por causa do auto-relacionamento), as filiais
 -- e de que empresas elas são. LEMBRANDO: Teremos então 
 -- 6 (de cima) + 4 (abaixo) = 10 Linhas de dados da tabela Empresa
-INSERT INTO empresa (nome_fantasia, cnpj, cep, telefone, email, fkMatriz)
+INSERT INTO empresa (nome_fantasia, email, telefone, cnpj, cep, senha, fkMatriz)
 VALUES
-('Filial G Empresa C', '23456999034345', '43210-007', '(77) 1321-0387', 'filialG@example.com', 3),
-('Filial H Empresa A', '23456829034345', '43210-747', '(88) 1321-0387', 'filialH@example.com', 1),
-('Filial I Empresa D', '23456289034345', '43210-127', '(99) 1321-0387', 'filialI@example.com', 4),
-('Filial J Empresa F', '23456719034345', '43210-547', '(00) 1321-0387', 'filialJ@example.com', 6);
+('Filial G Empresa C', 'filialG@example.com', '(77) 1321-0387', '012345678912345678', '12045-678', '221120G##@cC', 3),
+('Filial H Empresa A', 'filialH@example.com', '(88) 1321-0387', '012345678922345677', '98065-432', '229913H##@Aa', 1),
+('Filial I Empresa D', 'filialI@example.com', '(99) 1321-0387', '012345678932345676', '54221-098', '221313I##@Dd', 4),
+('Filial J Empresa F', 'filialJ@example.com', '(00) 1321-0387', '012345678942345675', '13679-246', '471313J##@Ff', 6);
 
 -- Inserts para a tabela Funcionario
-INSERT INTO funcionario (nome, email, cpf, tipo, chaveAcesso, fkEmpresa) 
+INSERT INTO funcionario (nome, email, cpf, tipo, senha, fkEmpresa) 
 VALUES 
-('Funcionario 1', 'funcionario1@example.com', '123456789-01', 'superior', 'chave123', 1),
-('Funcionario 2', 'funcionario2@example.com', '987654321-09', 'funcionario', 'chave456', 1),
-('Funcionario 3', 'funcionario3@example.com', '456123789-12', 'funcionario', 'chave789', 2),
-('Funcionario 4', 'funcionario4@example.com', '654321987-98', 'superior', 'chave987', 3),
-('Funcionario 5', 'funcionario5@example.com', '789456123-45', 'funcionario', 'chave654', 5),
-('Funcionario 6', 'funcionario6@example.com', '321654987-32', 'funcionario', 'chave321', 6);
+('Funcionario 1', 'funcionario1@example.com', '123456789-01', 'superior', 'senha123', 1),
+('Funcionario 2', 'funcionario2@example.com', '987654321-09', 'funcionario', 'senha456', 1),
+('Funcionario 3', 'funcionario3@example.com', '456123789-12', 'funcionario', 'senha789', 2),
+('Funcionario 4', 'funcionario4@example.com', '654321987-98', 'superior', 'senha987', 3),
+('Funcionario 5', 'funcionario5@example.com', '789456123-45', 'funcionario', 'senha654', 5),
+('Funcionario 6', 'funcionario6@example.com', '321654987-32', 'funcionario', 'senha321', 6);
 
 -- Inserts para a tabela Veiculo
 INSERT INTO veiculo (placa, rntrc, renavam, fkEmpresa)
@@ -161,19 +162,11 @@ FROM Funcionario AS Func
 INNER JOIN Empresa AS EMP
 ON Func.fkEmpresa = EMP.idEmpresa;
 -- ==============
--- TESTE:
-SELECT *
-FROM Funcionario AS Func
-RIGHT JOIN Empresa AS EMP
-ON EMP.idEmpresa = Func.fkEmpresa
-
-RIGHT JOIN Empresa AS Filial
-ON Filial.idEmpresa = EMP.fkMatriz;
 
 SELECT
 	EMP.idEmpresa AS 'ID Empresa', EMP.nome_fantasia AS 'Nome fantasia', EMP.CNPJ, EMP.CEP, EMP.Telefone, EMP.Email, EMP.fkMatriz AS 'FK Matriz',
     Filial.idEmpresa AS 'ID Empresa', Filial.nome_fantasia AS 'Nome fantasia', Filial.CNPJ, Filial.CEP, Filial.Telefone, Filial.Email, Filial.fkMatriz AS 'FK Matriz',
-    Func.idFuncionario AS 'ID Funcionário', Func.Nome AS 'Nome funcionário', Func.Email, Func.chaveAcesso AS 'Chave de acesso', Func.CPF, Func.fkEmpresa AS 'FK Empresa'
+    Func.idFuncionario AS 'ID Funcionário', Func.Nome AS 'Nome funcionário', Func.Email, Func.senha AS 'Senha', Func.CPF, Func.fkEmpresa AS 'FK Empresa'
 FROM Empresa AS EMP
 LEFT JOIN Empresa AS Filial
 ON Filial.idEmpresa = EMP.fkMatriz
