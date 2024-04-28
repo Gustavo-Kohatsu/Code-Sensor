@@ -241,7 +241,7 @@ body {
 
 #inputsCadastroCaminhao {
 
-    height: 50%;
+    height: 57%;
     width: 100%;
 
     display: flex;
@@ -259,7 +259,7 @@ body {
 #alinharFechar {
 
     width: 100%;
-    height: 5%;
+    height: 1%;
 
     display: flex;
     justify-content: right;
@@ -285,7 +285,7 @@ body {
 
 .inputPadronizado {
     width: 100%;
-    height: 28%;
+    height: 40%;
 
     font-size: 20px;
 
@@ -333,6 +333,7 @@ input {
 }
 
 input:valid {
+
     color: rgb(0, 0, 0);
     outline: none;
     font-family: "Roboto", sans-serif;
@@ -350,6 +351,38 @@ label {
     width: 90%;
     padding-left: 40%;
     margin-top: 2%;
+
+}
+
+#divIDSensor {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 2%;
+    height: 35%;
+
+}
+
+#divIDSensor .inputLinha {
+
+    margin-top: 2%;
+    width: 20%;
+
+}
+
+#divIDSensor input {
+
+    width: 80%;
+
+}
+
+#labelIDSensor {
+
+    padding-left: 0%;
+    width: 27.5%;
 
 }
 
