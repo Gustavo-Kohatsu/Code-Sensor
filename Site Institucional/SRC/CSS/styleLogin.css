@@ -106,7 +106,7 @@ body {
     font-weight: 400;
 }
 
-#inputsCadastro {
+#inputsLogin {
     color: black;
     height: 80%;
     width: 100%;
@@ -196,6 +196,7 @@ label {
 }
 
 #main button {
+
     background-color: #880000;
     color: white;
     width: 150px;
@@ -208,6 +209,7 @@ label {
     font-weight: 500;
     font-style: normal;
     font-size: 1.3rem;
+    
 }
 
 #main button:hover {
