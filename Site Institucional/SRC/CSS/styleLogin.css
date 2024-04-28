@@ -2,6 +2,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
+@keyframes cardAnimacao {
+    from {
+        opacity: 0;
+        transform: translateY(-100%);
+    } to {
+        opacity: 1;
+        transform: translateY(0%);
+        
+       
+    }
+}
+
 * {
     padding: 0;
     box-sizing: border-box;
@@ -70,6 +82,8 @@ body {
     justify-content: center;
     align-items: center;
     border-radius: 20px;
+    animation-name: cardAnimacao;
+    animation-duration: 1.5s;
 }
 
 #card {
@@ -103,7 +117,7 @@ body {
     color: black;
     font-family: "Lexend", sans-serif;
     font-optical-sizing: auto;
-    font-weight: 400;
+    font-weight: 700;
 }
 
 #inputsCadastro {
@@ -150,10 +164,10 @@ body {
     height: 50px;
     display: flex;
     justify-content: center;
-    background-color: white;
+    background-color: #F2F2F2;
     border-radius: 20px;
-   
-
+    border: 1px solid black;
+    box-shadow: 4px 8px 15px rgb(86, 86, 86);
 }
 
 .inputLinha:hover {
@@ -161,11 +175,11 @@ body {
 }
 
 input {
-    width: 95%;
-    height: 50%;
+    width: 92.5%;
+    height: 45%;
     background-color: transparent;
     border: none;
-    border-bottom: 1.95px solid #b90101;
+    border-bottom: 1.95px solid #06121C;
     margin-top: 4%;
 }
 
@@ -178,10 +192,21 @@ input:valid {
     font-size: 1.05rem;
 }
 
+input:focus {
+    color: rgb(0, 0, 0);
+    outline: none;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 1.05rem;
+}
+
 label {
     width: 90%;
     font-size: 0.9em;
     margin-left: 20px;
+    font-weight: 500;
+
 }
 
 #botaoCriar {
@@ -208,9 +233,11 @@ label {
     font-weight: 500;
     font-style: normal;
     font-size: 1.3rem;
+    transition: 1s;
 }
 
 #main button:hover {
+    width: 100%;
     background-color: #9c0000;
 }
 
@@ -238,10 +265,25 @@ label {
     color: #b90101;   
     text-decoration: none;
     margin-left: 5px;
+    padding-bottom: 5px;
+    border-bottom: none;
+    position: relative;
 }
 
-#esquecerSenha a:hover {
+#esquecerSenha a::after {
+    content: " ";
+    width: 5%;
+    height: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transition: 0.4s ease-in-out;
+}
+
+#esquecerSenha a:hover::after {
+    width: 100%;
     border-bottom: 2px solid #b90101;
+
 }
 
 .textoFazerLogin {
@@ -261,9 +303,21 @@ label {
     font-style: none;
     color: #b90101;   
     text-decoration: none;
+    position: relative;
 }
 
-.textoFazerLogin a:hover {
+.textoFazerLogin a::after {
+    content: " ";
+    width: 5%;
+    height: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transition: 0.4s ease-in-out;
+}
+
+.textoFazerLogin a:hover::after {
+    width: 100%;
     border-bottom: 2px solid #b90101;
 }
 
