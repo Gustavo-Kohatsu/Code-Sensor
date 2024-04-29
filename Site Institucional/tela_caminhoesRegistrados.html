@@ -19,11 +19,11 @@
 
         <div id="containerBotoes">
 
-            <button id="botaoInicial">PÁGINA INICIAL</button>
-            <button class="botao">CAMINHÕES</button>
-            <button class="botao">CADASTRO</button>
+            <button onclick="botaoInicial()" id="botaoInicial">PÁGINA INICIAL</button>
+            <button onclick="botaoCaminhoes()" class="botao">CAMINHÕES</button>
+            <button onclick="botaoCadastrar()" class="botao">CADASTRO</button>
 
-            <button id="botaoSair">SAIR</button>
+            <button onclick="botaoSair()" id="botaoSair">SAIR</button>
 
         </div>
 
@@ -66,21 +66,21 @@
                         </div>
                     </nav>
                     <div class="linhaImpar">
-                        <div class="celulaOne">
+                        <a href="DashboardCaminhaoIndividual.html"><div class="celulaOne">
                             <img src="SRC/imagens/User.png" width="60px" height="55px">
                             <div class="truckSensor">
                                 <span class="placa">NCZ2329</span>
                                 <span class="sensor">Sensor 1</span>
                             </div>
-                        </div>
+                        </div></a>
                         <div class="celulaTwo">
                             <span>Bovina</span>
                         </div>
                         <div class="celulaThree">
-                            <span>3ºC</span>
+                            <span>2ºC</span>
                         </div>
                         <div class="celulaFour">
-                            <span>82%</span>
+                            <span>80%</span>
                         </div>
                     </div>
 
@@ -238,3 +238,17 @@
 </body>
 
 </html>
+<script>
+    function botaoInicial(){
+        window.location.href = "DashboardCaminhaoIndividual.html";
+    }
+    function botaoCaminhoes(){
+        window.location.href = "#";
+    }
+    function botaoCadastrar(){
+        window.location.href = "opcoesCadastro.html";
+    }
+    function botaoSair(){
+        window.location.href = "index.html";
+    }
+</script>
