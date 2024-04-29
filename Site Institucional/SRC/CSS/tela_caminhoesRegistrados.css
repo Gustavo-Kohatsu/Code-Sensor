@@ -1,0 +1,414 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #EDE3DA;
+
+    height: 100vh;
+    width: 100vw;
+
+    display: flex;
+    flex-direction: row;
+
+}
+
+/* MENU DO LADO */
+
+#menuLateral {
+
+    width: 16.5%;
+    height: 100%;
+
+    background-color: #F4EFEB;
+    border-right: solid 3px #880000;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.28);
+
+}
+
+#menuLateral h1 {
+
+    font-size: 40pt;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    margin: 0;
+
+}
+
+#sensor {
+
+    color: #A40101;
+    font-weight: 600;
+
+}
+
+#menuLateral h2 {
+
+    font-family: "Roboto", sans-serif;
+    font-size: 20pt;
+    font-weight: bold;
+
+    margin: 10%;
+    
+}
+
+#containerBotoes {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+    background-color: #EDE9E6;
+    
+    border: solid 3px black;
+    border-radius: 20px;
+
+    height: 30%;
+    width: 75%;
+
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.28);
+
+}
+
+#botaoInicial {
+
+    background-color: #E1E1E1;
+
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
+    font-size: 13pt;
+
+    border: solid 2px black;
+    border-radius: 5px;
+
+    width: 65%;
+    height: 17%;
+
+    cursor: pointer;
+
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.28);
+
+}
+
+.botao {
+
+    background-color: #FFFFFF;
+
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
+    font-size: 13pt;
+
+    border: solid 2px black;
+    border-radius: 5px;
+
+    width: 52%;
+    height: 17%;
+
+    cursor: pointer;
+
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.28);
+
+}
+
+#botaoSair {
+
+    background-color: #880000;
+
+    color: white;
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
+    font-size: 13pt;
+
+    border: solid 2px black;
+    border-radius: 8px;
+
+    width: 40%;
+    height: 12%;
+
+    cursor: pointer;
+
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.28);
+
+}
+
+/* TITULO */
+
+.titulo {
+
+    color: #A60000;
+    font-size: 50pt;
+    font-family: "Lexend", sans-serif;
+    font-weight: bold;
+
+    text-align: center;
+
+    margin: 0;
+
+    text-shadow: 0px 5px 10px rgba(0, 0, 0, 0.28);
+
+}
+
+.containerTitulo {
+
+    background-color: #F4EFEB;
+    width: 100%;
+    height: 10%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-bottom: solid 3px #880000;
+
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.28);
+
+}
+
+/* Conteúdo ------------------------------------- */
+
+#containerTudo {
+
+    width: 85%;
+
+}
+
+/* EXIBIÇÃO CAMINHÃO */
+
+#card {
+    width: 100%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#exibicaoCaminhao {
+    height: 95%;
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+header {
+    height: 8%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+}
+
+#titulo-navbar {
+    margin-left: 1.5%;
+    cursor: pointer;
+    border: none;
+    position: relative;
+    
+}
+
+#titulo-navbar::after {
+    content: " ";
+    width: 0%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+#titulo-navbar:hover::after {
+    transition: .2s ease-in-out;
+    width: 100%;
+    border-bottom: 2px solid black;
+    
+}
+
+#search {
+    height: 100%;
+    width: 40%;
+    padding-left: 15px;
+    display: flex;
+    align-items: center;
+    background-color: #e7e7e7;
+    color: #6d6d6d;
+    border-radius: 10px;
+}
+
+#search input {
+    height: 100%;
+    width: 100%;
+    background-color: transparent;
+    outline: none;
+    border: none;
+
+    font-size: 12.5pt;
+    margin-left: 10px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+}
+
+main {
+    height: 75%;
+    background-color: red;
+}
+
+nav {
+    background-color: #F4EFEB;
+    color: #A60000;
+    height: 10%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.celula-nav {
+    display: flex;
+    width: 15%;
+    justify-content: center;
+    font-weight: 900;
+}
+
+.celula-nav span {
+    font-weight: 700;
+    font-size: 17pt;
+    font-family: "Roboto", sans-serif;
+    font-weight: 650;
+    font-style: normal;
+    color: #A60000;
+}
+
+#tipoCarne {
+    margin-right: 4%;
+}
+
+#ultimaTemp {
+    margin-right: 9%;
+}
+
+#ultimaUmid {
+    margin-right: 5%;
+} 
+
+.linhaImpar {
+    height: 12.05%;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5% 0 2%;
+}
+
+.celulaOne {
+    display: flex;
+
+}
+
+.truckSensor {
+    display: flex;
+    flex-direction: column;
+}
+
+.linhaPar {
+    height: 12.05%;
+    background-color: #E8E8E8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5% 0 2%;
+}
+
+.truckSensor {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 8px;
+}
+
+.placa {
+    font-size: 20px;
+    
+}
+
+.sensor {
+    color: #697077;
+}
+
+.celulaThree {
+    height: 100%;
+    width: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.celulaFour {
+    height: 100%;
+    width: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.foraIntervalo {
+    height: 50%;
+    width: 45%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #880000;
+    border-radius: 20px;
+
+    color: #E1E1E1;
+    
+}
+
+#alinharTextoAve {
+    margin-left: 5%;
+
+}
+
+#alinharTextoSuino {
+    height: 50%;
+    width: 45%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 2%;
+}
+
+footer {
+    margin-top: 3%;
+    height: 8%;
+    display: flex;
+    justify-content: center;
+    gap: 45px;
+    font-size: 15pt;
+    
+}
+
+footer span {
+    cursor: pointer;
+}
