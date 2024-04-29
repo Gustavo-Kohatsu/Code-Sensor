@@ -95,11 +95,18 @@ h1 {
 
 #botaoInicial {
 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+
     background-color: #E1E1E1;
 
+    color: black;
     font-family: "Roboto", sans-serif;
     font-weight: bold;
     font-size: 13pt;
+    text-decoration: none;
 
     border: solid 2px black;
     border-radius: 5px;
@@ -115,11 +122,18 @@ h1 {
 
 .botao {
 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+
     background-color: #FFFFFF;
 
+    color: black;
     font-family: "Roboto", sans-serif;
     font-weight: bold;
     font-size: 13pt;
+    text-decoration: none;
 
     border: solid 2px black;
     border-radius: 5px;
@@ -135,12 +149,18 @@ h1 {
 
 #botaoSair {
 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+
     background-color: #880000;
 
     color: white;
     font-family: "Roboto", sans-serif;
     font-weight: bold;
     font-size: 13pt;
+    text-decoration: none;
 
     border: solid 2px black;
     border-radius: 8px;
@@ -382,7 +402,7 @@ h1 {
     border-radius: 20px;
     background-color: #F2F2F2;
     border: 1px solid black;
-    box-shadow: 4px 8px 15px rgb(86, 86, 86);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.28);
 }
 
 .inputLinha:hover {

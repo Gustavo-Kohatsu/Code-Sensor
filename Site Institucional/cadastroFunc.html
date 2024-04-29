@@ -1,55 +1,54 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cadastro de Funcionário</title>
-    <link rel="stylesheet" href="SRC/CSS/styleCadastroFunc.css" />
-    <link
-      rel="shortcut icon"
-      href="SRC/imagens/favicon.png"
-      type="image/x-icon"
-    />
-  </head>
 
-  <body>
-    <div id="menuLateral">
-      <h1>Code<br /><span id="sensor">Sensor</span></h1>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cadastro de Funcionário</title>
+  <link rel="stylesheet" href="SRC/CSS/styleCadastroFunc.css" />
+  <link rel="shortcut icon" href="SRC/imagens/favicon.png" type="image/x-icon" />
+</head>
 
-      <h2>Olá, Claudio</h2>
+<body>
+  <div id="menuLateral">
+    <h1>Code<br /><span id="sensor">Sensor</span></h1>
 
-      <div id="containerBotoes">
-        <button id="botaoInicial">PÁGINA INICIAL</button>
-        <button class="botao">CAMINHÕES</button>
-        <button class="botao">CADASTRO</button>
+    <h2>Olá, Claudio</h2>
 
-        <button id="botaoSair">SAIR</button>
-      </div>
+    <div id="containerBotoes">
+
+      <a id="botaoInicial" href="DashboardPaginaInicial.html">PÁGINA INICIAL</a>
+      <a class="botao" href="#">CAMINHÕES</a>
+      <a class="botao" href="opcoesCadastro.html">CADASTRO</a>
+
+      <a id="botaoSair" href="index.html">SAIR</a>
+
+    </div>
+  </div>
+
+  <div id="containerTudo">
+    <div class="containerTitulo">
+      <h1 class="titulo">CADASTRO DE FUNCIONÁRIO</h1>
     </div>
 
-    <div id="containerTudo">
-      <div class="containerTitulo">
-        <h1 class="titulo">CADASTRO DE FUNCIONÁRIO</h1>
-      </div>
-
-      <div id="main">
-        <div id="card-main">
-          <div id="card">
-            <div id="alinharFechar">
-              <a id="botaoFechar" href="opcoesCadastro.html">×</a>
+    <div id="main">
+      <div id="card-main">
+        <div id="card">
+          <div id="alinharFechar">
+            <a id="botaoFechar" href="opcoesCadastro.html">×</a>
           </div>
-            <div id="titulos">
-              <h1 class="titu">INSIRA OS DADOS DO <br />FUNCIONÁRIO</h1>
-            </div>
+          <div id="titulos">
+            <h1 class="titu">INSIRA OS DADOS DO <br />FUNCIONÁRIO</h1>
+          </div>
 
-            <div id="inputsCadastro">
-              <div id="colunaInputs1">
-                <div class="inputPadronizado">
-                  <label for="input_nome">Nome</label>
-                  <div class="inputLinha">
-                    <input id="input_nome" />
-                  </div>
-                
+          <div id="inputsCadastro">
+            <div id="colunaInputs1">
+              <div class="inputPadronizado">
+                <label for="input_nome">Nome</label>
+                <div class="inputLinha">
+                  <input id="input_nome" />
+                </div>
+
               </div>
 
               <div class="inputPadronizado">
@@ -80,14 +79,15 @@
                 <option value="funcionario">Funcionário</option>
               </select>
             </div>
-            
+
           </div>
-            
-              <button onclick="validarCampos()" class="botaoCriar">Cadastrar Funcionário</button>
-            
-          </div>
+
+          <button onclick="validarCampos()" class="botaoCriar">Cadastrar Funcionário</button>
+
         </div>
       </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>

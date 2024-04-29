@@ -84,11 +84,18 @@ body {
 
 #botaoInicial {
 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+
     background-color: #E1E1E1;
 
+    color: black;
     font-family: "Roboto", sans-serif;
     font-weight: bold;
     font-size: 13pt;
+    text-decoration: none;
 
     border: solid 2px black;
     border-radius: 5px;
@@ -104,11 +111,18 @@ body {
 
 .botao {
 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+
     background-color: #FFFFFF;
 
+    color: black;
     font-family: "Roboto", sans-serif;
     font-weight: bold;
     font-size: 13pt;
+    text-decoration: none;
 
     border: solid 2px black;
     border-radius: 5px;
@@ -124,12 +138,18 @@ body {
 
 #botaoSair {
 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+
     background-color: #880000;
 
     color: white;
     font-family: "Roboto", sans-serif;
     font-weight: bold;
     font-size: 13pt;
+    text-decoration: none;
 
     border: solid 2px black;
     border-radius: 8px;

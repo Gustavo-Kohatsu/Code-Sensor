@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeSensor | Cadastro de Caminhão</title>
+    <link rel="stylesheet" href="SRC/CSS/PaginaInicialDashboard.css">
+    <link rel="shortcut icon" href="SRC/imagens/favicon.png" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <div id="menuLateral">
+
+        <h1>Code<br><span id="sensor">Sensor</span></h1>
+
+        <h2>Olá, Claudio</h2>
+
+        <div id="containerBotoes">
+
+            <a id="botaoInicial" href="#">PÁGINA INICIAL</a>
+            <a class="botao" href="#">CAMINHÕES</a>
+            <a class="botao" href="opcoesCadastro.html">CADASTRO</a>
+
+            <a id="botaoSair" href="index.html">SAIR</a>
+
+        </div>
+
+    </div>
+
+    <div id="containerTudo">
+
+        <div class="containerTitulo">
+
+            <h1 class="titulo">
+                GRÁFICOS GERAIS
+            </h1>
+
+        </div>
+
+        <div id="containerKpi">
+            <div class="kpi" id="kpiInstavel">
+                <img src="SRC/imagens/caminhaozinho.png" alt="">
+                <span>
+                    <h2>02</h2>
+                    CAMINHÕES INSTÁVEIS
+                </span>
+            </div>
+
+            <div class="kpi" id="kpiEstavel">
+                <img src="SRC/imagens/caminhaozinho.png" alt="">
+                <span>
+                    <h2>05</h2>
+                    CAMINHÕES ESTÁVEIS
+                </span>
+            </div>
+
+        </div>
+
+        <div class="containerSubTitulo">
+
+            <h2 class="subTitulo">
+                TEMPERATURA
+            </h2>
+
+            <h2 class="subTitulo">
+                UMIDADE
+            </h2>
+
+        </div>
+
+        <div id="graficos">
+
+            <div class="containerGrafico" id="esquerda">
+
+                <h3>Todos os Caminhões</h3>
+                <canvas id="temperatura"></canvas>
+
+                <h3>Caminhões Críticos</h3>
+                <canvas id="temperaturaInstavel"></canvas>
+
+            </div>
+
+            <div class="containerGrafico">
+
+                <h3>Todos os Caminhões</h3>
+                <canvas id="umidade"></canvas>
+
+                <h3>Caminhões Críticos</h3>
+                <canvas id="umidadeInstavel"></canvas>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    const temperatura = document.getElementById('temperatura');
+
+    new Chart(temperatura, {
+        type: 'line',
+        data: {
+            labels: ['07:00', '07:10', '07:20', '07:30', '07:40', '07:50', '08:00'],
+            datasets: [{
+                label: 'NCZ2329',
+                data: [0, 1, 2, 5, 2, 3, 2],
+                borderWidth: 1
+            }, {
+                label: 'MYL4122',
+                data: [1, 3, 3, 5, 2, 3, 1],
+                borderWidth: 1
+            }, {
+                label: 'CXG4554',
+                data: [2, 3, 3, 5, 2, 3, 2],
+                borderWidth: 1
+            }, {
+                label: 'HTB8226',
+                data: [3, 3, 3, 5, 2, 3, 4],
+                borderWidth: 1
+            }, {
+                label: 'NEW1382',
+                data: [4, 3, 3, 5, 2, 3, 6],
+                borderWidth: 1
+            }, {
+                label: 'JZJ5124',
+                data: [2, 3, 4, 5, 6, 7, 8],
+                borderWidth: 1
+            }, {
+                label: 'NAH9337',
+                data: [3, 4, 5, 6, 7, 8, 9],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: false
+                }
+            }
+        }
+    });
+
+    const temperaturaInstavel = document.getElementById('temperaturaInstavel');
+
+    new Chart(temperaturaInstavel, {
+        type: 'bar',
+        data: {
+            labels: ['07:00', '07:10', '07:20', '07:30', '07:40', '07:50', '08:00'],
+            datasets: [{
+                label: 'JZJ5124',
+                data: [2, 3, 4, 5, 6, 7, 8],
+                borderWidth: 1
+            }, {
+                label: 'NAH9337',
+                data: [3, 4, 5, 6, 7, 8, 9],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: false
+                }
+            }
+        }
+    });
+
+    const umidade = document.getElementById('umidade');
+
+    new Chart(umidade, {
+        type: 'line',
+        data: {
+            labels: ['07:00', '07:10', '07:20', '07:30', '07:40', '07:50', '08:00'],
+            datasets: [{
+                label: 'NCZ2329',
+                data: [70, 71, 72, 75, 72, 73, 72],
+                borderWidth: 1
+            }, {
+                label: 'MYL4122',
+                data: [71, 73, 73, 75, 72, 73, 71],
+                borderWidth: 1
+            }, {
+                label: 'CXG4554',
+                data: [72, 73, 73, 75, 72, 73, 72],
+                borderWidth: 1
+            }, {
+                label: 'HTB8226',
+                data: [73, 73, 73, 75, 72, 73, 74],
+                borderWidth: 1
+            }, {
+                label: 'NEW1382',
+                data: [74, 73, 73, 75, 72, 73, 76],
+                borderWidth: 1
+            }, {
+                label: 'JZJ5124',
+                data: [72, 73, 74, 75, 76, 77, 78],
+                borderWidth: 1
+            }, {
+                label: 'NAH9337',
+                data: [73, 74, 75, 76, 77, 78, 79],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: false
+                }
+            }
+        }
+    });
+
+    const umidadeInstavel = document.getElementById('umidadeInstavel');
+
+    new Chart(umidadeInstavel, {
+        type: 'bar',
+        data: {
+            labels: ['07:00', '07:10', '07:20', '07:30', '07:40', '07:50', '08:00'],
+            datasets: [{
+                label: 'JZJ5124',
+                data: [72, 73, 74, 75, 76, 77, 78],
+                borderWidth: 1
+            }, {
+                label: 'NAH9337',
+                data: [73, 74, 75, 76, 77, 78, 79],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: false
+                }
+            }
+        }
+    });
+
+</script>
