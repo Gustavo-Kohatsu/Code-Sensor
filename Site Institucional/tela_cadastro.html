@@ -93,18 +93,13 @@
 </html>
 
 <script>
-  letrasMaiusculas = /[A-Z]/;
-  letrasMinusculas = /[a-z]/;
-  numeros = /[0-9]/;
-  caracteresEspeciais = /[!|@|#|$|%|^|&|*|(|)|-|_]/;
-  
   function validarCampos() {
     const nome = input_nome.value;
     const senha = input_senha.value;
     const telefone = input_telefone.value;
     const email = input_email.value;
     const cep = input_cep.value;
-    let cnpj = input_cnpj.value;
+    const cnpj = input_cnpj.value;
 
     if (nome     != '' && senha != '' &&
         telefone != '' && email != '' &&
