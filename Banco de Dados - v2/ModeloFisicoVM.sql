@@ -71,9 +71,9 @@ idLeitura INT not null AUTO_INCREMENT,
 dtLeitura timestamp not null DEFAULT CURRENT_TIMESTAMP,
 temperatura DECIMAL(5, 2) DEFAULT NULL,
 umidade DECIMAL(5, 2) DEFAULT NULL,
-fkSensor INT not null,
+fkSensor INT,
 
-PRIMARY KEY PK_idLeitura (idLeitura, fkSensor),
+PRIMARY KEY PK_idLeitura (idLeitura),
 FOREIGN KEY ForeignKey_idSensor (fkSensor) REFERENCES sensor (idSensor)
 );
 
@@ -198,3 +198,5 @@ SELECT *
 FROM Sensor AS S
 INNER JOIN Leitura AS Leit
 ON S.idSensor = Leit.fkSensor;
+
+select * from leitura;
