@@ -218,7 +218,11 @@ body {
 #kpiTemperatura {
 
     background-color: #409622;
+}
 
+#kpiTemperaturaerro {
+
+    background-color: #EE3636;
 }
 
 #kpiUmidade {
