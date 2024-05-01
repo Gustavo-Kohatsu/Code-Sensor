@@ -229,7 +229,9 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
+   
     width: 100%;
+    
     height: 89.7%;
 }
 
@@ -247,9 +249,11 @@ h1 {
 #historicoCadastro {
     background-color: #E9E5E2;
     border-top-left-radius: 17px;
+   
     border-bottom-left-radius: 17px;
     height: 100%;
     width: 100%;
+    
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -263,8 +267,10 @@ h1 {
     width: 90%;
     margin-top: 4%;
     border: 1px solid #880000;
+    
     border-radius: 10px;
     display: flex;
+    
     justify-content: space-around;
     padding: 2.5%;
     overflow-y: scroll;
@@ -274,6 +280,7 @@ h1 {
 .lotePrimeira-coluna {
     width: 45%;
     height: 135%;
+    
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -289,11 +296,13 @@ h1 {
 
 .card-lote {
     background-color: #DFDFDF;
+   
     display: flex;
     flex-direction: column;
     height: 150px;
     width: 100%;
     border-radius: 20px;
+    
     font-family: "Roboto", sans-serif;
     font-weight: 400;
     font-style: bold;
@@ -303,7 +312,7 @@ h1 {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     padding: 2% 0 2% 3%;
-    /* padding-left: 3%; */
+    
     width: 100%;
     background-color: #880000;
     border-bottom: 1px solid black;
@@ -312,12 +321,15 @@ h1 {
 
 .dados-lote {
     background-color: rgb(209, 209, 209);
+   
     height: 90%;
     width: 100%;
     padding: 4%;
+    
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+   
     font-size: 1.1rem;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
@@ -375,10 +387,12 @@ h1 {
 #tresInputs {
     width: 100%;
     height: 70%;
+    
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+  
     font-family: "Roboto Mono", monospace;
     font-optical-sizing: auto;
     font-weight: 900px;
@@ -388,6 +402,7 @@ h1 {
     font-size: 20px;
     height: 20%;
     width: 95%;
+    
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -413,6 +428,7 @@ h1 {
 input {
     width: 90%;
     height: 85%;
+   
     background-color: transparent;
     border: none;
     border-bottom: 1.95px solid #06121C;
@@ -421,8 +437,9 @@ input {
 
 
 input:valid {
-    color: rgb(0, 0, 0);
     outline: none;
+    
+    color: rgb(0, 0, 0);
     font-family: "Roboto", sans-serif;
     font-weight: 500;
     font-style: normal;
@@ -459,16 +476,20 @@ label {
 
 #bota-cadastrarLote button {
     background-color: #880000;
-    color: white;
     width: 35%;
     height: 45px;
+    
     cursor: pointer;
+    
     border-radius: 25px;
     border: none;
+    
+    color: white;
     font-family: "Roboto", sans-serif;
     font-weight: 500;
     font-style: normal;
     font-size: 1.3rem;
+   
     transition: 2s;
 }
 
