@@ -32,14 +32,29 @@ void loop() {
   // Serial.println(temperatura);
   // Serial.print(",");
   // Serial.println(linha); 
-  for (int i = 1; i <= 5; ++i) {
+  for (int i = 1; i <= 6; ++i) {
     float umidade = dht_1.readHumidity();
   if (isnan(temperatura) or isnan(umidade)) {
     Serial.println("Erro ao ler");
   } else {
     //Serial.print("Umidade: ");
-    umidade = umidade * 1.8;
+    umidade = umidade * 1.6;
+    if (i == 2) {
+      umidade = umidade * 1.03;
+      temperatura = temperatura * 1.03;
+    };
+    
+    if (i == 3) {
+      umidade = umidade * 1.05;
+      temperatura = temperatura * 1.05;
+    };
 
+        if (i == 4) {
+      umidade = umidade * 1.07;
+      temperatura = temperatura * 1.07;
+    };
+
+    
     Serial.print(umidade);
     Serial.print("; ");
     //Serial.print(" Temperatura: ");
