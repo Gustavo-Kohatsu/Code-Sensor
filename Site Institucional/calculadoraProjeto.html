@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="SRC/CSS/styleCalculadora.css">
     <link rel="shortcut icon" href="SRC/imagens/favicon.png" type="image/x-icon">
-    <title> Calculadora Financeira - CodeSensor</title>
 </head>
+<title> Calculadora Financeira  CodeSensor</title>
 
 
 <body>
@@ -19,7 +19,7 @@
             </a>
         </div>
         <div class="imagem-footer">
-            <img src="SRC/imagens/LogoBranca.png">
+            <img src="SRC/imagens/LogoPreta.png" width="125px">
         </div>
     </div>
 
@@ -81,20 +81,20 @@
 
         if (check_bovina.checked) {
 
-            valorBovinaKG = 30;
+            valorBovinaKG = 30 - (30 * 0.3); // 30% de 30 = 9
             qtdCarnes++;
 
         }
 
         if (check_suina.checked) {
 
-            valorSuinaKG = 20;
+            valorSuinaKG = 20 - (20 * 0.3); // 30% de 20 = 6
             qtdCarnes++;
 
         }
         if (check_aves.checked) {
 
-            valorAvesKG = 16;
+            valorAvesKG = 16 - (16 * 0.3); // 30% de 16 = 4.8
             qtdCarnes++;
 
         }
@@ -115,24 +115,24 @@
                 `
             <div class="resultadoCalc">
              <div class="cardResultado">
-                    <p id="p_introducao1"></p>
+                    <p id="p_introducao1" style="margin-top: 3.5%;"></p>
                     <h1 style="color: #1db70f;" id="h1_resultado1"></h1>
-                    <p id="p_descrição1"></p>
+                    
                 </div>
                 <div class="cardResultado">
                     <p id="p_introducao2"></p>
                     <h1 style="color: #d10000;" id="h1_resultado2"></h1>
-                    <p id="p_descrição2"></p>
+                    
                 </div>
                 <div class="cardResultado">
                     <p id="p_introducao3"></p>
                     <h1 style="color: #d10000;" id="h1_resultado3"></h1>
-                    <p id="p_descrição3"></p>
+                    
                 </div>
                 <div class="cardResultado">
                     <p id="p_introducao4"></p>
                     <h1 style="color: #1db70f;" id="h1_resultado4"></h1>
-                    <p id="p_descrição4"></p>
+                    
                 </div>
                 <div class="buttonFacaParte">
             <a href="tela_cadastro.html">
@@ -160,7 +160,7 @@
             <br>
             perdidos mensalmente.`
 
-            p_introducao4.innerHTML = `Com a nossa solução, você conseguirá <b>uma diminuição de 60% das suas perdas</b>, conseguindo uma economia de até:
+            p_introducao4.innerHTML = `Com a nossa solução, você conseguirá <b>uma diminuição em média de 60% das suas perdas</b>, conseguindo uma economia de até:
             <br>
             <span class = textoVerde>${diminuicaoPerdas.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</span>
             <br>

@@ -11,6 +11,7 @@ body {
     background-position-x: right;
     background-size: 80%;
     background-color: #EDE3DA;
+    
     margin: 0;
     padding: 0;
 
@@ -228,7 +229,7 @@ body {
     text-align: center;
     justify-content: center;
     align-items: center;
-    /* flex-direction: column; */
+    
     padding-top: 7%;
     gap: 100px;
     margin-bottom: 1000px;
@@ -241,20 +242,24 @@ body {
 #alinharFechar {
 
     width: 100%;
-    height: 5%;
+    height: 8%;
 
     display: flex;
     justify-content: right;
 
-    padding-right: 10%;
+    
 
 }
 
 #botaoFechar {
+    width: 10%;
+    height: 100%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    height: 2%;
-
-    background: none;
+    
     border: none;
 
     color: #880000;
@@ -265,19 +270,31 @@ body {
 
 }
 
+#alinharFechar a:hover {
+    transition: .5s;
+   
+    background-color: rgb(180, 33, 33);
+    color: white;
+    border-radius: 17px;
+    width: 10%;
+}
 
+#card-main {
+    height: 105%;
+}
 
-#card{
+#card {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-evenly;
     align-items: center;
+   
     border: solid 2px #880000;
     border-radius: 20px;
-    gap: 20px;
-    flex-direction: column;
     width: 560px;
-    height: 627px;
-    padding-bottom: 1%;
+   
+    height: 100%;
+    padding-bottom: 5%;
     background-color: #E1E1E1;
 
 }
@@ -286,11 +303,13 @@ body {
 
 
     background-color: #880000;
+   
     color: white;
     font-family: "Roboto", sans-serif;
     font-weight: bold;
     font-size: 13pt;
     outline: none;
+   
     border: none;
     border-radius: 20px;
     width: 40%;
@@ -304,6 +323,7 @@ body {
     width: 100%;
     height: 50%;
     font-size: 20px;
+   
     border: none;
     display: flex;
     flex-direction: column;
@@ -317,8 +337,10 @@ body {
     height: 80%;
     width: 100%;
     display: flex;
+   
     flex-direction: column;
     justify-content: flex-start;
+   
     align-items: center;
     font-family: "Roboto Mono", monospace;
     font-optical-sizing: auto;
@@ -330,6 +352,7 @@ body {
     height: 50px;
     display: flex;
     justify-content: center;
+   
     background-color: #F2F2F2;
     border-radius: 20px;
     border: 1px solid black;
@@ -344,9 +367,14 @@ body {
     
 }
 
+.selectType {
+    margin-bottom: 2%;
+}
+
 input:valid {
     color: rgb(0, 0, 0);
     outline: none;
+   
     font-family: "Roboto", sans-serif;
     font-weight: 500;
     font-style: normal;
@@ -356,6 +384,7 @@ input:valid {
 input {
     width: 90%;
     height: 70%;
+    
     background-color: transparent;
     border: none;
     border-bottom: 1.95px solid #000;

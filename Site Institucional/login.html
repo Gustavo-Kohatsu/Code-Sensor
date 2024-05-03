@@ -49,9 +49,9 @@
 
 
                     <div id="botaoCriar">
-                        <button>
+                        <button onclick="entrarNosite()">
                             Entrar
-                        </button>
+                        </button> 
                         <div class="textoFazerLogin">
                             <span>Não possui conta?</span>
                             <a href="tela_cadastro.html"> Cadastre-se</a>
@@ -67,3 +67,18 @@
     </div>
 </body>
 </html>
+<script>
+    function entrarNosite(){
+    const senhausuario = senha.value
+    const emailusuario = email.value
+
+    if(senhausuario == "claudio123" && emailusuario == "claudio@gmail.com"){
+        window.location.href = "./DashboardPaginaInicial.html"
+    } else if(senhausuario == '' || emailusuario == ''){
+        alert("Não é permitido campos vazios!")
+    }
+     else {
+        alert("E-mail ou senha estão incorretos!")
+    }
+    }
+</script>

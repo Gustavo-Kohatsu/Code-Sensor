@@ -17,16 +17,19 @@
 </head>
 
 <body>
-    <div>
-        <h1>Sensor DHT 11 - Umidade</h1>
-        <section style="width:100%">
-            <canvas id="dht11Umidade"></canvas>
-        </section>
-       
-        <h1>Sensor LM 35 - Temperatura</h1>
-        <section style="width: 100%;">
-            <canvas id="lm35Temperatura"></canvas>
-        </section>
+    <div id="caminhao">
+        <h1>Caminhão 1</h1>
+        <div style="display: flex;">
+            <section style="width:50%">
+                <h1>Sensor DHT 11 - Umidade</h1>
+                <canvas id="dht11Umidade"></canvas>
+            </section>
+        
+            <section style="width: 50%;">
+                <h1>Sensor LM 35 - Temperatura</h1>
+                <canvas id="lm35Temperatura"></canvas>
+            </section>
+        </div>
     </div>
 
     <script>
@@ -42,7 +45,8 @@
                     datasets: [{
                         label: 'Umidade',
                         type: 'line',
-                        borderColor: ['#45b3e7']
+                        borderColor: ['#45b3e7'],
+                        
                     }]
                 },
                 options: {
@@ -75,6 +79,166 @@
         contextoLm35Temperatura.canvas.height = 300;
         var lm35Temperatura = new Chart(
             contextoLm35Temperatura,
+            {
+                type: 'line',
+                data: {
+                    datasets: [{
+                        label: 'Temperatura',
+                        type: 'line',
+                        borderColor: ['#ffd902']
+                    }]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            distribution: 'series',
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }],
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Temperatura'
+                            },
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    },
+                    animation: {
+                        duration: 0
+                    }
+                }
+            }
+        );
+/* SEGUNDO */
+        /* -- dht11Umidade -- */
+        var contextoDht11UmidadeDois = document.getElementById('dht11UmidadeDois').getContext('2d');
+        contextoDht11UmidadeDois.canvas.width = 1000;
+        contextoDht11UmidadeDois.canvas.height = 300;
+        var dht11Umidade = new Chart(
+            contextoDht11UmidadeDois,
+            {
+                type: 'line',
+                data: { 
+                    datasets: [{
+                        label: 'Umidade',
+                        type: 'line',
+                        borderColor: ['#45b3e7'],
+                        
+                    }]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            distribution: 'series',
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }],
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Umidade'
+                            },
+                            ticks: {
+                                beginAtZero: false
+                            }
+                        }]
+                    },
+                    animation: {
+                        duration: 0
+                    }
+                }
+            }
+        );
+        /* -- lm35Temperatura */
+        var contextoLm35TemperaturaDois = document.getElementById('lm35TemperaturaDois').getContext('2d');
+        contextoLm35TemperaturaDois.canvas.width = 1000;
+        contextoLm35TemperaturaDois.canvas.height = 300;
+        var lm35Temperatura = new Chart(
+            contextoLm35TemperaturaDois,
+            {
+                type: 'line',
+                data: {
+                    datasets: [{
+                        label: 'Temperatura',
+                        type: 'line',
+                        borderColor: ['#ffd902']
+                    }]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            distribution: 'series',
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }],
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Temperatura'
+                            },
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    },
+                    animation: {
+                        duration: 0
+                    }
+                }
+            }
+        );
+/* TERCEIRO */
+/* -- dht11Umidade -- */
+        var contextoDht11UmidadeTres = document.getElementById('dht11UmidadeTres').getContext('2d');
+        contextoDht11UmidadeTres.canvas.width = 1000;
+        contextoDht11UmidadeTres.canvas.height = 300;
+        var dht11Umidade = new Chart(
+            contextoDht11UmidadeTres,
+            {
+                type: 'line',
+                data: { 
+                    datasets: [{
+                        label: 'Umidade',
+                        type: 'line',
+                        borderColor: ['#45b3e7'],
+                        
+                    }]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            distribution: 'series',
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }],
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Umidade'
+                            },
+                            ticks: {
+                                beginAtZero: false
+                            }
+                        }]
+                    },
+                    animation: {
+                        duration: 0
+                    }
+                }
+            }
+        );
+        /* -- lm35Temperatura */
+        var contextoLm35TemperaturaTres = document.getElementById('lm35TemperaturaTres').getContext('2d');
+        contextoLm35TemperaturaTres.canvas.width = 1000;
+        contextoLm35TemperaturaTres.canvas.height = 300;
+        var lm35Temperatura = new Chart(
+            contextoLm35TemperaturaTres,
             {
                 type: 'line',
                 data: {
@@ -144,6 +308,8 @@
             obterDados(dht11Umidade, 'dht11/umidade');
             obterDados(lm35Temperatura, 'lm35/temperatura');
         }, 1000);
+
+        
 
     </script>
 </body>

@@ -16,7 +16,8 @@ const HABILITAR_OPERACAO_INSERIR = true;
 // Função para comunicação serial
 const serial = async (
     valoresDht11Umidade,
-    valoresLm35Temperatura
+    valoresLm35Temperatura,
+    valoresFkSensor
 ) => {
     let poolBancoDados = ''
 
@@ -59,10 +60,12 @@ const serial = async (
         const valores = data.split(';');
         const dht11Umidade = parseFloat(valores[0]);
         const lm35Temperatura = parseFloat(valores[1]);
+        const fkSensor = parseFloat(valores[2]);
 
         // Armazena os valores dos sensores nos arrays correspondentes
         valoresDht11Umidade.push(dht11Umidade);
         valoresLm35Temperatura.push(lm35Temperatura);
+        valoresFkSensor.push(fkSensor);
 
         // Insere os dados no banco de dados (se habilitado)
         if (HABILITAR_OPERACAO_INSERIR) {
@@ -70,10 +73,10 @@ const serial = async (
             // altere!
             // Este insert irá inserir os dados na tabela "medida"
             await poolBancoDados.execute(
-                'INSERT INTO leitura (umidade, temperatura) VALUES (?, ?)',
-                [dht11Umidade, lm35Temperatura]
+                'INSERT INTO leitura (umidade, temperatura, fkSensor) VALUES (?, ?, ?)',
+                [dht11Umidade, lm35Temperatura, fkSensor]
             );
-            console.log("valores inseridos no banco: ", dht11Umidade + ", " +  lm35Temperatura);
+            console.log("valores inseridos no banco: ", dht11Umidade + ", " +  lm35Temperatura + ", " + fkSensor);
         
         }
         
@@ -90,7 +93,8 @@ const serial = async (
 // Função para criar e configurar o servidor web
 const servidor = (
     valoresDht11Umidade,
-    valoresLm35Temperatura
+    valoresLm35Temperatura,
+    valoresFkSensor
 ) => {
     const app = express();
 
@@ -115,6 +119,10 @@ const servidor = (
         return response.json(valoresLm35Temperatura);
     });
 
+    app.get('/sensores/lm35', (_, response) => {
+        return response.json(valoresFkSensor);
+    });
+
 }
 
 // Função principal assíncrona para iniciar a comunicação serial e o servidor web
@@ -122,16 +130,19 @@ const servidor = (
     // Arrays para armazenar os valores dos sensores
     const valoresDht11Umidade = [];
     const valoresLm35Temperatura = [];
+    const valoresFkSensor = [];
 
     // Inicia a comunicação serial
     await serial(
         valoresDht11Umidade,
-        valoresLm35Temperatura
+        valoresLm35Temperatura,
+        valoresFkSensor
     );
 
     // Inicia o servidor web
     servidor(
         valoresDht11Umidade,
-        valoresLm35Temperatura
+        valoresLm35Temperatura,
+        valoresFkSensor
     );
 })();
