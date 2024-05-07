@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeSensor | Caminhões Registrados</title>
+    <link rel="stylesheet" href="SRC/CSS/tela_caminhoesRegistrados.css">
+    <link rel="shortcut icon" href="SRC/imagens/favicon.png" type="image/x-icon">
+</head>
+
+<body>
+
+    <div id="menuLateral">
+
+        <h1>Code<br><span id="sensor">Sensor</span></h1>
+
+        <h2>Olá, Claudio</h2>
+
+        <div id="containerBotoes">
+
+            <button onclick="botaoInicial()" id="botaoInicial">PÁGINA INICIAL</button>
+            <button onclick="botaoCaminhoes()" class="botao">CAMINHÕES</button>
+            <button onclick="botaoCadastrar()" class="botao">CADASTRO</button>
+
+            <button onclick="botaoSair()" id="botaoSair">SAIR</button>
+
+        </div>
+
+    </div>
+
+    <div id="containerTudo">
+
+        <div class="containerTitulo">
+
+            <h1 class="titulo">
+                CAMINHÕES REGISTRADOS
+            </h1>
+
+        </div>
+
+        <div id="card">
+            <div id="exibicaoCaminhao">
+                <header>
+                    <div id="titulo-navbar">
+                        <h2>Geral</h2>
+                    </div>
+                    <div id="search">
+                        <img src="SRC/imagens/Vector.png" alt="Lupa de pesquisa">
+                        <input placeholder="Search">
+                    </div>
+                </header>
+                <main>
+                    <nav>
+                        <div class="celula-nav" id="caminhaoSensor">
+                            <span>Caminhão e Sensor</span>
+                        </div>
+                        <div class="celula-nav" id="tipoCarne">
+                            <span>Tipo de Carne</span>
+                        </div>
+                        <div class="celula-nav" id="ultimaTemp">
+                            <span>Última Temperatura</span>
+                        </div>
+                        <div class="celula-nav" id="ultimaUmid">
+                            <span>Última Umidade</span>
+                        </div>
+                    </nav>
+                    <div class="linhaImpar">
+                        <a href="DashboardCaminhaoIndividual.html"><div class="celulaOne">
+                            <img src="SRC/imagens/User.png" width="60px" height="55px">
+                            <div class="truckSensor">
+                                <span class="placa">NCZ2329</span>
+                                <span class="sensor">Sensor 1</span>
+                            </div>
+                        </div></a>
+                        <div class="celulaTwo">
+                            <span>Bovina</span>
+                        </div>
+                        <div class="celulaThree">
+                            <span>2ºC</span>
+                        </div>
+                        <div class="celulaFour">
+                            <span>85%</span>
+                        </div>
+                    </div>
+
+                    <div class="linhaPar">
+                        <div class="celulaOne">
+                            <img src="SRC/imagens/User.png" width="60px" height="55px">
+                            <div class="truckSensor">
+                                <span class="placa">MYL4122</span>
+                                <span class="sensor">Sensor 2</span>
+                            </div>
+                        </div>
+                        <div class="celulaTwo">
+                            <span>Ave</span>
+                        </div>
+                        <div class="celulaThree">
+                            <span id="alinharTextoAve">4ºC</span>
+                        </div>
+                        <div class="celulaFour">
+                            <span>86%</span>
+                        </div>
+                    </div>
+
+                    <div class="linhaImpar">
+                        <div class="celulaOne">
+                            <img src="SRC/imagens/User.png" width="60px" height="55px">
+                            <div class="truckSensor">
+                                <span class="placa">CXG4554</span>
+                                <span class="sensor">Sensor 3</span>
+                            </div>
+                        </div>
+                        <div class="celulaTwo">
+                            <span>Bovina</span>
+                        </div>
+                        <div class="celulaThree">
+                            <span>4ºC</span>
+                        </div>
+                        <div class="celulaFour">
+                            <span>85%</span>
+                        </div>
+                    </div>
+
+                    <div class="linhaPar">
+                        <a href="DashboardCaminhaoIndividualERRO.html">
+                        <div class="celulaOne">
+                            <img src="SRC/imagens/User.png" width="60px" height="55px">
+                            <div class="truckSensor">
+                                <span class="placa">HTB8226</span>
+                                <span class="sensor">Sensor 4</span>
+                            </div>
+                        </div>
+                        </a>
+                        <div class="celulaTwo">
+                            <span>Suíno</span>
+                        </div>
+                        <div class="celulaThree">
+                            <span class="foraIntervalo" id="alinharTextoSuino">10ºC</span>
+                        </div>
+                        <div class="celulaFour">
+                            <span>87%</span>
+                        </div>
+                    </div>
+
+                    <div class="linhaImpar">
+                        <div class="celulaOne">
+                            <img src="SRC/imagens/User.png" width="60px" height="55px">
+                            <div class="truckSensor">
+                                <span class="placa">NEW1382</span>
+                                <span class="sensor">Sensor 5</span>
+                            </div>
+                        </div>
+                        <div class="celulaTwo">
+                            <span>Bovina</span>
+                        </div>
+                        <div class="celulaThree">
+                            <span>4ºC</span>
+                        </div>
+                        <div class="celulaFour">
+                            <span>85%</span>
+                        </div>
+                    </div>
+
+                    <div class="linhaPar">
+                        <div class="celulaOne">
+                            <img src="SRC/imagens/User.png" width="60px" height="55px">
+                            <div class="truckSensor">
+                                <span class="placa">JZJ5124</span>
+                                <span class="sensor">Sensor 6</span>
+                            </div>
+                        </div>
+                        <div class="celulaTwo">
+                            <span>Ave</span>
+                        </div>
+                        <div class="celulaThree">
+                            <span id="alinharTextoAve">4ºC</span>
+                        </div>
+                        <div class="celulaFour">
+                            <span>87%</span>
+                        </div>
+                    </div>
+
+                    <div class="linhaImpar">
+                        <div class="celulaOne">
+                            <img src="SRC/imagens/User.png" width="60px" height="55px">
+                            <div class="truckSensor">
+                                <span class="placa">NAH9337</span>
+                                <span class="sensor">Sensor 7</span>
+                            </div>
+                        </div>
+                        <div class="celulaTwo">
+                            <span>Ave</span>
+                        </div>
+                        <div class="celulaThree">
+                            <span id="alinharTextoAve" class="foraIntervalo">9ºC</span>
+                        </div>
+                        <div class="celulaFour">
+                            <span>88%</span>
+                        </div>
+                    </div>
+
+                    <div class="linhaPar">
+                        <div class="celulaOne">
+                            <img src="SRC/imagens/User.png" width="60px" height="55px">
+                            <div class="truckSensor">
+                                <span class="placa">DUB2863</span>
+                                <span class="sensor">Sensor 8</span>
+                            </div>
+                        </div>
+                        <div class="celulaTwo">
+                            <span>Suíno</span>
+                        </div>
+                        <div class="celulaThree">
+                            <span id="alinharTextoSuino">4ºC</span>
+                        </div>
+                        <div class="celulaFour">
+                            <span class="foraIntervalo">96%</span>
+                        </div>
+                    </div>
+                </main>
+                <footer>
+<!--                     <span style="color: #697077;"> < </span>
+                    <span style="color: #697077;">Anterior</span>
+                    <span style="color: #A40101; background-color: #FF9696; border-radius: 20px; padding: 5px; height: 35px; width: 35px; text-align: center; margin-top: -4px;">1</span> -->
+                    <!-- <span style="color: #A40101;">2</span>
+                    <span style="color: #A40101;">3</span>
+                    <span style="color: #A40101;">4</span>
+                    <span style="color: #A40101;">5</span>
+                    <span style="color: #A40101;">...</span>
+                    <span style="color: #A40101;">11</span>
+                    <span style="color: #A40101;">Próximo</span>
+                    <span style="color: #A40101;"> > </span> -->
+                </footer>
+            </div>
+        </div>
+        
+    </div>
+
+</body>
+
+</html>
+<script>
+    function botaoInicial(){
+        window.location.href = "DashboardPaginainicial.html";
+    }
+    function botaoCaminhoes(){
+        window.location.href = "#";
+    }
+    function botaoCadastrar(){
+        window.location.href = "opcoesCadastro.html";
+    }
+    function botaoSair(){
+        window.location.href = "index.html";
+    }
+</script>

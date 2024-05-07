@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeSensor | Página Inicial</title>
+    <link rel="stylesheet" href="SRC/CSS/PaginaInicialDashboard.css">
+    <link rel="shortcut icon" href="SRC/imagens/favicon.png" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <div id="menuLateral">
+
+        <h1>Code<br><span id="sensor">Sensor</span></h1>
+
+        <h2>Olá, Claudio</h2>
+
+        <div id="containerBotoes">
+
+            <a id="botaoInicial" href="DashboardPaginaInicial.html">PÁGINA INICIAL</a>
+            <a class="botao" href="tela_caminhoesRegistrados.html">CAMINHÕES</a>
+            <a class="botao" href="opcoesCadastro.html">CADASTRO</a>
+
+            <a id="botaoSair" href="index.html">SAIR</a>
+
+        </div>
+
+    </div>
+
+    <div id="containerTudo">
+
+        <div class="containerTitulo">
+
+            <h1 class="titulo">
+                GRÁFICOS GERAIS
+            </h1>
+
+        </div>
+
+        <div id="containerKpi">
+            <div class="kpi" id="kpiInstavel">
+                <img src="SRC/imagens/caminhaozinho.png" alt="">
+                <span>
+                    <h2>03</h2>
+                    CAMINHÕES INSTÁVEIS
+                </span>
+            </div>
+
+            <div class="kpi" id="kpiEstavel">
+                <img src="SRC/imagens/caminhaozinho.png" alt="">
+                <span>
+                    <h2>05</h2>
+                    CAMINHÕES ESTÁVEIS
+                </span>
+            </div>
+
+        </div>
+
+        <div class="containerSubTitulo">
+
+            <h2 class="subTitulo">
+                TEMPERATURA
+            </h2>
+
+            <h2 class="subTitulo">
+                UMIDADE
+            </h2>
+
+        </div>
+
+        <div id="graficos">
+
+            <div class="containerGrafico" id="esquerda">
+
+                <h3>Todos os Caminhões</h3>
+                <canvas id="temperatura"></canvas>
+
+                <h3>Caminhões Críticos</h3>
+                <canvas id="temperaturaInstavel"></canvas>
+
+            </div>
+
+            <div class="containerGrafico">
+
+                <h3>Todos os Caminhões</h3>
+                <canvas id="umidade"></canvas>
+
+                <h3>Caminhões Críticos</h3>
+                <canvas id="umidadeInstavel"></canvas>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    const temperatura = document.getElementById('temperatura');
+
+    new Chart(temperatura, {
+        type: 'line',
+        data: {
+            labels: ['07:00', '07:10', '07:20', '07:30', '07:40', '07:50', '08:00'],
+            datasets: [{
+                label: 'NCZ2329',
+                data: [0, 1, 2, 4, 2, 3, 2],
+                borderWidth: 1,
+                backgroundColor: "#abacff",
+                borderColor: '#abacff'
+            }, {
+                label: 'MYL4122',
+                data: [1, 3, 3, 5, 2, 3, 4],
+                borderWidth: 1,
+                backgroundColor: "#ffabab",
+                borderColor: '#ffabab'
+            }, {
+                label: 'CXG4554',
+                data: [2, 3, 3, 5, 2, 3, 4],
+                borderWidth: 1,
+                backgroundColor: "#ec8bf7",
+                borderColor: '#ec8bf7'
+            }, {
+                label: 'HTB8226',
+                data: [3, 3, 3, 5, 2, 3, 10],
+                borderWidth: 1,
+                backgroundColor: "#fcd56a",
+                borderColor: '#fcd56a'
+            }, {
+                label: 'NEW1382',
+                data: [4, 3, 3, 5, 2, 3, 4],
+                borderWidth: 1,
+                backgroundColor: "#00BFFF",
+                borderColor: '#00BFFF'
+            }, {
+                label: 'JZJ5124',
+                data: [2, 3, 4, 5, 6, 7, 4],
+                borderWidth: 1,
+                backgroundColor: "#E45271",
+                borderColor: '#E45271'
+            }, {
+                label: 'NAH9337',
+                data: [3, 4, 5, 6, 7, 8, 9],
+                borderWidth: 1,
+                backgroundColor: "#E47A52",
+                borderColor: '#E47A52'
+            },{
+                label: 'DUB2863',
+                data: [3, 4, 5, 6, 7, 8, 4],
+                borderWidth: 1,
+                backgroundColor: "#8B24AF",
+                borderColor: '#8B24AF'
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: false
+                }
+            }
+        }
+    });
+
+    const temperaturaInstavel = document.getElementById('temperaturaInstavel');
+
+    new Chart(temperaturaInstavel, {
+        type: 'bar',
+        data: {
+            labels: ['07:00', '07:10', '07:20', '07:30', '07:40', '07:50', '08:00'],
+            datasets: [{
+                label: 'HTB8226',
+                data: [3, 3, 3, 5, 2, 3, 10],
+                borderWidth: 1,
+                backgroundColor: "#fcd56a",
+                borderColor: '#fcd56a'
+            }, {
+                label: 'NAH9337',
+                data: [3, 4, 5, 6, 7, 8, 9],
+                borderWidth: 1,
+                backgroundColor: "#E47A52",
+                borderColor: '#E47A52'
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: false
+                }
+            }
+        }
+    });
+
+    const umidade = document.getElementById('umidade');
+
+    new Chart(umidade, {
+        type: 'line',
+        data: {
+            labels: ['07:00', '07:10', '07:20', '07:30', '07:40', '07:50', '08:00'],
+            datasets: [{
+                label: 'NCZ2329',
+                data: [85, 86, 87, 88, 86, 87, 85],
+                borderWidth: 1,
+                backgroundColor: "#abacff",
+                borderColor: '#abacff'
+            }, {
+                label: 'MYL4122',
+                data: [86, 86, 87, 88, 89, 89, 86],
+                borderWidth: 1,
+                backgroundColor: "#ffabab",
+                borderColor: '#ffabab'
+            }, {
+                label: 'CXG4554',
+                data: [87, 86, 87, 86, 86, 86, 85],
+                borderWidth: 1,
+                backgroundColor: "#ec8bf7",
+                borderColor: '#ec8bf7'
+            }, {
+                label: 'HTB8226',
+                data: [85, 86, 87, 88, 89, 85, 87],
+                borderWidth: 1,
+                backgroundColor: "#fcd56a",
+                borderColor: '#fcd56a'
+            }, {
+                label: 'NEW1382',
+                data: [85, 86, 85, 86, 85, 86, 85],
+                borderWidth: 1,
+                backgroundColor: "#00BFFF",
+                borderColor: '#00BFFF'
+            }, {
+                label: 'JZJ5124',
+                data: [88, 89, 90, 91, 92, 93, 87],
+                borderWidth: 1,
+                backgroundColor: "#E45271",
+                borderColor: '#E45271'
+            }, {
+                label: 'NAH9337',
+                data: [89, 90, 91, 92, 93, 94, 88],
+                borderWidth: 1,
+                backgroundColor: "#E47A52",
+                borderColor: '#E47A52'
+            },{
+                label: 'DUB2863',
+                data: [89, 90, 91, 92, 93, 94, 96],
+                borderWidth: 1,
+                backgroundColor: "#8B24AF",
+                borderColor: '#8B24AF'
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: false
+                }
+            }
+        }
+    });
+
+    const umidadeInstavel = document.getElementById('umidadeInstavel');
+
+    new Chart(umidadeInstavel, {
+        type: 'bar',
+        data: {
+            labels: ['07:00', '07:10', '07:20', '07:30', '07:40', '07:50', '08:00'],
+            datasets: [{
+                label: 'DUB2863',
+                data: [89, 90, 91, 92, 93, 94, 96],
+                borderWidth: 1,
+                backgroundColor: "#8B24AF",
+                borderColor: '#8B24AF'
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: false
+                }
+            }
+        }
+    });
+
+</script>
