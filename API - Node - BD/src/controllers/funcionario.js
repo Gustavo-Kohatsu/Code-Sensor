@@ -1,0 +1,1 @@
+var funcionarioModels = require("../models/funcionario")

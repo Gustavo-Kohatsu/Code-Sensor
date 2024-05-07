@@ -7,10 +7,10 @@ var router = express.Router();
 
 
 
-var empresasController = require("../controllers/empresasController");
+var empresaController = require("../controllers/empresaController");
 
 router.get("/:idEmpresa", function (req, res) {
-  empresasController.buscarAquariosPorEmpresa(req, res);
+  empresasController.buscarEmpresa(req, res);
 });
 
 router.post("/cadastrar", function (req, res) {
