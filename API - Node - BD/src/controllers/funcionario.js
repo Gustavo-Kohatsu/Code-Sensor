@@ -1,1 +1,1 @@
-var funcionarioModels = require("../models/funcionario")
+var funcionarioModels = require("../models/funcionario");
