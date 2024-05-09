@@ -46,7 +46,7 @@ idLote INT not null AUTO_INCREMENT,
 tipoCarne 
 	VARCHAR(12) not null,
 	CHECK (tipoCarne IN ('bovina', 'suína', 'carne de ave')),
-carnesEmbaladas INT not null, -- carnesEmbaladas nos referimos as carnes embaladas que estão
+pesoKg FLOAT not null, -- carnesEmbaladas nos referimos as carnes embaladas que estão
 							  -- no lote, e não quantas carnes por KG.
 fkPlaca char(7) not null,
 
