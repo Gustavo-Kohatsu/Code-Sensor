@@ -13,7 +13,8 @@
     <div class="header" id="header">
 
         <a href="#primeiraParte">
-            <img src="SRC/imagens/LogoPreta.png" alt="logoCodeSensor" class="logoHeader">
+            <img id="LogoBranca" src="SRC/imagens/LogoBranca.png" alt="logoCodeSensor" class="logoHeader" style="display: block;">
+            <img id="LogoPreta" src="SRC/imagens/LogoPreta.png" alt="logoCodeSensor" class="logoHeader" style="display: none;">
         </a>
         <nav class="header_nav">
             <ul class="navbar">
@@ -348,4 +349,19 @@
         window.location.href = "https://www.instagram.com/raineneres/"; 
 
     }
+    window.addEventListener("scroll", function(){
+        let header = document.querySelector('#header');
+        header.classList.toggle('rolagem',window.scrollY > 0)
+        
+        if(window.scrollY > 0){
+        LogoPreta.style.display = "block"
+        LogoBranca.style.display = "none"
+        }else{
+        LogoPreta.style.display = "none"
+        LogoBranca.style.display = "block"
+        }
+    })
+
+  
+
 </script>

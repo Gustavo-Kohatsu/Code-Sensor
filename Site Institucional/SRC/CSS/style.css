@@ -58,7 +58,7 @@ body {
 }
 
 
-/* ------------------- MENU ------------------- */
+/* ------------------- MENU mormal ------------------- */
 
 .header {
     scroll-behavior: smooth;
@@ -76,12 +76,15 @@ body {
     font-weight: 500px;
     font-size: 15pt;
     
-    background-color: #E9E5E2;
+    background-color: transparent;
 
     position: fixed;
     width: 100%;
     height: 8vh;
     z-index: 1000;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.28);
+    transition: .3s;
+
 }
 
 .headerContainerDireita{
@@ -139,6 +142,99 @@ ul{
 }
 
 a {
+
+    text-decoration: none;
+
+    display: flex;
+    gap: 70px;
+    color: #ffffff;
+    font-weight: 600;
+
+}
+
+
+/* ------------------- MENU rolagem ------------------- */
+
+.header.rolagem {
+    scroll-behavior: smooth;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    padding-left: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 20px;
+
+    font-family: "Roboto Mono", monospace;
+    font-optical-sizing: auto;
+    font-weight: 500px;
+    font-size: 15pt;
+    
+    background-color: #E9E5E2;
+
+    position: fixed;
+    width: 100%;
+    height: 8vh;
+    z-index: 1000;
+}
+
+.headerContainerDireita.rolagem{
+
+    width: 50%;
+    
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 3%;
+}
+
+.logoHeader.rolagem {
+
+    height: 40px;
+    width: 90px;
+
+}
+
+
+.header.rolagem li{
+
+    display: flex;
+    align-items: center;
+
+    list-style: none;
+    cursor: pointer;
+
+    height: 80%;
+
+}
+
+
+.header_nav.rolagem{
+
+    display: flex;
+    gap: 70px;
+    color: #050505;
+    font-weight: 600;
+    width: 50%;
+
+    height: 100%;
+
+}
+
+#botaoHeader.rolagem {
+
+    width: 150px;
+
+}
+
+ul{
+
+    display: flex;
+    gap: 40px;
+
+}
+
+#header.rolagem a {
 
     text-decoration: none;
 
