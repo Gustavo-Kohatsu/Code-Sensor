@@ -257,27 +257,37 @@ label {
 }
 
 #textoFazerLogin span {
+    
     color: black;
 }
 
 #textoFazerLogin a {
     font-style: none;
+
     color: #b90101;   
     text-decoration: none;
+
     position: relative;
 }
 
 #textoFazerLogin a::after {
     content: " ";
+
     width: 5%;
     height: 100%;
+
+    border-bottom: 2px solid transparent;
+
     position: absolute;
     bottom: 0;
     left: 0;
+
     transition: 0.5s ease-in-out;
 }
 
 #textoFazerLogin a:hover::after {
+
     width: 100%;
+    
     border-bottom: 2px solid #b90101;
 }

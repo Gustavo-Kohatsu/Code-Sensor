@@ -2,6 +2,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
+@keyframes border-animation {
+    0% {
+        border-width: 1px;
+    }
+
+    50% {
+        border-left-width: 1.5px;
+        border-bottom-width: 1.5px;
+        border-right-width: 1.5px;
+        border-top-width: 1.5px;
+    }
+
+    100% {
+        border-left-width: 2px;
+        border-bottom-width: 2px;
+        border-right-width: 2px;
+        border-top-width: 2px;
+        border-radius: 5px;
+    }
+}
+
+
 html {
 
     scroll-behavior: smooth;
@@ -28,6 +50,67 @@ body {
     border-radius: 5px;
     border: none;
 
+    position: relative;
+    text-align: center;
+
+}
+
+.botao::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 2px solid transparent;
+    transition: border-color 0.75s;
+}
+
+.botao:hover::before {
+    border-left-color: #DFDFDF;
+    border-bottom-color: #DFDFDF;
+    border-right-color: #DFDFDF;
+    border-top-color: #DFDFDF;
+
+}
+
+.botao::before {
+    border-left-width: 0;
+    border-bottom-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+
+    animation: border-animation 1s linear forwards;
+}
+
+/* .botao com ROLAGEM (header modo branco) */
+
+.botao.rolagem {
+    background-color: #880000;
+    height: 50px;
+    color: #FFFFFF;
+    font-size: 25px;
+    font-family: "Lexend", sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+
+    border-radius: 5px;
+    border: none;
+
+    position: relative;
+    text-align: center;
+
+}
+
+.botao.rolagem::after {
+    content: "";
+    width: 0%;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+}
+
+.botao.rolagem:hover::after {
+    width: 100%;
+    background-color: #050505;
 }
 
 .titulos {
@@ -82,7 +165,6 @@ body {
     width: 100%;
     height: 8vh;
     z-index: 1000;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.28);
     transition: .3s;
 
 }
@@ -113,6 +195,24 @@ body {
 
     height: 80%;
 
+    position: relative;
+    padding-bottom: 2px;
+}
+
+.header li::after {
+    content: '';
+    width: 0;
+    position: absolute;
+    border-bottom: 2px solid transparent;
+    bottom: 0;
+    left: 0;
+    transition: 0.5s ease-in-out;
+
+}
+
+.header li:hover:after {
+    width: 100%;
+    border-bottom: 2px solid #DFDFDF;
 }
 
 
@@ -177,6 +277,7 @@ a {
     width: 100%;
     height: 8vh;
     z-index: 1000;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.28);
 }
 
 .headerContainerDireita.rolagem{
@@ -206,6 +307,25 @@ a {
 
     height: 80%;
 
+    position: relative;
+    padding-bottom: 2px;
+
+}
+
+.header.rolagem li::after {
+    content: '';
+    width: 0;
+    position: absolute;
+    border-bottom: 2px solid transparent;
+    bottom: 0;
+    left: 0;
+    transition: 0.5s ease-in-out;
+
+}
+
+.header.rolagem li:hover:after {
+    width: 100%;
+    border-bottom: 2px solid black;
 }
 
 
@@ -242,7 +362,6 @@ ul{
     gap: 70px;
     color: #050505;
     font-weight: 600;
-
 }
 
 /* ------------------- PRIMEIRA PARTE ------------------- */
@@ -306,6 +425,37 @@ ul{
     display: flex;
     justify-content: left;
 
+}
+
+#alinharBotao button {
+    position: relative;
+    text-align: center;
+    
+}
+
+#alinharBotao button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 2px solid transparent;
+    transition: border-color 0.75s;
+}
+
+#alinharBotao button:hover::before {
+    border-left-color: #DFDFDF;
+    border-bottom-color: #DFDFDF;
+    border-right-color: #DFDFDF;
+    border-top-color: #DFDFDF;
+
+}
+
+#alinharBotao button::before {
+    border-left-width: 0;
+    border-bottom-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+
+    animation: border-animation 1s linear forwards;
 }
 
 #botaoSimulador {

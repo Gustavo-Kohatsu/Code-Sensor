@@ -6,11 +6,11 @@
     from {
         opacity: 0;
         transform: translateY(-100%);
+        
     } to {
         opacity: 1;
         transform: translateY(0%);
-        
-       
+
     }
 }
 
@@ -22,6 +22,7 @@
 body {
     width: 99vw;
     height: 95vh;
+
     background-color: #F4EFEB;
     background-image: url('../imagens/Group\ 4.png');
     background-repeat: no-repeat;
@@ -65,6 +66,7 @@ body {
 #main {
     height: 90%;
     width: 100%;
+
     display: flex;
     flex-direction: column;
     align-items: center;    
@@ -75,13 +77,17 @@ body {
     border: 3px solid #A60000;
     margin: 40px 0 40px 0;
     background-color: #E9E5E2;
+
     height: 800px;
     width: 600px;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
     border-radius: 20px;
+
     animation-name: cardAnimacao;
     animation-duration: 1.5s;
 }
@@ -89,6 +95,7 @@ body {
 #card {
     width: 85%;
     height: 100%;
+
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -99,14 +106,17 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+
     margin-bottom: 20px;
 }
 
 #titulos h1 {
     color: #A60000;
     font-size: 55px;
+
     padding-top: 20px;
     margin-bottom: 10px;
+    
     font-family: "Lexend", sans-serif;
     font-optical-sizing: auto;
     font-weight: 700;
@@ -115,6 +125,7 @@ body {
 #titulos h2 {
     font-size: 25px;
     color: black;
+
     font-family: "Lexend", sans-serif;
     font-optical-sizing: auto;
     font-weight: 700;
@@ -124,10 +135,12 @@ body {
     color: black;
     height: 80%;
     width: 100%;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
     font-family: "Roboto Mono", monospace;
     font-optical-sizing: auto;
     font-weight: 250px;
@@ -136,14 +149,17 @@ body {
 #esquecerSenha {
     width: 90%;
     color: black;
+
     display: flex;
     justify-content: flex-start;
+
     margin-left: 20px;
 }
 
 #colunaInputs1 {
     display: flex;
     flex-direction: column;
+
     height: 90%;
     width: 100%;
 }
@@ -151,8 +167,11 @@ body {
 .inputPadronizado {
     width: 100%;
     height: 50%;
+
     font-size: 20px;
+
     border: none;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -162,22 +181,29 @@ body {
 .inputLinha {
     width: 455px;
     height: 50px;
+
     display: flex;
     justify-content: center;
+
     background-color: #F2F2F2;
-    border-radius: 20px;
+    
     border: 1px solid black;
+    border-radius: 20px;
+
     box-shadow: 4px 8px 15px rgb(86, 86, 86);
 }
 
 .inputLinha:hover {
+
     outline: 2px solid rgb(219, 10, 10);
 }
 
 input {
+    background-color: transparent;
+
     width: 92.5%;
     height: 45%;
-    background-color: transparent;
+
     border: none;
     border-bottom: 1.95px solid #06121C;
     margin-top: 4%;
@@ -186,6 +212,7 @@ input {
 input:valid {
     color: rgb(0, 0, 0);
     outline: none;
+
     font-family: "Roboto", sans-serif;
     font-weight: 500;
     font-style: normal;
@@ -195,6 +222,7 @@ input:valid {
 input:focus {
     color: rgb(0, 0, 0);
     outline: none;
+
     font-family: "Roboto", sans-serif;
     font-weight: 500;
     font-style: normal;
@@ -203,20 +231,24 @@ input:focus {
 
 label {
     width: 90%;
-    font-size: 0.9em;
+
     margin-left: 20px;
+
+    font-size: 0.9em;
     font-weight: 500;
 
 }
 
 #botaoCriar {
-    margin-top: 10px;
     height: 40%;
     width: 50%;
+    
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    
+    margin-top: 10px;
     margin-bottom: 20px;
 }
 
@@ -224,12 +256,16 @@ label {
 
     background-color: #880000;
     color: white;
+
     width: 150px;
     height: 45px;
+
     cursor: pointer;
+
     border-radius: 25px;
     border: none;
     margin-bottom: 20px;
+    
     font-family: "Roboto", sans-serif;
     font-weight: 500;
     font-style: normal;
@@ -252,6 +288,7 @@ label {
 #esquecerSenha {
     width: 90%;
     height: 8%;
+
     font-family: "Roboto", sans-serif;
     font-weight: 500;
     font-style: normal;
@@ -259,26 +296,34 @@ label {
 }
 
 #esquecerSenha span {
+
     margin-left: 20px;
 }
 
 #esquecerSenha a {
-    font-style: none;
-    color: #b90101;   
+    color: #b90101;
     text-decoration: none;
+    font-style: none;
+
     margin-left: 5px;
     padding-bottom: 5px;
     border-bottom: none;
+    
     position: relative;
+
 }
 
 #esquecerSenha a::after {
     content: " ";
+
     width: 5%;
     height: 100%;
+
     position: absolute;
     bottom: 0;
     left: 0;
+
+    border-bottom: 2px solid transparent;
     transition: 0.4s ease-in-out;
 }
 
@@ -291,6 +336,7 @@ label {
 .textoFazerLogin {
     width: 90%;
     height: 15%;
+
     font-family: "Roboto", sans-serif;
     font-weight: 500;
     font-style: normal;
@@ -299,27 +345,35 @@ label {
 
 .textoFazerLogin span {
     color: black;
+
 }
 
 .textoFazerLogin a{
     font-style: none;
+    
     color: #b90101;   
     text-decoration: none;
+    
     position: relative;
 }
 
 .textoFazerLogin a::after {
     content: " ";
+
     width: 5%;
     height: 100%;
+    
     position: absolute;
     bottom: 0;
     left: 0;
+
     transition: 0.4s ease-in-out;
+    border-bottom: 2px solid transparent;
 }
 
 .textoFazerLogin a:hover::after {
     width: 100%;
+
     border-bottom: 2px solid #b90101;
 }
 
