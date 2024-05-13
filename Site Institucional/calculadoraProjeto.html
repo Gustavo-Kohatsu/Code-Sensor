@@ -41,7 +41,7 @@
 
                     <br>
 
-                    <p>Quantidade da Frota de Caminhões:</p>
+                    <p>Quantidade de caminhões:</p>
                     <input type="number" id="input_qtd_veiculos" placeholder="15" class="input_text"><br>
 
                     <p>Em média, qual é a carga máxima durante o transporte? (Em kg)</p>
@@ -78,11 +78,13 @@
         let valorSuinaKG = 0;
         let valorAvesKG = 0;
         let qtdCarnes = 0;
+        let tiposCarnes = '';
 
         if (check_bovina.checked) {
 
             valorBovinaKG = 30 - (30 * 0.3); // 30% de 30 = 9
             qtdCarnes++;
+            tiposCarnes += 'bovina, ';
 
         }
 
@@ -90,12 +92,16 @@
 
             valorSuinaKG = 20 - (20 * 0.3); // 30% de 20 = 6
             qtdCarnes++;
+            tiposCarnes += 'suína, '
+
 
         }
         if (check_aves.checked) {
 
             valorAvesKG = 16 - (16 * 0.3); // 30% de 16 = 4.8
             qtdCarnes++;
+            tiposCarnes += 'ave, '
+
 
         }
 
@@ -114,11 +120,7 @@
             div_resultado.innerHTML =
                 `
             <div class="resultadoCalc">
-             <div class="cardResultado">
-                    <p id="p_introducao1" style="margin-top: 3.5%;"></p>
-                    <h1 style="color: #1db70f;" id="h1_resultado1"></h1>
-                    
-                </div>
+             
                 <div class="cardResultado">
                     <p id="p_introducao2"></p>
                     <h1 style="color: #d10000;" id="h1_resultado2"></h1>
@@ -142,29 +144,32 @@
             </div>
             `
 
-            p_introducao1.innerHTML = `Com uma carga média de ${maxCarga}kg por veículo, você terá:
-            <br>
-            <span class = textoVerde>${transportadoPorCarregamento.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</span>
-            <br>
-            sendo transportado por carregamento.`
+            let procurarVirgula = tiposCarnes.lastIndexOf(',');
+            
 
-            p_introducao2.innerHTML = `De acordo com a nossa equipe em média é estimado <b>8% de perdas</b> durante transporte:
-            <br>
-            <span class = textoVermelho>${perdasDuranteTransporte.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</span>
-            <br>
-            em média será perdido a cada carregamento.`
+            p_introducao2.innerHTML = `<span>
+                De acordo com a nossa equipe em média é estimado <b>8% de perdas</b> de carnes (${tiposCarnes.substring(0, procurarVirgula)}) durante o transporte:
+                <br>
+                <span class = textoVermelho>${perdasDuranteTransporte.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</span>
+                <br>
+                em média será perdido a cada carregamento.
+            </span>`
 
-            p_introducao3.innerHTML = `Com ${qtd_veiculos} veículos, executando ${carregamentosDia} carregamentos <b>por dia</b>, <br> você terá em média:
-            <br>
-            <span class = textoVermelho>${valorPerdidoMensalmente.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</span>
-            <br>
-            perdidos mensalmente.`
+            p_introducao3.innerHTML = `<span>
+                Com ${qtd_veiculos} veículos, executando ${carregamentosDia} carregamentos <b>por dia</b>, <br> você terá em média:
+                <br>
+                <span class = textoVermelho>${valorPerdidoMensalmente.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</span>
+                <br>
+                perdidos mensalmente.
+            </span>`
 
-            p_introducao4.innerHTML = `Com a nossa solução, você conseguirá <b>uma diminuição em média de 60% das suas perdas</b>, conseguindo uma economia de até:
-            <br>
-            <span class = textoVerde>${diminuicaoPerdas.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</span>
-            <br>
-            ou seja, diminuindo a perda de ${valorPerdidoMensalmente.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })} para ${(valorPerdidoMensalmente - diminuicaoPerdas).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })} mensalmente.`
+            p_introducao4.innerHTML = `<span>
+                Com a nossa solução, você conseguirá <b>uma diminuição em média de 60% das suas perdas</b>, conseguindo uma economia de até:
+                <br>
+                <span class = textoVerde>${diminuicaoPerdas.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</span>
+                <br>
+                ou seja, diminuindo a perda de ${valorPerdidoMensalmente.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })} para ${(valorPerdidoMensalmente - diminuicaoPerdas).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })} mensalmente.
+            </span>`
 
             
 

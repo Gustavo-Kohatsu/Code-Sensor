@@ -274,9 +274,12 @@ body {
 
 .cardResultado p {
     height: 100%;
-    margin-top: 2%;
+
 
     padding: 10px 10px 0 10px;
+    display: flex;
+
+    align-items: center;
     
 
 }
