@@ -1,1 +1,0 @@
-var sensorModels = require("../models/sensor");

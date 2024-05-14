@@ -1,1 +1,0 @@
-var veiculoModels = require("../models/veiculo");

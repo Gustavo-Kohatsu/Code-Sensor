@@ -1,1 +1,0 @@
-var loteModels = require("../models/lote");
