@@ -118,7 +118,7 @@ VALUES
   ('PQRD345', '56789012', '56789012345', 6);
 
 -- Inserts para a tabela Lote
-INSERT INTO lote (tipoCarne, carnesEmbaladas, fkPlaca) 
+INSERT INTO lote (tipoCarne, pesoKg, fkPlaca) 
 VALUES 
 ('bovina', 100, 'ABCD234'),
 ('suína', 150, 'DEFD678'),
@@ -199,4 +199,4 @@ FROM Sensor AS S
 INNER JOIN Leitura AS Leit
 ON S.idSensor = Leit.fkSensor;
 
-select * from leitura;
+select * from empresa;
