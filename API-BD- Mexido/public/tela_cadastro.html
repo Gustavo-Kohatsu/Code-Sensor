@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CodeSensor | Cadastro</title>
+
+  <script src="./js/sessao.js"></script>
+
+  <link rel="stylesheet" href="css/styleCadastro.css" />
+  <link rel="shortcut icon" href="SRC/imagens/favicon.png" type="image/x-icon" />
+</head>
+
+<body>
+  <div id="div_main">
+    <div id="setaVoltar">
+      <a href="index.html" id="voltar"> <img src="SRC/imagens/seta.png" />Voltar </a>
+    </div>
+
+    <div id="main">
+      <div class="alerta_erro">
+        <div class="card_erro" id="cardErro">
+          <span id="mensagem_erro"></span>
+        </div>
+      </div>
+
+      <div id="card-main">
+        <div id="card">
+          <div id="titulos">
+            <h1>CADASTRO</h1>
+            <h2>CRIE SUA CONTA</h2>
+          </div>
+
+          <div id="inputsCadastro">
+            <div id="colunaInputs1">
+              <div class="inputPadronizado">
+                <label for="input_nome">Nome Empresa</label>
+                <div class="inputLinha">
+                  <input id="input_nome" />
+                </div>
+              </div>
+
+              <div class="inputPadronizado">
+                <label for="input_email">E-mail</label>
+                <div class="inputLinha">
+                  <input id="input_email" />
+                </div>
+              </div>
+
+              <div class="inputPadronizado">
+                <label for="input_telefone">Telefone</label>
+                <div class="inputLinha">
+                  <input id="input_telefone" />
+                </div>
+              </div>
+            </div>
+
+            <div id="colunaInputs2">
+
+              <div class="inputPadronizado">
+                <label for="input_cnpj">CNPJ</label>
+                <div class="inputLinha">
+                  <input type="text" id="input_cnpj" />
+                </div>
+              </div>
+
+              <div class="inputPadronizado">
+                <label for="input_cep">CEP</label>
+                <div class="inputLinha">
+                  <input id="input_cep" />
+                </div>
+              </div>
+
+              <div class="inputPadronizado">
+                <label for="input_senha">Senha</label>
+                <div class="inputLinha">
+                  <input id="input_senha" type="text" onkeyup="validarSenha()" />
+                </div>
+                <div class="validacaoSenha"></div>
+              </div>
+
+            </div>
+          </div>
+
+          <div id="botaoCriar">
+            <button onclick="cadastrar()">Criar</button>
+            <div id="textoFazerLogin">
+              <span>Já possui uma conta?</span>
+              <a href="login.html">Faça login</a>
+            </div>
+          </div>
+        </div>
+        <div id="div_aguardar" class="loading-div">
+          <img src="./assets/circle-loading.gif" id="loading-gif" />
+        </div>
+      </div>
+      <footer id="logo">
+        <img src="SRC/imagens/LogoPreta.png" width="125px" />
+      </footer>
+    </div>
+  </div>
+</body>
+
+</html>
+
+<script>
+
+
+  function cadastrar() {
+
+
+    aguardar();
+
+    var nomeVar = input_nome.value;
+    var senhaVar = input_senha.value;
+    var telefoneVar = input_telefone.value;
+    var emailVar = input_email.value;
+    var cepVar = input_cep.value;
+    var cnpjVar = input_cnpj.value;
+
+
+    if (nomeVar != '' && senhaVar != '' &&
+      telefoneVar != '' && emailVar != '' &&
+      cepVar != '' && cnpjVar != '') {
+      setInterval(sumirMensagem, 5000);
+    } else {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "(Mensagem de erro para todos os campos em branco)";
+      alert("Mensagem de erro para todos os campos em branco")
+      finalizarAguardar();
+      return false;
+    }
+
+    if (cepVar.length != 8) {
+      alert('CEP Inválido!')
+    } else if (cnpjVar.length != 14) {
+      alert('CNPJ Inválido!')
+    }
+    else if (emailVar.indexOf('@') == -1) {
+      alert('Email inválido!')
+    }
+    else if (senhaVar.length > 16) {
+      alert('A Senha tem que ter menos que 16 caracteres');
+    } else {
+      aguardar();
+      fetch("usuarios/cadastrar", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          // crie um atributo que recebe o valor recuperado aqui
+          // Agora vá para o arquivo routes/usuario.js
+          nomeServer: nomeVar,
+          emailServer: emailVar,
+          senhaServer: senhaVar,
+          cepServer: cepVar,
+          cnpjServer: cnpjVar,
+          telefoneServer: telefoneVar
+        }),
+      })
+        .then(function (resposta) {
+          console.log("resposta: ", resposta);
+
+          if (resposta.ok) {
+            cardErro.style.display = "block";
+
+            mensagem_erro.innerHTML =
+              "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+            alert("Cadastro realizado com sucesso! Redirecionando para tela de Login...")
+
+            setTimeout(() => {
+              window.location = "login.html";
+            }, "2000");
+
+            limparFormulario();
+            finalizarAguardar();
+          } else {
+            throw "Houve um erro ao tentar realizar o cadastro!";
+          }
+        })
+        .catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+          finalizarAguardar();
+        });
+    }
+
+    //Recupere o valor da nova input pelo nome do id
+    // Agora vá para o método fetch logo abaixo
+
+    /* 
+        if (nomeVar.length > 1) {
+          if (arrobaIndice >= 0) {
+            if (senhaVar.length > 6) {
+              if (senhaVar == confirmacaoSenhaVar) {
+                if (cpfVar.length == 11) {
+                  if (
+                    nomeVar == "" ||
+                    emailVar == "" ||
+                    cpfVar == "" ||
+                    senhaVar == "" ||
+                    confirmacaoSenhaVar == "" ||
+                    empresaVar == ""
+                  ) {
+                    cardErro.style.display = "block";
+                    mensagem_erro.innerHTML =
+                      "(Mensagem de erro para todos os campos em branco)";
+    
+                    finalizarAguardar();
+                    return false;
+                  } else {
+                    setInterval(sumirMensagem, 5000);
+                  }
+    
+                  // Enviando o valor da nova input
+                  fetch("/usuarios/cadastrar", {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                      // crie um atributo que recebe o valor recuperado aqui
+                      // Agora vá para o arquivo routes/usuario.js
+                      nomeServer: nomeVar,
+                      emailServer: emailVar,
+                      cpfServer: cpfVar,
+                      senhaServer: senhaVar,
+                      empresaServer: empresaVar
+                    }),
+                  })
+                    .then(function (resposta) {
+                      console.log("resposta: ", resposta);
+    
+                      if (resposta.ok) {
+                        cardErro.style.display = "block";
+    
+                        mensagem_erro.innerHTML =
+                          "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+    
+                        setTimeout(() => {
+                          window.location = "login.html";
+                        }, "2000");
+    
+                        limparFormulario();
+                        finalizarAguardar();
+                      } else {
+                        throw "Houve um erro ao tentar realizar o cadastro!";
+                      }
+                    })
+                    .catch(function (resposta) {
+                      console.log(`#ERRO: ${resposta}`);
+                      finalizarAguardar();
+                    });
+    
+                  return false;
+                } else {
+                  alert("CPF Inválido ou incompleto");
+                }
+              } else {
+                alert("Senhas difentes");
+              }
+            } else {
+              alert("A senha deve conter mais de seis caractere");
+            }
+          } else {
+            alert("O email não  contém um @");
+          }
+        } else {
+          alert("O nome tem que ter mais que um caractere ");
+        } */
+
+  }
+  // function validarCampos() {
+  //   const nome = input_nome.value;
+  //   const senha = input_senha.value;
+  //   const telefone = input_telefone.value;
+  //   const email = input_email.value;
+  //   const cep = input_cep.value;
+  //   const cnpj = input_cnpj.value;
+
+  //   if (nome     != '' && senha != '' &&
+  //       telefone != '' && email != '' &&
+  //       cep      != '' && cnpj  != '') {
+  //         if (cep.length == 8 && cnpj == 14) {
+  //           if (email.indexOf('@') != -1) {
+  //             if (senha.length <= 16) {
+  //               alert('Cadastro Criado!');
+  //               window.location.href = "login.html";
+  //             } else {
+  //               alert('A senha deve conter no máximo 16 caracteres!');
+  //             }
+  //           } else {
+  //             alert('Email inválido!')
+  //           }
+  //         } else {
+  //           alert('CEP ou CNPJ Inválido!')
+  //         }
+  //       } else {
+  //         alert('Campos inválidos!')
+  //       }
+  //     }
+
+  function validarSenha() {
+    document.querySelector('.validacaoSenha').innerHTML = '';
+
+    const senhaValidacao = input_senha.value;
+
+    // VERIFICAÇÃO letras minúsculas
+    let arrayLower = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+    let lowerInPasswd = false;
+
+    for (let l = 0; l < arrayLower.length; l++) {
+      if (senhaValidacao.includes(arrayLower[l])) {
+        lowerInPasswd = true;
+      }
+    }
+
+    // VERIFICAÇÃO letras maiúsculas
+    let arrayUpper = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+    let upperInPasswd = false;
+
+    for (let u = 0; u < arrayUpper.length; u++) {
+      if (senhaValidacao.includes(arrayUpper[u])) {
+        upperInPasswd = true;
+      }
+
+    }
+
+    // VERIFICAÇÃO NUMÉRICA 
+    let arrayNumbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    let numberInPasswd = false;
+
+    for (let n = 0; n < arrayNumbers.length; n++) {
+      if (senhaValidacao.includes(arrayNumbers[n])) {
+        numberInPasswd = true;
+      }
+    }
+
+    // VERIFICAÇÃO caracteres especiais
+    let arraySpecialChar = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_'];
+    let specialCharInPasswd = false;
+
+    for (let s = 0; s < arraySpecialChar.length; s++) {
+      if (senhaValidacao.includes(arraySpecialChar[s])) {
+        specialCharInPasswd = true;
+      }
+    }
+
+    if (senhaValidacao.length >= 12 &&
+      ((upperInPasswd) &&
+        (lowerInPasswd) &&
+        (numberInPasswd) &&
+        (specialCharInPasswd))
+    ) {
+      document.querySelector('.validacaoSenha').innerHTML = `<span style="color: #188F05;"><strong>- - - - - Forte</strong></span>`
+
+    } else if (senhaValidacao.length >= 8 &&
+      ((upperInPasswd) ||
+        (lowerInPasswd) ||
+        (numberInPasswd) ||
+        (specialCharInPasswd))
+    ) {
+      document.querySelector('.validacaoSenha').innerHTML = `<span style="color: #F88206;"><strong>- - - Média</strong></span>`
+
+    } else if (senhaValidacao.length >= 1) {
+      document.querySelector('.validacaoSenha').innerHTML = `<span style="color: #B2101F"><strong>- - Fraca</strong></span>`
+    }
+  }
+
+</script>
+
+<script>
+  /* function cadastrar() {
+    aguardar();
+
+    // SUBSTITUIR cpf -> cnpjVar !!!!!!!!!!!!!
+    // SUBSTITUIR confirmaçãoSenha -> telefone !!!!!!!!!!!!!
+    // SUBSTITUIR empresa -> cep !!!!!!!!!!!!!
+
+
+    //Recupere o valor da nova input pelo nome do id
+    // Agora vá para o método fetch logo abaixo
+
+      
+    const nomeVar = input_nome.value;
+    const emailVar = input_email.value;
+    const senhaVar = input_senha.value;
+
+    const cnpjVar = input_cnpj.value;
+    const telefoneVar = input_telefone.value;
+    const cepVar = input_cep.value;
+    
+    const arrobaIndice = emailVar.indexOf("@");
+
+    if (nomeVar.length > 1) {
+      if (arrobaIndice >= 0) {
+        if (senhaVar.length > 1) {
+            if (cnpjVar.length == 14) {
+              if (
+                nomeVar == "" ||
+                emailVar == "" ||
+                cnpjVar == "" ||
+                senhaVar == "" ||
+                telefoneVar == "" ||
+                cepVar == ""
+              ) {
+                cardErro.style.display = "block";
+                mensagem_erro.innerHTML =
+                  "(Mensagem de erro para todos os campos em branco)";
+
+                finalizarAguardar();
+                return false;
+              } else {
+                setInterval(sumirMensagem, 5000);
+              }
+
+              // Enviando o valor da nova input
+              fetch("/usuarios/cadastrar", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  // crie um atributo que recebe o valor recuperado aqui
+                  // Agora vá para o arquivo routes/usuario.js
+                  nomeServer: nomeVar,
+                  emailServer: emailVar,
+                  cnpjServer: cnpjVar,
+                  senhaServer: senhaVar,
+                  cepServer: cepVar
+                }),
+              })
+                .then(function (resposta) {
+                  console.log("resposta: ", resposta);
+
+                  if (resposta.ok) {
+                    cardErro.style.display = "block";
+
+                    mensagem_erro.innerHTML =
+                      "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+                    setTimeout(() => {
+                      window.location = "login.html";
+                    }, "2000");
+
+                    limparFormulario();
+                    finalizarAguardar();
+                  } else {
+                    throw "Houve um erro ao tentar realizar o cadastro!";
+                  }
+                })
+                .catch(function (resposta) {
+                  console.log(`#ERRO: ${resposta}`);
+                  finalizarAguardar();
+                });
+
+              return false;
+            } else {
+              alert("CPF Inválido ou incompleto");
+            }
+        } else {
+          alert("A senha deve conter mais de seis caractere");
+        }
+      } else {
+        alert("O email não  contém um @");
+      }
+    } else {
+      alert("O nome tem que ter mais que um caractere ");
+    }
+
+  } */
+
+
+  // function listar() {
+  //   fetch("/empresas/listar", {
+  //     method: "GET",
+  //   })
+  //     .then(function (resposta) {
+  //       resposta.json().then((empresas) => {
+  //         empresas.forEach((empresa) => {
+  //           listaEmpresas.innerHTML += `<option value='${empresa.id}'>${empresa.cnpj}</option>`;
+  //         });
+  //       });
+  //     })
+  //     .catch(function (resposta) {
+  //       console.log(`#ERRO: ${resposta}`);
+  //     });
+  // }
+
+  function sumirMensagem() {
+    cardErro.style.display = "none";
+  }
+</script>
