@@ -241,8 +241,26 @@ body {
 
 #kpiEstavel {
 
-    background-color: #409622;
+    background-color: #EE3636;
 
+}
+#kpiPorcentagem {
+
+    background-color: #ffffff;
+}
+
+#kpiPorcentagem h2 {
+
+    color: black;
+}
+
+#kpiPorcentagem span {
+
+    color: black;
+}
+h4{
+    margin: 0;
+    font-size: 0.7rem;
 }
 
 .kpi span {
@@ -343,3 +361,4 @@ body {
     border-right: solid 3px #880000;
 
 }
+
