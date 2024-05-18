@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CodeSensor | Login</title>
-    <link rel="stylesheet" href="SRC/CSS/styleLogin.css">
-    <link rel="shortcut icon" href="SRC/imagens/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../SRC/CSS/styleLogin.css">
+    <link rel="shortcut icon" href="../SRC/imagens/favicon.png" type="image/x-icon">
 </head>
 <body>
     <div id="div_main">
         <div id="setaVoltar">
-            <a href="index.html" id="voltar">
-                <img src="SRC/imagens/seta.png">Voltar
+            <a href="../public/index.html" id="voltar">
+                <img src="../SRC/imagens/seta.png">Voltar
             </a>
         </div>
 
@@ -41,7 +41,7 @@
                             </div>
                             <div id="esquecerSenha">
                                 <span>Esqueceu sua senha?</span>
-                                <a href="recuperacaoSenha.html">Clique aqui</a>
+                                <a href="../public/recuperacaoSenha.html">Clique aqui</a>
                             </div>
                         </div>
 
@@ -54,14 +54,14 @@
                         </button> 
                         <div class="textoFazerLogin">
                             <span>Não possui conta?</span>
-                            <a href="tela_cadastro.html"> Cadastre-se</a>
+                            <a href="../public/tela_cadastro.html"> Cadastre-se</a>
                         </div>
                     </div>
 
                 </div>
             </div>
             <footer id="logo">
-                <img src="SRC/imagens/LogoPreta.png" style="height: 40px;">
+                <img src="../SRC/imagens/LogoPreta.png" style="height: 40px;">
             </footer>
     </div>
     </div>
@@ -73,7 +73,7 @@
     const emailusuario = email.value
 
     if(senhausuario == "claudio123" && emailusuario == "claudio@gmail.com"){
-        window.location.href = "./DashboardPaginaInicial.html"
+        window.location.href = "../DashboardPaginaInicial.html"
     } else if(senhausuario == '' || emailusuario == ''){
         alert("Não é permitido campos vazios!")
     }
