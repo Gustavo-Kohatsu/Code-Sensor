@@ -5,14 +5,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CodeSensor | Cadastro</title>
-  <link rel="stylesheet" href="SRC/CSS/styleCadastro.css" />
-  <link rel="shortcut icon" href="SRC/imagens/favicon.png" type="image/x-icon" />
+  <link rel="stylesheet" href="../SRC/CSS/styleCadastro.css" />
+  <link rel="shortcut icon" href="../SRC/imagens/favicon.png" type="image/x-icon" />
 </head>
 
 <body>
   <div id="div_main">
     <div id="setaVoltar">
-      <a href="index.html" id="voltar"> <img src="SRC/imagens/seta.png" />Voltar </a>
+      <a href="index.html" id="voltar"> <img src="../SRC/imagens/seta.png" />Voltar </a>
     </div>
 
     <div id="main">
@@ -46,6 +46,7 @@
                 </div>
               </div>
             </div>
+            
 
             <div id="colunaInputs2">
 
@@ -70,8 +71,24 @@
                 </div>
                 <div class="validacaoSenha"></div>
               </div>
+              
 
             </div>
+          </div>
+          <div class="inputPadronizado2">
+            <label for="input_filial">Sua empresa é filial?</label>
+            <div class="inputLinha2">
+              <input onchange="aparecerInput()" id="input_filial" type="checkbox"/>Sim
+            </div>
+            <div style="display: none;" id="colunaInputs3">
+              <div class="inputPadronizado3">
+                <div class="inputLinha3">
+                  <input id="input_senha" type="text" onkeyup="validarSenha()" />
+                </div>
+              </div>
+              
+            </div>
+            
           </div>
 
           <div id="botaoCriar">
@@ -84,7 +101,7 @@
         </div>
       </div>
       <footer id="logo">
-        <img src="SRC/imagens/LogoPreta.png" width="125px" />
+        <img src="../SRC/imagens/LogoPreta.png" width="125px" />
       </footer>
     </div>
   </div>
@@ -93,6 +110,17 @@
 </html>
 
 <script>
+
+function aparecerInput() {
+    const checkbox = document.getElementById('input_filial');
+    const colunaInputs3 = document.getElementById('colunaInputs3');
+    if (checkbox.checked) {
+      colunaInputs3.style.display = 'block';
+    } else {
+      colunaInputs3.style.display = 'none';
+    }
+  }
+
   function validarCampos() {
     const nome = input_nome.value;
     const senha = input_senha.value;
