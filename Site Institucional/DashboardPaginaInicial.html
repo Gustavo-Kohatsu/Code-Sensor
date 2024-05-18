@@ -44,7 +44,7 @@
             <div class="kpi" id="kpiInstavel">
                 <img src="SRC/imagens/temperaturaComAlerta.png" alt="">
                 <span>
-                
+
                     CAMINHÕES INSTÁVEIS
                     <h4>Por Temperatura</h4>
                     <h2>13</h2>
@@ -54,7 +54,7 @@
             <div class="kpi" id="kpiEstavel">
                 <img src="SRC/imagens/umidadeComAlerta.png" alt="">
                 <span>
-                
+
                     CAMINHÕES ESTÁVEIS
                     <h4>Por Umidade</h4>
                     <h2>22</h2>
@@ -63,7 +63,7 @@
             <div class="kpi" id="kpiPorcentagem">
                 <img src="SRC/imagens/image 39.png" alt="">
                 <span>
-                    
+
                     CAMINHÕES ESTÁVEIS
                     <h4>Por Porcentagem</h4>
                     <h2>25</h2>
@@ -72,231 +72,88 @@
 
         </div>
 
-        <div class="containerSubTitulo">
+        <div class="Filial">
+            <div class="Linha">
+                <div class="containerKPIFilial">
+                    <h2>FILIAL A</h2>
+                    <div class="KPiCaminhao">
+                        <img src="SRC/imagens/caminhaozinho.png" alt="">
+                        <span>
 
-            <h2 class="subTitulo">
-                TEMPERATURA
-            </h2>
+                            CAMINHÕES 5/24
 
-            <h2 class="subTitulo">
-                UMIDADE
-            </h2>
+                        </span>
+                    </div>
+                </div>
+                <div class="containerKPIFilial">
+                    <h2>FILIAL B</h2>
+                    <div class="KPiCaminhao">
+                        <img src="SRC/imagens/caminhaozinho.png" alt="">
+                        <span>
+
+                            CAMINHÕES 14/23
+
+                        </span>
+                    </div>
+                </div>
+                <div class="containerKPIFilial">
+                    <h2>FILIAL C</h2>
+                    <div class="KPiCaminhao">
+                        <img src="SRC/imagens/caminhaozinho.png" alt="">
+                        <span>
+
+                            CAMINHÕES 7/31
+
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="Linha">
+                <div class="containerKPIFilial">
+                    <h2>FILIAL D</h2>
+                    <div class="KPiCaminhao">
+                        <img src="SRC/imagens/caminhaozinho.png" alt="">
+                        <span>
+
+                            CAMINHÕES 5/27
+
+                        </span>
+                    </div>
+                </div>
+                <div class="containerKPIFilial">
+                    <h2>FILIAL E</h2>
+                    <div class="KPiCaminhao">
+                        <img src="SRC/imagens/caminhaozinho.png" alt="">
+                        <span>
+
+                            CAMINHÕES 2/23
+
+                        </span>
+                    </div>
+                </div>
+                <div class="containerKPIFilial">
+                    <h2>FILIAL F</h2>
+                    <div class="KPiCaminhao">
+                        <img src="SRC/imagens/caminhaozinho.png" alt="">
+                        <span>
+
+                            CAMINHÕES 2/15
+
+                        </span>
+                    </div>
+                </div>
+            </div>
 
         </div>
 
-        <div id="graficos">
 
-            <div class="containerGrafico" id="esquerda">
-
-                <h3>Todos os Caminhões</h3>
-                <canvas id="temperatura"></canvas>
-
-                <h3>Caminhões Críticos</h3>
-                <canvas id="temperaturaInstavel"></canvas>
-
-            </div>
-
-            <div class="containerGrafico">
-
-                <h3>Todos os Caminhões</h3>
-                <canvas id="umidade"></canvas>
-
-                <h3>Caminhões Críticos</h3>
-                <canvas id="umidadeInstavel"></canvas>
-
-            </div>
-
-        </div>
 
     </div>
 
-    </div>
+
+
 
 </body>
 
 </html>
 
-<script>
-    const temperatura = document.getElementById('temperatura');
-
-    new Chart(temperatura, {
-        type: 'line',
-        data: {
-            labels: ['07:00', '07:10', '07:20', '07:30', '07:40', '07:50', '08:00'],
-            datasets: [{
-                label: 'NCZ2329',
-                data: [0, 1, 2, 4, 2, 3, 2],
-                borderWidth: 1,
-                backgroundColor: "#abacff",
-                borderColor: '#abacff'
-            }, {
-                label: 'MYL4122',
-                data: [1, 3, 3, 5, 2, 3, 4],
-                borderWidth: 1,
-                backgroundColor: "#ffabab",
-                borderColor: '#ffabab'
-            }, {
-                label: 'CXG4554',
-                data: [2, 3, 3, 5, 2, 3, 4],
-                borderWidth: 1,
-                backgroundColor: "#ec8bf7",
-                borderColor: '#ec8bf7'
-            }, {
-                label: 'HTB8226',
-                data: [3, 3, 3, 5, 2, 3, 10],
-                borderWidth: 1,
-                backgroundColor: "#fcd56a",
-                borderColor: '#fcd56a'
-            }, {
-                label: 'NEW1382',
-                data: [4, 3, 3, 5, 2, 3, 4],
-                borderWidth: 1,
-                backgroundColor: "#00BFFF",
-                borderColor: '#00BFFF'
-            }, {
-                label: 'JZJ5124',
-                data: [2, 3, 4, 5, 6, 7, 4],
-                borderWidth: 1,
-                backgroundColor: "#E45271",
-                borderColor: '#E45271'
-            }, {
-                label: 'NAH9337',
-                data: [3, 4, 5, 6, 7, 8, 9],
-                borderWidth: 1,
-                backgroundColor: "#E47A52",
-                borderColor: '#E47A52'
-            },{
-                label: 'DUB2863',
-                data: [3, 4, 5, 6, 7, 8, 4],
-                borderWidth: 1,
-                backgroundColor: "#8B24AF",
-                borderColor: '#8B24AF'
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: false
-                }
-            }
-        }
-    });
-
-    const temperaturaInstavel = document.getElementById('temperaturaInstavel');
-
-    new Chart(temperaturaInstavel, {
-        type: 'bar',
-        data: {
-            labels: ['07:00', '07:10', '07:20', '07:30', '07:40', '07:50', '08:00'],
-            datasets: [{
-                label: 'HTB8226',
-                data: [3, 3, 3, 5, 2, 3, 10],
-                borderWidth: 1,
-                backgroundColor: "#fcd56a",
-                borderColor: '#fcd56a'
-            }, {
-                label: 'NAH9337',
-                data: [3, 4, 5, 6, 7, 8, 9],
-                borderWidth: 1,
-                backgroundColor: "#E47A52",
-                borderColor: '#E47A52'
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: false
-                }
-            }
-        }
-    });
-
-    const umidade = document.getElementById('umidade');
-
-    new Chart(umidade, {
-        type: 'line',
-        data: {
-            labels: ['07:00', '07:10', '07:20', '07:30', '07:40', '07:50', '08:00'],
-            datasets: [{
-                label: 'NCZ2329',
-                data: [85, 86, 87, 88, 86, 87, 85],
-                borderWidth: 1,
-                backgroundColor: "#abacff",
-                borderColor: '#abacff'
-            }, {
-                label: 'MYL4122',
-                data: [86, 86, 87, 88, 89, 89, 86],
-                borderWidth: 1,
-                backgroundColor: "#ffabab",
-                borderColor: '#ffabab'
-            }, {
-                label: 'CXG4554',
-                data: [87, 86, 87, 86, 86, 86, 85],
-                borderWidth: 1,
-                backgroundColor: "#ec8bf7",
-                borderColor: '#ec8bf7'
-            }, {
-                label: 'HTB8226',
-                data: [85, 86, 87, 88, 89, 85, 87],
-                borderWidth: 1,
-                backgroundColor: "#fcd56a",
-                borderColor: '#fcd56a'
-            }, {
-                label: 'NEW1382',
-                data: [85, 86, 85, 86, 85, 86, 85],
-                borderWidth: 1,
-                backgroundColor: "#00BFFF",
-                borderColor: '#00BFFF'
-            }, {
-                label: 'JZJ5124',
-                data: [88, 89, 90, 91, 92, 93, 87],
-                borderWidth: 1,
-                backgroundColor: "#E45271",
-                borderColor: '#E45271'
-            }, {
-                label: 'NAH9337',
-                data: [89, 90, 91, 92, 93, 94, 88],
-                borderWidth: 1,
-                backgroundColor: "#E47A52",
-                borderColor: '#E47A52'
-            },{
-                label: 'DUB2863',
-                data: [89, 90, 91, 92, 93, 94, 96],
-                borderWidth: 1,
-                backgroundColor: "#8B24AF",
-                borderColor: '#8B24AF'
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: false
-                }
-            }
-        }
-    });
-
-    const umidadeInstavel = document.getElementById('umidadeInstavel');
-
-    new Chart(umidadeInstavel, {
-        type: 'bar',
-        data: {
-            labels: ['07:00', '07:10', '07:20', '07:30', '07:40', '07:50', '08:00'],
-            datasets: [{
-                label: 'DUB2863',
-                data: [89, 90, 91, 92, 93, 94, 96],
-                borderWidth: 1,
-                backgroundColor: "#8B24AF",
-                borderColor: '#8B24AF'
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: false
-                }
-            }
-        }
-    });
-
-</script>
