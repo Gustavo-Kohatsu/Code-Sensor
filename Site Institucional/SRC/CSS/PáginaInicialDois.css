@@ -236,6 +236,8 @@ body {
 
     background-color: white;
 
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.28);
+
 }
 
 .kpi span {
@@ -298,22 +300,34 @@ body {
 #divListas {
 
     display: flex;
+    height: 55vh;
 
 }
 
 .containerLista {
 
+    height: 100%;
+
     border: 2px solid black;
-    border-radius: 20px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
 
     overflow-y: scroll;
+
+}
+
+.direita {
+
+    border-left: 3px solid #880000;
 
 }
 
 .listaCaminhaoInstavel {
 
     width: 50%;
+    height: 57.4vh;
 
+    padding-top: 1%;
     padding-left: 2%;
     padding-right: 2%;
 
@@ -322,7 +336,6 @@ body {
 .containerTitulo {
 
     display: flex;
-    margin-bottom: 1%;
 
 }
 
@@ -349,9 +362,7 @@ body {
 
 .containerLista {
 
-    padding: 0.5%;
-
-    max-height: 75%;
+    height: 90%;
 
     background-color: white;
 
@@ -362,38 +373,34 @@ body {
 }
 
 .containerLista a {
-
     text-decoration: none;
     color: black;
 
 }
 
-.linhaImpar {
-    height: 12.05%;
-    background-color: white;
+.linha {
+    height: 15%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 5% 0 2%;
+    padding-right: 2%;
+    padding-left: 10%;
+
 }
 
-.celulaOne {
-    display: flex;
+.linhaImpar {
+    background-color: white;
+    
+}
+
+.linhaPar {
+    background-color: #E8E8E8;
 
 }
 
 .truckSensor {
     display: flex;
     flex-direction: column;
-}
-
-.linhaPar {
-    height: 12.05%;
-    background-color: #E8E8E8;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 5% 0 2%;
 }
 
 .truckSensor {
@@ -412,17 +419,10 @@ body {
     color: #697077;
 }
 
-.celulaThree {
+.celula {
     height: 100%;
     width: 15%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
-.celulaFour {
-    height: 100%;
-    width: 15%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -460,19 +460,23 @@ body {
 /* width */
 ::-webkit-scrollbar {
     width: 5px;
+
   }
   
   /* Track */
   ::-webkit-scrollbar-track {
-    background: #f1f1f100;
+    background: none;
+
   }
   
   /* Handle */
   ::-webkit-scrollbar-thumb {
     background: #888;
+
   }
   
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
     background: #555;
+
   }
