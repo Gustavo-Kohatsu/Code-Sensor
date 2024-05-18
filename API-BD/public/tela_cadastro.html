@@ -113,11 +113,11 @@
     aguardar();
 
     var nomeVar = input_nome.value;
-    var senhaVar = input_senha.value;
-    var telefoneVar = input_telefone.value;
     var emailVar = input_email.value;
-    var cepVar = input_cep.value;
+    var telefoneVar = input_telefone.value;
     var cnpjVar = input_cnpj.value;
+    var cepVar = input_cep.value;
+    var senhaVar = input_senha.value;
 
 
     if (nomeVar != '' && senhaVar != '' &&
@@ -155,10 +155,10 @@
           // Agora vá para o arquivo routes/usuario.js
           nomeServer: nomeVar,
           emailServer: emailVar,
-          senhaServer: senhaVar,
-          cepServer: cepVar,
+          telefoneServer: telefoneVar,
           cnpjServer: cnpjVar,
-          telefoneServer: telefoneVar
+          cepServer: cepVar,
+          senhaServer: senhaVar,
         }),
       })
         .then(function (resposta) {

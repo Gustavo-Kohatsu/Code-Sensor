@@ -1,5 +1,5 @@
 var usuarioModel = require("../models/usuarioModel");
-var aquarioModel = require("../models/aquarioModel");
+// var aquarioModel = require("../models/aquarioModel");
 
 function autenticar(req, res) {
     var email = req.body.emailServer;
@@ -38,11 +38,11 @@ function autenticar(req, res) {
 function cadastrar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var nome = req.body.nomeServer;
-    var senha = req.body.senhaServer;
-    var telefone = req.body.telefoneServer;
     var email = req.body.emailServer;
-    var cep =  req.body.cepServer; //input_cep.value;
+    var telefone = req.body.telefoneServer;
     var cnpj = req.body.cnpjServer;
+    var cep =  req.body.cepServer; //input_cep.value;
+    var senha = req.body.senhaServer;
 
     // Faça as validações dos valores
     if (nome == undefined) {
@@ -60,7 +60,7 @@ function cadastrar(req, res) {
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, email, cnpj, senha, telefone, cep)
+        usuarioModel.cadastrar(nome, email, telefone, cnpj, cep, senha)
             .then(
                 function (resultado) {
                     res.json(resultado);
