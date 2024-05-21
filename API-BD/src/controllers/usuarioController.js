@@ -43,6 +43,7 @@ function cadastrar(req, res) {
     var cnpj = req.body.cnpjServer;
     var cep =  req.body.cepServer; //input_cep.value;
     var senha = req.body.senhaServer;
+    
 
     // Faça as validações dos valores
     if (nome == undefined) {

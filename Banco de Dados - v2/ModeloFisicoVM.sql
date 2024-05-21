@@ -199,4 +199,8 @@ FROM Sensor AS S
 INNER JOIN Leitura AS Leit
 ON S.idSensor = Leit.fkSensor;
 
-select * from empresa;
+select *from empresa;	
+
+desc empresa;
+
+
