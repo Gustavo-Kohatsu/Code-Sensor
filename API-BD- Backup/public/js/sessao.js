@@ -11,7 +11,7 @@ function validarSessao() {
 
     if (email != null && nome != null) {
         b_usuario.innerHTML = nome;
-        b_cpf.innerHTML = cpf;
+
 
     } else {
         window.location = "../login.html";
