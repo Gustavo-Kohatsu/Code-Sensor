@@ -16,6 +16,7 @@ PRIMARY KEY PK_idEmpresa (idEmpresa), -- (dxa assim msm) Aqui deveria ter o fkMa
 									  -- "fkMatriz cannot be null", erro no insert into
 FOREIGN KEY ForeignKey_fkEmpresa (fkMatriz) REFERENCES empresa (idEmpresa)
 );
+select * from empresa;
 
 CREATE TABLE funcionario (
 idFuncionario INT not null AUTO_INCREMENT,
