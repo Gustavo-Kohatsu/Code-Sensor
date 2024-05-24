@@ -26,7 +26,7 @@ const serial = async (
         {
             // altere!
             // Credenciais do banco de dados
-            host: '10.18.33.103', // host máquina do Igor: '10.18.33.88' / host máquina Kohatsu: '10.18.33.103'
+            host: '10.18.33.88', // host máquina do Igor: '10.18.33.88' / host máquina Kohatsu: '10.18.33.103'
             user: 'Codesensor',
             password: 'Codesensor@123',
             database: 'codesensor2',

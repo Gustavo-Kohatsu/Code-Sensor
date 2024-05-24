@@ -18,7 +18,7 @@ float temperatura = 0;
 void setup() {
   Serial.begin(9600);
   dht_1.begin();
-  Serial.println("CLEARDATA");
+  // Serial.println("CLEARDATA");
   // Serial.println("LABEL, Hora, Temperatura, linha");
 }
 
@@ -59,5 +59,5 @@ void loop() {
   }
     //para mostrar os valores no gráfico, deve-se printar somente numeros (por isso as strings estao comentadas)
 
-  delay(1000);
+  delay(3000);
 }
