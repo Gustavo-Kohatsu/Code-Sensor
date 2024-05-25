@@ -1,0 +1,986 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+@keyframes border-animation {
+    0% {
+        border-width: 1px;
+    }
+
+    50% {
+        border-left-width: 1.5px;
+        border-bottom-width: 1.5px;
+        border-right-width: 1.5px;
+        border-top-width: 1.5px;
+    }
+
+    100% {
+        border-left-width: 2px;
+        border-bottom-width: 2px;
+        border-right-width: 2px;
+        border-top-width: 2px;
+        border-radius: 5px;
+    }
+}
+
+
+html {
+
+    scroll-behavior: smooth;
+
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #F4EFEB;
+}
+
+/* Configurações padrões dos botões - Mudar a largura (se necessário) ou qualquer outra configuração por ID!!!!!! */
+
+.botao {
+    background-color: #880000;
+    height: 50px;
+    color: #FFFFFF;
+    font-size: 25px;
+    font-family: "Lexend", sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+
+    border-radius: 5px;
+    border: none;
+
+    position: relative;
+    text-align: center;
+
+}
+
+.botao::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 2px solid transparent;
+    transition: border-color 0.75s;
+}
+
+.botao:hover::before {
+    border-left-color: #DFDFDF;
+    border-bottom-color: #DFDFDF;
+    border-right-color: #DFDFDF;
+    border-top-color: #DFDFDF;
+
+}
+
+.botao::before {
+    border-left-width: 0;
+    border-bottom-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+
+    animation: border-animation 1s linear forwards;
+}
+
+/* .botao com ROLAGEM (header modo branco) */
+
+.botao.rolagem {
+    background-color: #880000;
+    height: 50px;
+    color: #FFFFFF;
+    font-size: 25px;
+    font-family: "Lexend", sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+
+    border-radius: 5px;
+    border: none;
+
+    position: relative;
+    text-align: center;
+
+}
+
+.botao.rolagem::after {
+    content: "";
+    width: 0%;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+}
+
+.botao.rolagem:hover::after {
+    width: 100%;
+    background-color: #050505;
+}
+
+.titulos {
+
+    color: #A60000;
+    font-size: 60pt;
+    font-family: "Lexend", sans-serif;
+    font-weight: bold;
+
+    text-align: center;
+
+    margin-top: 20px;
+    margin-bottom: 0;
+
+    text-shadow: 0px 5px 10px rgba(0, 0, 0, 0.28);
+
+}
+
+.texto {
+
+    font-family: "Roboto Mono", monospace;
+    color: #050505;
+    font-size: 20pt;
+
+    font-weight: 600;
+    margin: 0;
+
+}
+
+
+/* ------------------- MENU mormal ------------------- */
+
+.header {
+    scroll-behavior: smooth;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    padding-left: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 20px;
+
+    font-family: "Roboto Mono", monospace;
+    font-optical-sizing: auto;
+    font-weight: 500px;
+    font-size: 15pt;
+    
+    background-color: transparent;
+
+    position: fixed;
+    width: 100%;
+    height: 8vh;
+    z-index: 1000;
+    transition: .3s;
+
+}
+
+.headerContainerDireita{
+
+    width: 50%;
+    
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 3%;
+}
+
+.logoHeader {
+
+    height: 40px;
+    width: 90px;
+
+}
+
+.header li{
+
+    display: flex;
+    align-items: center;
+
+    list-style: none;
+    cursor: pointer;
+
+    height: 80%;
+
+    position: relative;
+    padding-bottom: 2px;
+}
+
+.header li::after {
+    content: '';
+    width: 0;
+    position: absolute;
+    border-bottom: 2px solid transparent;
+    bottom: 0;
+    left: 0;
+    transition: 0.5s ease-in-out;
+
+}
+
+.header li:hover:after {
+    width: 100%;
+    border-bottom: 2px solid #DFDFDF;
+}
+
+
+.header_nav{
+
+    display: flex;
+    gap: 70px;
+    color: #050505;
+    font-weight: 600;
+    width: 50%;
+
+    height: 100%;
+
+}
+
+#botaoHeader {
+
+    width: 150px;
+
+}
+
+ul{
+
+    display: flex;
+    gap: 40px;
+
+}
+
+a {
+
+    text-decoration: none;
+
+    display: flex;
+    gap: 70px;
+    color: #ffffff;
+    font-weight: 600;
+
+}
+
+
+/* ------------------- MENU rolagem ------------------- */
+
+.header.rolagem {
+    scroll-behavior: smooth;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    padding-left: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 20px;
+
+    font-family: "Roboto Mono", monospace;
+    font-optical-sizing: auto;
+    font-weight: 500px;
+    font-size: 15pt;
+    
+    background-color: #E9E5E2;
+
+    position: fixed;
+    width: 100%;
+    height: 8vh;
+    z-index: 1000;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.28);
+}
+
+.headerContainerDireita.rolagem{
+
+    width: 50%;
+    
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 3%;
+}
+
+.logoHeader.rolagem {
+
+    height: 40px;
+    width: 90px;
+
+}
+
+
+.header.rolagem li{
+
+    display: flex;
+    align-items: center;
+
+    list-style: none;
+    cursor: pointer;
+
+    height: 80%;
+
+    position: relative;
+    padding-bottom: 2px;
+
+}
+
+.header.rolagem li::after {
+    content: '';
+    width: 0;
+    position: absolute;
+    border-bottom: 2px solid transparent;
+    bottom: 0;
+    left: 0;
+    transition: 0.5s ease-in-out;
+
+}
+
+.header.rolagem li:hover:after {
+    width: 100%;
+    border-bottom: 2px solid black;
+}
+
+
+.header_nav.rolagem{
+
+    display: flex;
+    gap: 70px;
+    color: #050505;
+    font-weight: 600;
+    width: 50%;
+
+    height: 100%;
+
+}
+
+#botaoHeader.rolagem {
+
+    width: 150px;
+
+}
+
+ul{
+
+    display: flex;
+    gap: 40px;
+
+}
+
+#header.rolagem a {
+
+    text-decoration: none;
+
+    display: flex;
+    gap: 70px;
+    color: #050505;
+    font-weight: 600;
+}
+
+/* ------------------- PRIMEIRA PARTE ------------------- */
+
+.primeiraParteIndex {
+
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4),
+    rgba(0, 0, 0, 0.4)), url("../assets/imagens/fundoPaginaInicial.jpg");
+    background-repeat: no-repeat;
+    background-position: 80%;
+    background-size: 100% 150%;
+    
+    width: 100%;
+    height: 800px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+
+}
+
+.primeiraParteIndex h1 {
+
+    color: #FAFAFA;
+
+    font-size: 43pt;
+    font-family: "Lexend", sans-serif;
+    font-weight: 500;
+    width: 90%;
+    
+}
+
+.primeiraParteIndex p {
+
+    color: #FAFAFA;
+
+    font-size: 20pt;
+    font-family: "Roboto mono", sans-serif;
+
+    width: 90%;
+
+    text-align: left;
+
+}
+
+.alinharTexto {
+
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.primeiraParteIndex #alinharBotao {
+
+    width: 90%;
+
+    display: flex;
+    justify-content: left;
+
+}
+
+#alinharBotao button {
+    position: relative;
+    text-align: center;
+    
+}
+
+#alinharBotao button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 2px solid transparent;
+    transition: border-color 0.75s;
+}
+
+#alinharBotao button:hover::before {
+    border-left-color: #DFDFDF;
+    border-bottom-color: #DFDFDF;
+    border-right-color: #DFDFDF;
+    border-top-color: #DFDFDF;
+
+}
+
+#alinharBotao button::before {
+    border-left-width: 0;
+    border-bottom-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+
+    animation: border-animation 1s linear forwards;
+}
+
+#botaoSimulador {
+
+    width: 350px;
+    height: 60px;
+
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    
+}
+
+
+/* ------------------- SEGUNDA PARTE - DIAGRAMA ------------------- */
+
+#container-diagrama {
+    margin-top: 5%;
+    height: 100%;
+    width: 100%;
+}
+
+.diagramaFundo {
+
+    /* background-image: url(../imagens/Diagrama.png);
+    background-repeat: no-repeat;
+    background-position: 50% 180%; */
+
+    height: 165.5vh;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 6.5%;
+}
+
+
+.diagrama {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.diagrama img {
+
+    width: 80%;
+
+}
+
+#diagrama-imagem {
+    height: 75%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+#divBotaoFacaParte {
+    position: absolute;
+    top: 275%;
+    right: 43.5%;
+    height: 10%;
+    width: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    margin-bottom: 30%;
+    z-index: 500;
+    
+}
+
+#botaoDiagrama {
+    width: 200px;
+    height: 50px;
+
+}
+
+
+/* ------------------- TERCEIRA PARTE - SOBRE A CODESENSOR ------------------- */
+
+.sobreCodeSensor {
+
+    background-color: #E7E5E4;
+    background-image: url("../assets/imagens/work.png");
+    background-repeat: no-repeat;
+    background-position: 80% 50%;
+
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+
+    margin: 0;
+
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.28);
+
+}
+
+#tituloSobreCodeSensor {
+
+    border: 1px solid white;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    background-color: #DFDFDF;
+
+    height: 25vh;
+
+    background-image: url("../assets/imagens/CodeSensorTransparentePreto.png");
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.28);
+
+}
+
+#containerMissao {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 3%;
+
+} 
+
+#missao {
+
+    width: 70%;
+    text-align: center;
+
+}
+
+#containerVisao {
+
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+
+    padding: 10%;
+
+    width: 30%;
+}
+
+
+
+#h1Valores {
+
+    border: 1px solid white;
+
+    background-color: #DFDFDF;
+    height: 10vh;
+
+    font-size: 40pt;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.28);
+    
+}
+
+.tituloValor {
+
+    color: #A60000;
+    font-size: 25pt;
+
+}
+
+#valores {
+
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.textoValores {
+
+    width: 20%;
+    padding: 3%;
+    /* background-color:#880000; */
+
+}
+
+/* ------------------- QUARTA PARTE - NOSSA EQUIPE ------------------- */
+
+#nossaEquipe {
+
+    background-color: rgba(156, 32, 32, 0.50);
+    height: 145vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+#tituloEquipe {
+
+    background-color: #E0DCD8;
+    width: 43%;
+    height: 12vh;
+    /* height: 35%; */
+
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 2%;
+
+    box-shadow: 0px -2px 20px rgba(0, 0, 0, 0.28);
+
+}
+
+#containerCards {
+
+    background-color: #E0DCD8;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.28);
+
+}
+
+.separacao {
+
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.separacao2 {
+
+    display: flex;
+    justify-content: center;
+
+}
+
+.cardMembro {
+
+    background-color: #F2F2F2;
+
+    border-radius: 5px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+
+    margin: 2%;
+
+    height: 55vh;
+    width: 30vw;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.28);
+
+}
+
+.cardMembroSegundaParte {
+
+    background-color: #F2F2F2;
+
+    border-radius: 5px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+
+    margin: 2%;
+
+    height: 55vh;
+    width: 21vw;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.28);
+
+}
+
+.separacao img {
+
+    width: 100%;
+
+}
+
+.separacao2 img {
+
+    width: 100%;
+
+}
+
+.textoCards {
+
+    padding-bottom: 5%;
+
+}
+
+.tituloCard {
+
+    text-align: center;
+    font-size: large;
+
+    font-family: "Roboto Mono", monospace;
+    color: #050505;
+    font-size: 28pt;
+
+    font-weight: 600;
+
+    margin: 0;
+    padding-bottom: 2%;
+
+}
+
+.textoCard {
+
+    text-align: center;
+    font-size: large;
+
+    font-family: "Roboto Mono", monospace;
+    color: #050505;
+    font-size: 20pt;
+
+    margin: 0;
+
+}
+
+.redesSociais {
+
+    width: 70%;
+
+    display: flex;
+    justify-content: space-evenly;
+
+    padding-bottom: 10%;
+
+}
+
+.redesSociais img {
+
+    width: 20%;
+
+}
+
+/* ------------------- QUINTA PARTE - ENTRE EM CONTATO ------------------- */
+
+.entreEmContato {
+
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2),
+    rgba(0, 0, 0, 0.2)), url("../assets/imagens/fundoEntreEmContato.jpg");
+    background-size: 120% 100%;
+    background-repeat: no-repeat;
+
+    height: 127vh;
+
+    padding: 2%;
+    padding-top: 5%;
+
+}
+
+.containerEntreEmContato {
+
+    background-image: url("../assets/imagens/fundoContato.png");
+    background-repeat: no-repeat;
+    background-position: 100% -1%;
+    background-size: 30%;
+    background-color: #F4EFEB;
+    height: 120vh;
+
+    border-radius: 20px;
+    border: #880000 7px solid;
+
+    text-align: left;
+
+    display: flex;
+    flex-direction: column;
+
+    padding-left: 4%;
+
+}
+
+#tituloContato {
+
+    padding-left: 1%;
+    text-align: left;
+
+}
+
+.containerInputs {
+
+    padding: 1%;
+
+}
+
+.textoContato {
+
+    font-family: "Roboto Mono", monospace;
+    color: #050505;
+    font-size: 25pt;
+
+    margin: 0;
+
+}
+
+.inputs {
+
+    border-radius: 20px;
+    border: 1px solid black;
+
+    background-color: #F2F2F2;
+
+    width: 30%;
+    height: 6vh;
+
+    font-size: 20pt;
+
+    padding-left: 1%;
+    padding-right: 1%;
+
+    font-family: "Roboto Mono", monospace;
+    color: #050505;
+    font-size: 20pt;
+}
+
+#textarea_mensagem {
+
+    width: 70%;
+    height: 30vh;
+
+    border-radius: 20px;
+    border: 1px solid black;
+
+    background-color: #F2F2F2;
+
+    padding: 1%;
+
+
+    font-family: "Roboto Mono", monospace;
+    color: #050505;
+    font-size: 20pt;
+    resize: none;
+    
+}
+
+.FICANOLUGARBOTAO {
+
+    padding: 5%;
+
+}
+
+#enviar {
+
+    width: 10%;
+
+}
+
+#centralizarBotao {
+
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+}
+
+/* RODAPÉ AAAAAAAAAAAAAAAAA */
+
+footer {
+
+    background-image: url("../assets/imagens/Logo\ e\ CodeSensor.png");
+    background-repeat: no-repeat;
+    background-position: 2% 50%;
+
+    height: 20px;
+    padding: 2%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+footer p {
+
+    font-family: "Roboto", sans-serif;
+    color: #050505;
+    font-size: 13pt;
+
+    text-align: center;
+
+    width: 10%;
+
+}
+
+/* -------------------- */
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }

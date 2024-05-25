@@ -3,80 +3,372 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>AquaTech | Página Inicial</title>
-
-    <script src="./js/sessao.js"></script>
-
-    <link rel="stylesheet" href="./css/estilo.css">
-    <link rel="icon" href="./assets/icon/favicon2.ico">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <title>CodeSensor | Página Inicial</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="assets/imagens/favicon.png" type="image/x-icon">
 </head>
 
 <body>
-    <div class="header">
-      <div class="container">
-        <h1 class="titulo">AquaTech</h1>
-        <ul class="navbar">
-          <li class="agora">
-            <a href="#">Inicial</a>
-          </li>
-          <li>
-            <a href="simulador.html">Simulador</a>
-          </li>
-          <li>|</li>
-          <li>
-            <a href="login.html">Login</a>
-          </li>
-          <li>
-            <a href="/tela_cadastro.html">Cadastro</a>
-          </li>
-        </ul>
-      </div>
+    <div class="header" id="header">
+
+        <a href="#primeiraParte">
+            <img id="LogoBranca" src="assets/imagens/LogoBranca.png" alt="logoCodeSensor" class="logoHeader"
+                style="display: block;">
+            <img id="LogoPreta" src="assets/imagens/LogoPreta.png" alt="logoCodeSensor" class="logoHeader"
+                style="display: none;">
+        </a>
+        <nav class="header_nav">
+            <ul class="navbar">
+                <li><a href="#diagrama">Entenda o processo</a></li>
+                <li><a href="#sobreCodeSensor">Sobre nós</a></li>
+                <li><a href="#nossaEquipe">Equipe</a></li>
+                <li><a href="#entreEmContato">Contato</a></li>
+            </ul>
+        </nav>
+        <a href="login.html" id="id_login">
+            <div class="headerContainerDireita">
+                <button class="botao" id="botaoHeader">
+                    LOGIN
+                </button>
+        </a>
     </div>
-  
-    <div class="banner">
-      <div class="container">
-        <p>Preservando <span>hoje</span> para existirem <span>amanhã</span>.</p>
-      </div>
+
+
     </div>
-  
-    <div class="social">
-      <div class="container">
-        <div class="boxes">
-          <div class="box">
-            <img src="assets/imgs/planet-earth_color.png">
-            <h4>Missão</h4>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et, quas cupiditate asperiores provident magnam
-              vitae illum iusto fugiat atque deleniti nulla sed iure suscipit, laborum, aliquid accusantium cum dicta
-              minima.</p>
-          </div>
-          <div class="box">
-            <img src="assets/imgs/lightbulb_color.png">
-            <h4>Visão</h4>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et, quas cupiditate asperiores provident magnam
-              vitae illum iusto fugiat atque deleniti nulla sed iure suscipit, laborum, aliquid accusantium cum dicta
-              minima.</p>
-          </div>
-          <div class="box">
-            <img src="assets/imgs/growth_color.png">
-            <h4>Valores</h4>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et, quas cupiditate asperiores provident magnam
-              vitae illum iusto fugiat atque deleniti nulla sed iure suscipit, laborum, aliquid accusantium cum dicta
-              minima.</p>
-          </div>
+
+    <div class="primeiraParteIndex" id="primeiraParte">
+
+        <div class="alinharTexto">
+            <h1>Monitoramento de Caminhões Frigoríficos</h1>
+            <p>Desenvolvimento de Softwares para aperfeiçoar o armazenamento de seus produtos</p>
         </div>
-      </div>
+        <a href="../calculadoraProjeto.html" id="id_calculadoraProjeto">
+            <div id="alinharBotao">
+                <a href="calculadoraProjeto.html">
+                    <button class="botao" id="botaoSimulador">
+                        Simulador Financeiro <img src="../assets/imagens/setaBranca.png" alt="">
+                    </button>
+                </a>
+        </a>
     </div>
-  
-    <div class="footer">
-      <div class="container">
-        <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023</h4>
-        <span class="version">v1.0.0</span>
-      </div>
+
     </div>
-  </body>
+
+    <div class="diagrama" id="diagrama">
+
+        <h1 class="titulos">ENTENDA O PROCESSO</h1>
+
+        <div id="container-diagrama">
+            <div class="diagramaFundo">
+                <div id="diagrama-imagem">
+                    <img src="../assets/imagens/Diagrama.png" alt="Diagrama">
+                </div>
+            </div>
+            <div id="divBotaoFacaParte">
+                <a href="tela_cadastro.html">
+                    <button class="botao" id="botaoDiagrama">
+                        Faça Parte
+                    </button>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="sobreCodeSensor" id="sobreCodeSensor">
+
+        <div id="tituloSobreCodeSensor">
+
+            <h1 class="titulos">SOBRE A CODESENSOR</h1>
+
+        </div>
+
+        <div id="containerMissao">
+            <p class="texto" id="missao">Em busca de garantir uma melhora no monitoramento durante o transporte das
+                carnes, mantendo sua qualidade para o consumidor final.</p>
+        </div>
+
+        <div id="containerVisao">
+            <h1 class="titulos">Visão</h1>
+            <p class="texto" id="textoVisao">Ser a maior e melhor rede de monitoramento no transporte de carnes
+                oferecendo aos seus clientes uma relação duradoura com foco no crescimento, rentabilidade e
+                responsabilidade socioambiental.</p>
+
+        </div>
+
+
+        <div>
+            <h1 class="titulos" id="h1Valores">NOSSOS VALORES</h1>
+
+            <div id="valores">
+                <p class="texto textoValores">
+                    <span class="tituloValor">Resiliência</span>
+                    <br>
+                    Seguir em frente, mesmo quando está difícil.
+                </p>
+
+                <p class="texto textoValores">
+                    <span class="tituloValor">União</span>
+                    <br>
+                    Convivendo em harmonia como um time.
+                </p>
+
+                <p class="texto textoValores">
+                    <span class="tituloValor">Excelência</span>
+                    <br>
+                    Sempre em busca de fazer o melhor para os nossos clientes.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <div id="nossaEquipe">
+
+        <div id="tituloEquipe">
+
+            <h1 class="titulos">NOSSA EQUIPE</h1>
+
+        </div>
+
+        <div id="containerCards">
+
+            <div class="separacao">
+
+                <div class="cardMembro">
+                    <img src="../assets/imagens/Kohatsu.png" alt="">
+
+                    <div class="textoCards">
+                        <p class="tituloCard">Gustavo Kohatsu</p>
+                        <p class="textoCard">Banco de Dados</p>
+                    </div>
+
+                    <div class="redesSociais">
+                        <img src="assets/imagens/linkedin.png" alt="">
+                        <img style="cursor: pointer;" onclick="entrarGitKohatsu()" src="assets/imagens/github.png" alt="">
+                        <img style="cursor: pointer;" onclick="entrarInstaKohatsu()" src="assets/imagens/instagram.png"
+                            alt="">
+                    </div>
+                </div>
+
+                <div class="cardMembro">
+                    <img src="../assets/imagens/Igor.png" alt="">
+
+                    <div class="textoCards">
+                        <p class="tituloCard">Igor Daniel</p>
+                        <p class="textoCard">Back-End</p>
+                    </div>
+
+                    <div class="redesSociais">
+                        <img src="assets/imagens/linkedin.png" alt="">
+                        <img style="cursor: pointer;" onclick="entrarGitIgor()" src="assets/imagens/github.png" alt="">
+                        <img style="cursor: pointer;" onclick="entrarInstaIgor()" src="assets/imagens/instagram.png"
+                            alt="">
+                    </div>
+                </div>
+
+                <div class="cardMembro">
+                    <img src="../assets/imagens/JoaoVitor.png" alt="">
+
+                    <div class="textoCards">
+                        <p class="tituloCard">João Vitor</p>
+                        <p class="textoCard">Back-End</p>
+                    </div>
+
+                    <div class="redesSociais">
+                        <img src="assets/imagens/linkedin.png" alt="">
+                        <img style="cursor: pointer;" onclick="entrarGitJoao()" src="assets/imagens/github.png" alt="">
+                        <img style="cursor: pointer;" onclick="entrarInstaJoao()" src="assets/imagens/instagram.png"
+                            alt="">
+                    </div>
+                </div>
+
+                <div class="cardMembro">
+                    <img src="../assets/imagens/Fonseca.png" alt="">
+
+                    <div class="textoCards">
+                        <p class="tituloCard">Pedro Fonseca</p>
+                        <p class="textoCard">Back-End</p>
+                    </div>
+
+                    <div class="redesSociais">
+                        <img src="assets/imagens/linkedin.png" alt="">
+                        <img style="cursor: pointer;" onclick="entrarGitFonseca()" src="assets/imagens/github.png" alt="">
+                        <img style="cursor: pointer;" onclick="entrarInstaFonseca()" src="assets/imagens/instagram.png"
+                            alt="">
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Segunda Parte -->
+
+            <div class="separacao2">
+
+                <div class="cardMembroSegundaParte">
+                    <img src="../assets/imagens/PedroHenrique.png" alt="">
+
+                    <div class="textoCards">
+                        <p class="tituloCard">Pedro Henrique</p>
+                        <p class="textoCard">Banco de Dados</p>
+                    </div>
+
+                    <div class="redesSociais">
+                        <img src="assets/imagens/linkedin.png" alt="">
+                        <img style="cursor: pointer;" onclick="entrarGitPedro()" src="assets/imagens/github.png" alt="">
+                        <img style="cursor: pointer;" onclick="entrarInstaPedro()" src="assets/imagens/instagram.png"
+                            alt="">
+                    </div>
+                </div>
+
+                <div class="cardMembroSegundaParte">
+                    <img src="../assets/imagens/Rafael.png" alt="">
+
+                    <div class="textoCards">
+                        <p class="tituloCard">Rafael Sung</p>
+                        <p class="textoCard">Pesquisa</p>
+                    </div>
+
+                    <div class="redesSociais">
+                        <img src="assets/imagens/linkedin.png" alt="">
+                        <img style="cursor: pointer;" onclick="entrarGitRafael()" src="assets/imagens/github.png" alt="">
+                        <img style="cursor: pointer;" onclick="entrarInstaRafael()" src="assets/imagens/instagram.png" alt="">
+                    </div>
+                </div>
+
+                <div class="cardMembroSegundaParte">
+                    <img src="../assets/imagens/Raine.png" alt="">
+
+                    <div class="textoCards">
+                        <p class="tituloCard">Raíne Jardim</p>
+                        <p class="textoCard">Front-End</p>
+                    </div>
+
+                    <div class="redesSociais">
+                        <img src="assets/imagens/linkedin.png" alt="">
+                        <img style="cursor: pointer;" onclick="entrarGitRaine()" src="assets/imagens/github.png" alt="">
+                        <img style="cursor: pointer;" onclick="entrarGitRaine()" src="assets/imagens/instagram.png" alt="">
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="entreEmContato" id="entreEmContato">
+
+        <div class="containerEntreEmContato">
+            <h1 class="titulos" id="tituloContato">ENTRE EM CONTATO</h1>
+
+            <div class="containerInputs">
+                <p class="textoContato">Nome:</p>
+                <input type="text" class="inputs">
+            </div>
+
+            <div class="containerInputs">
+                <p class="textoContato">E-mail:</p>
+                <input type="text" class="inputs">
+            </div>
+
+            <div class="containerInputs">
+                <p class="textoContato">Digite qual o assunto:</p>
+                <input type="text" class="inputs">
+            </div>
+
+            <div class="containerInputs">
+
+                <p class="textoContato">Digite sua mensagem:</p>
+                <textarea name="Digite sua mensagem:" id="textarea_mensagem" cols="30" rows="10"></textarea>
+            </div>
+
+            <div class="FICANOLUGARBOTAO">
+                <div id="centralizarBotao">
+                    <button class="botao" id="enviar">Enviar</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer>
+
+        <p>CodeSensor @ 2024. All rights reserved.</p>
+
+    </footer>
+
+</body>
 
 </html>
+<script>
+    function entrarGitIgor() {
+        window.location.href = "https://github.com/zack-css";
+    }
+    function entrarGitKohatsu() {
+        window.location.href = "https://github.com/Gustavo-Kohatsu";
+    }
+    function entrarGitJoao() {
+        window.location.href = "https://github.com/JoaoV004";
+    }
+
+    function entrarGitFonseca() {
+        window.location.href = "https://github.com/PedroF2345";
+    }
+    function entrarGitPedro() {
+        window.location.href = "https://github.com/PedroFranchi";
+    }
+    function entrarGitRafael() {
+        window.location.href = "https://github.com/Rafaelsmlee";
+    }
+
+    function entrarGitRaine() {
+        window.location.href = "https://github.com/Raine-Jardim";
+
+    }
+
+    function entrarInstaIgor() {
+        window.location.href = "https://www.instagram.com/igor_mamani/";
+    }
+    function entrarInstaKohatsu() {
+        window.location.href = "https://www.instagram.com/guuh_rk/";
+    }
+    function entrarInstaJoao() {
+        window.location.href = "https://www.instagram.com/joaovitor1001_/";
+    }
+
+    function entrarInstaFonseca() {
+        window.location.href = "#";
+    }
+    function entrarInstaPedro() {
+        window.location.href = "https://www.instagram.com/pedro_hfj_/";
+    }
+    function entrarInstaRafael() {
+        window.location.href = "https://www.instagram.com/rafewszz/";
+    }
+
+    function entrarInstaRaine() {
+        window.location.href = "https://www.instagram.com/raineneres/";
+
+    }
+    window.addEventListener("scroll", function () {
+        let header = document.querySelector('#header');
+        header.classList.toggle('rolagem', window.scrollY > 0)
+
+        if (window.scrollY > 0) {
+            LogoPreta.style.display = "block"
+            LogoBranca.style.display = "none"
+        } else {
+            LogoPreta.style.display = "none"
+            LogoBranca.style.display = "block"
+        }
+    })
+
+
+
+</script>

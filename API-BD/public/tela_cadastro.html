@@ -9,13 +9,15 @@
   <script src="./js/sessao.js"></script>
 
   <link rel="stylesheet" href="css/styleCadastro.css" />
-  <link rel="shortcut icon" href="SRC/imagens/favicon.png" type="image/x-icon" />
+  <link rel="stylesheet" href="css/styleCadastro (codesensor).css">
+
+  <link rel="shortcut icon" href="assets/imagens/favicon.png" type="image/x-icon" />
 </head>
 
 <body>
   <div id="div_main">
     <div id="setaVoltar">
-      <a href="index.html" id="voltar"> <img src="SRC/imagens/seta.png" />Voltar </a>
+      <a href="index.html" id="voltar"> <img src="assets/imagens/seta.png" />Voltar </a>
     </div>
 
     <div id="main">
@@ -84,11 +86,34 @@
           </div>
 
           <div id="botaoCriar">
-            <button onclick="cadastrar()">Criar</button>
+            <div class="inputPadronizado">
+
+              <div id="geral">
+
+                <div id="div_perguntaFilial">
+
+                  <div style="display: flex; align-items: center; gap: 24px;">
+                    <label for="input_filial">Filial</label>
+                    <input onchange="aparecerInput()" id="input_filial" type="checkbox" />
+                  </div>
+
+                  <div style="visibility: hidden;" id="colunaInputs3">
+                    <input type="text" />
+                  </div>
+
+                </div>
+
+                <button onclick="cadastrar()">Criar</button>
+
+              </div>
+
+            </div>
+
             <div id="textoFazerLogin">
               <span>Já possui uma conta?</span>
               <a href="login.html">Faça login</a>
             </div>
+
           </div>
         </div>
         <div id="div_aguardar" class="loading-div">
@@ -96,7 +121,7 @@
         </div>
       </div>
       <footer id="logo">
-        <img src="SRC/imagens/LogoPreta.png" width="125px" />
+        <img src="assets/imagens/LogoPreta.png" width="125px" />
       </footer>
     </div>
   </div>
@@ -188,6 +213,19 @@
     }
 
   }
+
+  function aparecerInput() {
+    const checkbox = document.getElementById('input_filial');
+    const colunaInputs3 = document.getElementById('colunaInputs3');
+    if (checkbox.checked) {
+      // colunaInputs3.style.display = 'block';
+      colunaInputs3.style.visibility = 'visible';
+    } else {
+      colunaInputs3.style.visibility = 'hidden';
+      // colunaInputs3.style.display = 'none';
+    }
+  }
+  
   function validarSenha() {
     document.querySelector('.validacaoSenha').innerHTML = '';
 
