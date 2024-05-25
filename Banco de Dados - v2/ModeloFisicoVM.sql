@@ -1,81 +1,78 @@
-CREATE DATABASE codesensor2;
+CREATE DATABASE IF NOT EXISTS codesensor2;
 USE codesensor2;
 
 CREATE TABLE empresa (
-idEmpresa 		INT 			AUTO_INCREMENT,
-nome_fantasia 	VARCHAR(45) 	not null,
-email 			VARCHAR(345) 	not null UNIQUE,
-telefone 		VARCHAR(15) 	not null,
-cnpj 			CHAR(18) 		not null UNIQUE,
-cep 			CHAR(9) 		not null UNIQUE,
-senha			VARCHAR(16) 	not null, -- no código colocamos um limite de 16 caracteres
-fkMatriz 		INT, -- Essa FK é para sabermos qual filial é de qual empresa
-			   -- Fazendo o AUTO-RELACIONAMENTO da tabela Empresa...
+idEmpresa 		INT 			AUTO_INCREMENT COMMENT 'Identificador único da empresa', 
+nome_fantasia 	VARCHAR(45) 	NOT NULL COMMENT 'Nome fantasia da empresa',
+email 			VARCHAR(345) 	NOT NULL UNIQUE COMMENT 'Email da empresa, deve ser único',
+telefone 		VARCHAR(15) 	NOT NULL COMMENT 'Telefone de contato da empresa',
+cnpj 			CHAR(18) 		NOT NULL UNIQUE COMMENT 'CNPJ da empresa, deve ser único',
+cep 			CHAR(9) 		NOT NULL UNIQUE COMMENT 'CEP da empresa, deve ser único',
+senha			VARCHAR(16) 	NOT NULL COMMENT 'Senha da empresa, com limite de 16 caracteres',
+fkMatriz 		INT COMMENT 'Chave estrangeira que referencia a empresa matriz, para auto-relacionamento',
 
-PRIMARY KEY PK_idEmpresa (idEmpresa), -- (dxa assim msm) Aqui deveria ter o fkMatriz junto, porém: 
-									  -- "fkMatriz cannot be null", erro no insert into
+PRIMARY KEY PK_idEmpresa (idEmpresa),
 FOREIGN KEY ForeignKey_fkEmpresa (fkMatriz) REFERENCES empresa (idEmpresa)
-);
+) COMMENT 'Tabela que armazena informações de Empresas';
 
 CREATE TABLE funcionario (
-idFuncionario INT not null AUTO_INCREMENT,
-nome VARCHAR(50) not null, 
-email VARCHAR(345) not null UNIQUE,
-cpf CHAR(12) not null UNIQUE,
-tipo VARCHAR(11) not null default "funcionario",
-senha VARCHAR(16) not null,
-fkEmpresa INT,
+idFuncionario INT 	NOT NULL AUTO_INCREMENT COMMENT 'Identificador único do funcionário',
+nome VARCHAR(50) 	NOT NULL COMMENT 'Nome do funcionário', 
+email VARCHAR(345) 	NOT NULL UNIQUE COMMENT 'Email do funcionário, deve ser único',
+cpf CHAR(12) 		NOT NULL UNIQUE COMMENT 'CPF do funcionário, deve ser único',
+tipo VARCHAR(11) 	NOT NULL DEFAULT "funcionario" COMMENT 'Tipo de funcionário (superior ou funcionario), para permissionamentos',
+senha VARCHAR(16) 	NOT NULL COMMENT 'Senha do funcionário, com limite de 16 caracteres',
+fkEmpresa INT COMMENT 'Chave estrangeira que referencia a empresa à qual o funcionário pertence',
 
-constraint chk_tipo CHECK(tipo IN ("superior", "funcionario")),
+CONSTRAINT chk_tipo CHECK(tipo IN ("superior", "funcionario")),
 PRIMARY KEY PK_idFuncionario (idFuncionario, fkEmpresa),
 FOREIGN KEY ForeignKey_fkEmpresa (fkEmpresa) REFERENCES empresa (idEmpresa)
-);
+) COMMENT 'Tabela que armazena informações de Funcionários';
 
 CREATE TABLE veiculo (
-placa char(7) not null,
-rntrc char(8) not null UNIQUE, -- RNTRC (Registro Nacional de Transportadores Rodoviários de Cargas)
-renavam char(11) not null UNIQUE,
-fkEmpresa INT not null,
+placa CHAR(7) NOT NULL COMMENT 'Identificador único da placa do veículo',
+rntrc CHAR(8) NOT NULL UNIQUE COMMENT 'Número de Registro Nacional de Transportadores Rodoviários de Cargas (RNTRC), Único para cada veículo',
+renavam CHAR(11) NOT NULL UNIQUE COMMENT 'Número de Registro Nacional de Veículos Automotores (RENAVAM). Único para cada veículo',
+fkEmpresa INT NOT NULL COMMENT 'Chave estrangeira para a tabela `empresa` (ID da empresa proprietária do veículo)',
 
 PRIMARY KEY PK_idVeiculo (placa),
 FOREIGN KEY ForeignKey_idEmpresa (fkEmpresa) REFERENCES empresa (idEmpresa)
-);
+) COMMENT 'Tabela que armazena informações de Veículos';
 
 CREATE TABLE lote (
-idLote INT not null AUTO_INCREMENT,
+idLote INT NOT NULL AUTO_INCREMENT COMMENT 'Identificador único do lote',
 tipoCarne 
-	VARCHAR(12) not null,
+	VARCHAR(12) NOT NULL COMMENT 'Tipo de carne do lote',
 	CHECK (tipoCarne IN ('bovina', 'suína', 'carne de ave')),
-pesoKg FLOAT not null, -- carnesEmbaladas nos referimos as carnes embaladas que estão
-							  -- no lote, e não quantas carnes por KG.
-fkPlaca char(7) not null,
+pesoKg FLOAT NOT NULL COMMENT 'Peso total do lote em quilogramas', 
+fkPlaca CHAR(7) NOT NULL COMMENT 'Chave estrangeira que referencia a placa do veículo associado ao lote',
 
 PRIMARY KEY PK_idLote (idLote),
 FOREIGN KEY ForeignKey_idVeiculo (fkPlaca) REFERENCES veiculo (placa)
-);
+) COMMENT 'Tabela que armazena informações de Lotes';
 
 CREATE TABLE sensor (
-idSensor INT not null AUTO_INCREMENT,
-modelo 
-	VARCHAR(5) not null,
+idSensor INT NOT NULL AUTO_INCREMENT COMMENT 'Identificador único do sensor',
+modelo
+	VARCHAR(5) NOT NULL COMMENT 'Modelo do sensor',
 	CHECK (modelo IN ('LM35', 'DHT11')),
-dtPrimeiroUso DATETIME not null,
-fkPlaca char(7) not null,
+dtPrimeiroUso DATETIME NOT NULL COMMENT 'Data e hora do primeiro uso do sensor',
+fkPlaca CHAR(7) NOT NULL COMMENT 'Chave estrangeira que referencia a placa do veículo associada ao sensor',
 
 PRIMARY KEY PK_idSensor (idSensor),
 FOREIGN KEY ForeignKey_idVeiculo (fkPlaca) REFERENCES veiculo (placa)
-);
+) COMMENT 'Tabela que armazena informações de Sensores';
 
 CREATE TABLE leitura (
-idLeitura INT not null AUTO_INCREMENT,
-dtLeitura timestamp not null DEFAULT CURRENT_TIMESTAMP,
-temperatura DECIMAL(5, 2) DEFAULT NULL,
-umidade DECIMAL(5, 2) DEFAULT NULL,
-fkSensor INT,
+idLeitura INT NOT NULL AUTO_INCREMENT COMMENT 'Identificador único da leitura',
+dtLeitura TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Data e hora da leitura',
+temperatura DECIMAL(5, 2) DEFAULT NULL COMMENT 'Temperatura registrada na leitura',
+umidade DECIMAL(5, 2) DEFAULT NULL COMMENT 'Umidade registrada na leitura',
+fkSensor INT COMMENT 'Chave estrangeira que referencia o sensor associado à leitura',
 
 PRIMARY KEY PK_idLeitura (idLeitura),
 FOREIGN KEY ForeignKey_idSensor (fkSensor) REFERENCES sensor (idSensor)
-);
+) COMMENT 'Tabela que armazena informações de Leituras';
 
 -- Inserindo dados na tabela Empresa
 INSERT INTO empresa (nome_fantasia, email, telefone, cnpj, cep, senha, fkMatriz)
@@ -87,9 +84,6 @@ VALUES
 ('Empresa E', 'empresaE@example.com', '(55) 9876-5432', '045345678912345674', '92365-432', '2217633##@Aa', NULL),
 ('Empresa F', 'empresaF@example.com', '(66) 4321-0987', '012385678912345676', '43210-987', '2213133##@Aa', NULL);
 
--- Inserindo na mesma tabela (por causa do auto-relacionamento), as filiais
--- e de que empresas elas são. LEMBRANDO: Teremos então 
--- 6 (de cima) + 4 (abaixo) = 10 Linhas de dados da tabela Empresa
 INSERT INTO empresa (nome_fantasia, email, telefone, cnpj, cep, senha, fkMatriz)
 VALUES
 ('Filial G Empresa C', 'filialG@example.com', '(77) 1321-0387', '012345678912345678', '12045-678', '221120G##@cC', 3),
@@ -199,6 +193,17 @@ FROM Sensor AS S
 INNER JOIN Leitura AS Leit
 ON S.idSensor = Leit.fkSensor;
 
-select *from empresa;	
 
-desc empresa;
+select tabela.table_name, table_comment
+from information_schema.tables as tabela
+where tabela.table_schema = 'codesensor2';
+
+select column_name, column_comment
+from information_schema.columns 
+where table_schema = 'codesensor2' and column_comment != '';
+
+select tabela.table_name, table_comment, column_name, column_comment
+from information_schema.tables as tabela
+inner join information_schema.columns as coluna
+on tabela.table_name = coluna.table_name
+where tabela.table_schema = 'codesensor2' and column_comment != '';
