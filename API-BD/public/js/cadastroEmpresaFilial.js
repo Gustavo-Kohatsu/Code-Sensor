@@ -1,137 +1,4 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CodeSensor | Cadastro</title>
-
-  <script src="./js/sessao.js"></script>
-
-  <link rel="stylesheet" href="css/styleCadastro.css" />
-  <link rel="stylesheet" href="css/styleCadastro (codesensor).css">
-
-  <link rel="shortcut icon" href="assets/imagens/favicon.png" type="image/x-icon" />
-</head>
-
-<body>
-  <div id="div_main">
-    <div id="setaVoltar">
-      <a href="index.html" id="voltar"> <img src="assets/imagens/seta.png" />Voltar </a>
-    </div>
-
-    <div id="main">
-      <div class="alerta_erro">
-        <div class="card_erro" id="cardErro">
-          <span id="mensagem_erro"></span>
-        </div>
-      </div>
-
-      <div id="card-main">
-        <div id="card">
-          <div id="titulos">
-            <h1>CADASTRO</h1>
-            <h2>CRIE SUA CONTA</h2>
-          </div>
-
-          <div id="inputsCadastro">
-            <div id="colunaInputs1">
-              <div class="inputPadronizado">
-                <label for="input_nome">Nome Empresa</label>
-                <div class="inputLinha">
-                  <input id="input_nome" />
-                </div>
-              </div>
-
-              <div class="inputPadronizado">
-                <label for="input_email">E-mail</label>
-                <div class="inputLinha">
-                  <input id="input_email" />
-                </div>
-              </div>
-
-              <div class="inputPadronizado">
-                <label for="input_telefone">Telefone</label>
-                <div class="inputLinha">
-                  <input id="input_telefone" />
-                </div>
-              </div>
-            </div>
-
-            <div id="colunaInputs2">
-
-              <div class="inputPadronizado">
-                <label for="input_cnpj">CNPJ</label>
-                <div class="inputLinha">
-                  <input type="text" id="input_cnpj" />
-                </div>
-              </div>
-
-              <div class="inputPadronizado">
-                <label for="input_cep">CEP</label>
-                <div class="inputLinha">
-                  <input id="input_cep" />
-                </div>
-              </div>
-
-              <div class="inputPadronizado">
-                <label for="input_senha">Senha</label>
-                <div class="inputLinha">
-                  <input id="input_senha" type="text" onkeyup="validarSenha()" />
-                </div>
-                <div class="validacaoSenha"></div>
-              </div>
-
-            </div>
-          </div>
-
-          <div id="botaoCriar">
-            <div class="inputPadronizado">
-
-              <div id="geral">
-
-                <div id="div_perguntaFilial">
-
-                  <div style="display: flex; align-items: center; gap: 24px;">
-                    <label for="input_filial">Filial</label>
-                    <input onchange="aparecerInput()" id="input_filial" type="checkbox" />
-                  </div>
-
-                  <div style="visibility: hidden;" id="colunaInputs3">
-                    <input type="text" id="input_filial" />
-                  </div>
-
-                </div>
-
-                <button onclick="cadastrar()">Criar</button>
-
-              </div>
-
-            </div>
-
-            <div id="textoFazerLogin">
-              <span>Já possui uma conta?</span>
-              <a href="login.html">Faça login</a>
-            </div>
-
-          </div>
-        </div>
-        <div id="div_aguardar" class="loading-div">
-          <img src="./assets/circle-loading.gif" id="loading-gif" />
-        </div>
-      </div>
-      <footer id="logo">
-        <img src="assets/imagens/LogoPreta.png" width="125px" />
-      </footer>
-    </div>
-  </div>
-</body>
-
-</html>
-
-<script>
-
-  function cadastrar() {
+function cadastrar() {
 
 
     aguardar();
@@ -169,7 +36,7 @@
       alert('A Senha tem que ter menos que 16 caracteres');
     } else {
       aguardar();
-      fetch("usuarios/cadastrar", {
+      fetch("empresas/cadastrar", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -182,7 +49,10 @@
           telefoneServer: telefoneVar,
           cnpjServer: cnpjVar,
           cepServer: cepVar,
-          senhaServer: senhaVar
+          senhaServer: senhaVar,
+
+          idEmpresa: sessionStorage.ID_EMPRESA
+
         }),
       })
         .then(function (resposta) {
@@ -294,4 +164,3 @@
   function sumirMensagem() {
     cardErro.style.display = "none";
   }
-</script>

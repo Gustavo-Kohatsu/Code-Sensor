@@ -83,7 +83,6 @@
 
 <script>
 
-
     function entrar() {
         aguardar();
 
@@ -122,10 +121,9 @@
                     console.log(json);
                     console.log(JSON.stringify(json));
                     sessionStorage.EMAIL_USUARIO = json.email;
-                    sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.CPF_USUARIO = json.cpf;
-                    sessionStorage.ID_USUARIO = json.id
-                    // sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
+                    sessionStorage.NOME_EMPRESA = json.nome_fantasia;
+                    sessionStorage.ID_EMPRESA = json.idEmpresa
+                
 
                     setTimeout(function () {
                         window.location = "dashboard/DashboardPaginaInicial.html";

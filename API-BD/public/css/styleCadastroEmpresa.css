@@ -11,7 +11,7 @@ body {
     background-position-x: right;
     background-size: 80%;
     background-color: #EDE3DA;
-    
+
     margin: 0;
     padding: 0;
 
@@ -27,7 +27,7 @@ body {
 
 #menuLateral {
 
-    width: 16.5%;
+    width: 19.5%;
     height: 100%;
 
     background-color: #F4EFEB;
@@ -67,7 +67,7 @@ body {
     font-weight: bold;
 
     margin: 10%;
-    
+
 }
 
 #containerBotoes {
@@ -78,7 +78,7 @@ body {
     align-items: center;
 
     background-color: #EDE9E6;
-    
+
     border: solid 3px black;
     border-radius: 20px;
 
@@ -205,199 +205,239 @@ body {
 
 /* Conteúdo ------------------------------------- */
 
-#containerTudo {
-
-    width: 85%;
+#main {
+    height: 90%;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    
-
-
-}
-
-
-.titu {
-    color: #A60000;
-    font-family: "Lexend", sans-serif;
-    font-weight: bold;
-}
-
-
-#main {
-
-    display: flex;
-    text-align: center;
-    justify-content: center;
     align-items: center;
-    
-    padding-top: 7%;
-    gap: 100px;
-    margin-bottom: 1000px;
-    
-
-
-    
-}
-
-#alinharFechar {
-
-    width: 100%;
-    height: 8%;
-
-    display: flex;
-    justify-content: right;
-
-    
-
-}
-
-#botaoFechar {
-    width: 10%;
-    height: 100%;
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    
-    border: none;
-
-    color: #880000;
-    font-size: 40pt;
-    font-weight: bold;
-
-    text-decoration: none;
-
-}
-
-#alinharFechar a:hover {
-    transition: .5s;
-   
-    background-color: rgb(180, 33, 33);
-    color: white;
-    border-radius: 17px;
-    width: 10%;
+    justify-content: space-between;
 }
 
 #card-main {
-    height: 105%;
+    border: 3px solid #A60000;
+    margin: 40px 0 40px 0;
+    background-color: #E9E5E2;
+    height: 600px;
+    width: 900px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    animation-name: cardAnimacao;
+    animation-duration: 1.5s;
 }
 
 #card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-   
-    border: solid 2px #880000;
-    border-radius: 20px;
-    width: 560px;
-   
+    width: 85%;
     height: 100%;
-    padding-bottom: 5%;
-    background-color: #E1E1E1;
-
-}
-
-.botaoCriar {
-
-
-    background-color: #880000;
-   
-    color: white;
-    font-family: "Roboto", sans-serif;
-    font-weight: bold;
-    font-size: 13pt;
-    outline: none;
-   
-    border: none;
-    border-radius: 20px;
-    width: 40%;
-    height: 8%;
-    cursor: pointer;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.28);
-}
-
-
-.inputPadronizado {
-    width: 100%;
-    height: 50%;
-    font-size: 20px;
-   
-    border: none;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
     align-items: center;
-    font-weight: bold;
+    justify-content: center;
+}
+
+#titulos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#titulos h1 {
+    color: #A60000;
+    font-size: 55px;
+    padding-top: 20px;
+    margin-bottom: 10px;
+    font-family: "Lexend", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+}
+
+#titulos h2 {
+    font-size: 25px;
+    color: black;
+    font-family: "Lexend", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
 }
 
 #inputsCadastro {
-    color: black;
-    height: 80%;
+    color: white;
+    height: 100%;
     width: 100%;
     display: flex;
-   
-    flex-direction: column;
-    justify-content: flex-start;
-   
+    justify-content: center;
     align-items: center;
     font-family: "Roboto Mono", monospace;
     font-optical-sizing: auto;
     font-weight: 250px;
 }
 
-.inputLinha {
-    width: 455px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-   
-    background-color: #F2F2F2;
-    border-radius: 20px;
-    border: 1px solid black;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.28);
-}
-
 #colunaInputs1 {
+    margin-right: 30px;
     display: flex;
     flex-direction: column;
-    height: 90%;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
     width: 100%;
-    
 }
 
-.selectType {
-    margin-bottom: 2%;
+#colunaInputs2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.inputPadronizado {
+    font-size: 20px;
+    width: 95%;
+    height: 100%;
+    border: none;
+    padding-left: 3%;
+}
+
+.inputLinha {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    border-radius: 20px;
+    background-color: #F2F2F2;
+    border: 1px solid black;
+    box-shadow: 4px 8px 15px rgb(86, 86, 86);
+}
+
+.inputLinha:hover {
+    border: 2px solid rgb(219, 10, 10);
+}
+
+input {
+    width: 90%;
+    height: 50%;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1.95px solid #06121C;
+    margin-top: 5%;
 }
 
 input:valid {
     color: rgb(0, 0, 0);
     outline: none;
-   
     font-family: "Roboto", sans-serif;
     font-weight: 500;
     font-style: normal;
     font-size: 1.05rem;
 }
 
-input {
-    width: 90%;
-    height: 70%;
-    
-    background-color: transparent;
-    border: none;
-    border-bottom: 1.95px solid #000;
-    margin-top: 1.5%;
-}
-
-
-.selectTipo {
-    height: 30px;
-    width: 190px;
-    border-radius: 20px;
-}
-
 label {
-    font-weight: bold;
+    font-size: 0.9em;
+    margin-left: 20px;
+    color: black;
+    font-weight: 500;
+}
+
+.validacaoSenha {
+    padding-left: 20px;
+    padding-top: 12px;
+    font-size: medium;
+}
+
+
+#botaoCriar {
+    margin-top: 10px;
+    height: 40%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#main button {
+    background-color: #880000;
+    color: white;
+    width: 35%;
+    height: 45px;
+    cursor: pointer;
+    border-radius: 25px;
+    border: none;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 1.3rem;
+    transition: 1s;
+}
+
+#main button:hover {
+    width: 50%;
+    background-color: #9c0000;
+}
+
+
+#main button:focus {
+    background-color: #9c0000;
+    outline: 1px solid white;
+}
+
+#textoFazerLogin {
+    margin-top: 10px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 1em;
+}
+
+#textoFazerLogin span {
+
+    color: black;
+}
+
+#textoFazerLogin a {
+    font-style: none;
+
+    color: #b90101;
+    text-decoration: none;
+
+    position: relative;
+}
+
+#textoFazerLogin a::after {
+    content: " ";
+
+    width: 5%;
+    height: 100%;
+
+    border-bottom: 2px solid transparent;
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    transition: 0.5s ease-in-out;
+}
+
+#textoFazerLogin a:hover::after {
+
+    width: 100%;
+
+    border-bottom: 2px solid #b90101;
+}
+
+.loading-div {
+    width: 50px;
+    margin: auto;
+    display: none;
+}
+
+.loading-div img {
+    height: 50px;
+    width: 50px;
 }
