@@ -7,10 +7,17 @@
   <title>Cadastro de Funcionário</title>
   <link rel="stylesheet" href="../css/styleCadastroFunc.css" />
   <link rel="shortcut icon" href="../assets/imagens/favicon.png" type="image/x-icon" />
+  <script src="../js/sessao.js"></script>
 </head>
 
 <body>
+
   <div id="menuLateral">
+    <div class="alerta_erro">
+      <div class="card_erro" id="cardErro">
+        <span id="mensagem_erro"></span>
+      </div>
+    </div>
     <h1>Code<br /><span id="sensor">Sensor</span></h1>
 
     <h2>Olá, Claudio</h2>
@@ -71,23 +78,119 @@
               </div>
             </div>
             <div class="selectType">
-              <label for="input_senha">Tipo de Funcionário</label><br>
+              <label for="select_funcionario">Tipo de Funcionário</label><br>
 
-              <select name="" class="selectTipo">
-                <option value="vazio" selected>Selecione o tipo</option>
+              <select onblur="voltarPrimeiraOpcao()" onfocus="desabilitarPrimeiraOpcao()"
+              id="select_funcionario" name="" class="selectTipo">
+                <option id="primeiraOpcao" value="vazio" selected>Selecione o tipo</option>
                 <option value="superior">Superior</option>
                 <option value="funcionario">Funcionário</option>
               </select>
             </div>
-
+            <div id="div_aguardar" class="loading-div">
+              <img src="../assets/circle-loading.gif" id="loading-gif" />
+            </div>
           </div>
 
-          <button onclick="validarCampos()" class="botaoCriar">Cadastrar Funcionário</button>
+          <button onclick="cadastrar()" class="botaoCriar">Cadastrar Funcionário</button>
 
         </div>
       </div>
     </div>
   </div>
 </body>
+<script>
+  var fkEmpresa = sessionStorage.ID_EMPRESA;
+  function cadastrar() {
+
+
+    aguardar();
+
+    var nomeVar = input_nome.value;
+    var senhaVar = input_senha.value;
+    var emailVar = input_email.value;
+    var cpfVar = input_cpf.value;
+    var tipoVar = select_funcionario.value;
+
+
+    if (nomeVar != '' && senhaVar != '' && emailVar != '' &&
+      cpfVar != '' && tipoVar != '') {
+      setInterval(sumirMensagem, 5000);
+    } else {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "(Mensagem de erro para todos os campos em branco)";
+      alert("Mensagem de erro para todos os campos em branco")
+      finalizarAguardar();
+      return false;
+    }
+
+    if (nomeVar.length <= 3) {
+      alert('Nome Inválido!')
+    } else if (cpfVar.length != 12) {
+      alert('CPF Inválido!')
+    }
+    else if (emailVar.indexOf('@') == -1) {
+      alert('Email inválido!')
+    }
+    else if (senhaVar.length > 16) {
+      alert('A Senha tem que ter menos que 16 caracteres');
+    } else {
+      aguardar();
+      fetch(`/usuarios/cadastrarFunc/${fkEmpresa}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          // crie um atributo que recebe o valor recuperado aqui
+          // Agora vá para o arquivo routes/usuario.js
+          nomeServer: nomeVar,
+          emailServer: emailVar,
+          cpfServer: cpfVar,
+          tipoServer: tipoVar,
+          senhaServer: senhaVar
+        }),
+      })
+        .then(function (resposta) {
+          console.log("resposta: ", resposta);
+
+          if (resposta.ok) {
+            cardErro.style.display = "block";
+
+            mensagem_erro.innerHTML =
+              "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+            alert("Cadastro realizado com sucesso!")
+
+            setTimeout(() => {
+              window.location = "cadastroFunc.html";
+            }, "2000");
+
+            limparFormulario();
+            finalizarAguardar();
+          } else {
+            throw "Houve um erro ao tentar realizar o cadastro!";
+          }
+        })
+        .catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+          finalizarAguardar();
+        });
+    }
+
+  }
+
+  function sumirMensagem() {
+    cardErro.style.display = "none";
+  }
+
+  function voltarPrimeiraOpcao() {
+        primeiraOpcao.style.display = "block" // parece
+    }
+    function desabilitarPrimeiraOpcao() {
+        primeiraOpcao.style.display = "none"// sumido
+
+    }
+</script>
 
 </html>
