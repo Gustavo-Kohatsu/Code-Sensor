@@ -261,20 +261,17 @@ h1 {
 }
 
 #card-lotesCadastrados {
-
     background-color: white;
     height: 70%;
     width: 90%;
     margin-top: 4%;
     border: 1px solid #880000;
-    
     border-radius: 10px;
-    display: flex;
     
-    justify-content: space-around;
+    display: flex;
+    flex-wrap: wrap;
     padding: 2.5%;
-    overflow-y: scroll;
-
+    overflow-y: auto; /* Adicione overflow-y: auto para permitir rolagem vertical */
 }
 
 .lotePrimeira-coluna {
@@ -296,13 +293,12 @@ h1 {
 
 .card-lote {
     background-color: #DFDFDF;
-   
     display: flex;
     flex-direction: column;
     height: 150px;
-    width: 100%;
+    width: 45%; /* Defina a largura para 45% para permitir duas colunas */
+    margin: 2.5%; /* Adicione margem entre os cartões para separá-los */
     border-radius: 20px;
-    
     font-family: "Roboto", sans-serif;
     font-weight: 400;
     font-style: bold;
@@ -497,3 +493,26 @@ label {
     transition: 1s;
     width: 45%;
 }
+
+.card_erro {
+    display: none;
+    background-color: #fff;
+    color: black;
+    width: 230px;
+    position: fixed;
+    border-radius: 4px;
+    border: #e6005a 3px solid;
+    padding: 10px;
+    margin-left: 14%;
+  }
+
+  .loading-div {
+    width: 50px;
+    margin: auto;
+    display: none;
+  }
+  
+  .loading-div img {
+    height: 50px;
+    width: 50px;
+  }
