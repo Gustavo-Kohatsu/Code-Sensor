@@ -8,7 +8,7 @@ email 			VARCHAR(345) 	NOT NULL UNIQUE COMMENT 'Email da empresa, deve ser únic
 telefone 		VARCHAR(15) 	NOT NULL COMMENT 'Telefone de contato da empresa',
 cnpj 			CHAR(18) 		NOT NULL UNIQUE COMMENT 'CNPJ da empresa, deve ser único',
 cep 			CHAR(9) 		NOT NULL UNIQUE COMMENT 'CEP da empresa, deve ser único',
-senha			VARCHAR(16) 	NOT NULL COMMENT 'Senha da empresa, com limite de 16 caracteres',
+-- senha			VARCHAR(16) 	NOT NULL COMMENT 'Senha da empresa, com limite de 16 caracteres',
 fkMatriz 		INT COMMENT 'Chave estrangeira que referencia a empresa matriz, para auto-relacionamento',
 
 PRIMARY KEY PK_idEmpresa (idEmpresa),
@@ -75,14 +75,31 @@ FOREIGN KEY ForeignKey_idSensor (fkSensor) REFERENCES sensor (idSensor)
 ) COMMENT 'Tabela que armazena informações de Leituras';
 
 -- Inserindo dados na tabela Empresa
-INSERT INTO empresa (nome_fantasia, email, telefone, cnpj, cep, senha, fkMatriz)
+INSERT INTO empresa (nome_fantasia,
+ email, telefone,
+ cnpj,
+ cep,
+ -- senha,
+ fkMatriz)
 VALUES
-('Empresa A', 'empresaA@example.com', '(11) 1234-5678', '012345678912343678', '12345-678', '2211203##@cC', NULL),
-('Empresa B', 'empresaB@example.com', '(22) 9876-5432', '012345678912344672', '98765-432', '2299133##@Aa', NULL),
-('Empresa C', 'empresaC@example.com', '(33) 5432-1098', '012345678912347671', '54321-098', '2213133##@Ba', NULL),
-('Empresa D', 'empresaD@example.com', '(44) 1357-9246', '012345617912345670', '13579-246', '4713133##@Aa', NULL),
-('Empresa E', 'empresaE@example.com', '(55) 9876-5432', '045345678912345674', '92365-432', '2217633##@Aa', NULL),
-('Empresa F', 'empresaF@example.com', '(66) 4321-0987', '012385678912345676', '43210-987', '2213133##@Aa', NULL);
+('Empresa A', 'empresaA@example.com', '(11) 1234-5678', '012345678912343678', '12345-678',
+ -- '2211203##@cC',
+ NULL),
+('Empresa B', 'empresaB@example.com', '(22) 9876-5432', '012345678912344672', '98765-432',
+ -- '2299133##@Aa',
+ NULL),
+('Empresa C', 'empresaC@example.com', '(33) 5432-1098', '012345678912347671', '54321-098',
+ -- '2213133##@Ba',
+ NULL),
+('Empresa D', 'empresaD@example.com', '(44) 1357-9246', '012345617912345670', '13579-246',
+ -- '4713133##@Aa',
+ NULL),
+('Empresa E', 'empresaE@example.com', '(55) 9876-5432', '045345678912345674', '92365-432',
+ -- '2217633##@Aa',
+ NULL),
+('Empresa F', 'empresaF@example.com', '(66) 4321-0987', '012385678912345676', '43210-987',
+--  '2213133##@Aa',
+ NULL);
 
 INSERT INTO empresa (nome_fantasia, email, telefone, cnpj, cep, senha, fkMatriz)
 VALUES

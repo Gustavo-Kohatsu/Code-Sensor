@@ -1,4 +1,4 @@
-var empresaModel = require("../models/antigoEmpresaModel");
+var empresaModel = require("../models/empresaModel");
 
 // function buscarPorCnpj(req, res) {
 //   var cnpj = req.query.cnpj;
@@ -14,30 +14,14 @@ var empresaModel = require("../models/antigoEmpresaModel");
 //   });
 // }
 
-// function buscarPorId(req, res) {
+function ultimaEmpresaCadastrada(req, res) {
 //   var id = req.params.id;
 
-//   empresaModel.buscarPorId(id).then((resultado) => {
-//     res.status(200).json(resultado);
-//   });
-// }
+  empresaModel.ultimaEmpresaCadastrada().then((resultado) => {
+    res.status(200).json(resultado);
+  });
+}
 
-// function cadastrar(req, res) {
-//   var cnpj = req.body.cnpj;
-//   var razaoSocial = req.body.razaoSocial;
-
-//   empresaModel.buscarPorCnpj(cnpj).then((resultado) => {
-//     if (resultado.length > 0) {
-//       res
-//         .status(401)
-//         .json({ mensagem: `a empresa com o cnpj ${cnpj} já existe` });
-//     } else {
-//       empresaModel.cadastrar(razaoSocial, cnpj).then((resultado) => {
-//         res.status(201).json(resultado);
-//       });
-//     }
-//   });
-// }
 
 function cadastrar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
@@ -48,7 +32,7 @@ function cadastrar(req, res) {
     var cep = req.body.cepServer;
     //   var senha = req.body.senhaServer;
 
-    var idEmpresa = req.body.idEmpresa;
+    var idEmpresa = req.body.idEmpresaServer
 
     // Faça as validações dos valores
     if (nome == undefined) {
@@ -61,8 +45,8 @@ function cadastrar(req, res) {
         res.status(400).send("Sua cep está undefined!");
     } else if (telefone == undefined) {
         res.status(400).send("Sua telefone está undefined!");
-    } else if (telefone == undefined) {
-        res.status(400).send("Sua telefone está undefined!");
+    } else if (idEmpresa == undefined) {
+        res.status(400).send("O id da sua Empresa está undefined!");
     } else {
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
         empresaModel.cadastrar(nome, email, telefone, cnpj, cep, idEmpresa)
@@ -84,5 +68,6 @@ function cadastrar(req, res) {
 }
 
 module.exports = {
-    cadastrar
+    cadastrar,
+    ultimaEmpresaCadastrada
 }
