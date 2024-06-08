@@ -7,11 +7,17 @@
     <title>CodeSensor | Cadastro de Caminhão</title>
     <link rel="stylesheet" href="../css/cadastroLote.css">
     <link rel="shortcut icon" href="../assets/imagens/favicon.png" type="image/x-icon">
+    <script src="../js/sessao.js"></script>
 </head>
 
 <body>
 
     <div id="menuLateral">
+        <div class="alerta_erro">
+            <div class="card_erro" id="cardErro">
+                <span id="mensagem_erro"></span>
+            </div>
+        </div>
 
         <h1>Code<br><span id="sensor">Sensor</span></h1>
 
@@ -114,7 +120,7 @@
                             </div>
                         </div>
                         <div class="loteSegunda-coluna">
-            
+
                             <div class="card-lote">
                                 <div class="card-lote-titulo">
                                     <h2>Lote 2</h2>
@@ -210,13 +216,15 @@
                         <div class="inputPadronizado">
                             <label for="placa" id="placa_caminhao">Placa do Caminhão</label>
                             <div class="inputLinha">
-                                <input id="placa">
+                                <input id="input_placa">
                             </div>
                         </div>
                         <div id="bota-cadastrarLote">
-                            <button>Cadastrar Lote</button>
+                            <button onclick="cas()">Cadastrar Lote</button>
                         </div>
-            
+                        <div id="div_aguardar" class="loading-div">
+                            <img src="../assets/circle-loading.gif" id="loading-gif" />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -228,7 +236,83 @@
 
 </html>
 <script>
-    function voltarTela(){
+
+    var fkEmpresa = sessionStorage.ID_EMPRESA;
+
+
+    function cas() {
+
+        aguardar();
+
+        var carneVar = tipoCarne.value;
+        var qtdCarneVar = carnesEmbaladas.value;
+        var placa = input_placa.value;
+
+        if (carneVar != '' && qtdCarneVar != '' && placa != '') {
+            setInterval(sumirMensagem, 5000);
+        } else {
+            alert("Não aceitamos campos vazios");
+            finalizarAguardar();
+            return false;
+        }
+
+        if (carneVar != "Bovina" && carneVar != "Ave" && carneVar != "Suína") {
+            alert("Apenas são aceitos os seguintes tipo de carne: Bovina, Ave, Suína");
+        } else {
+            aguardar();
+            fetch(`/usuarios/cadastrarLote/${fkEmpresa}`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    carneServer: carneVar,
+                    qtdCarneServer: qtdCarneVar,
+                    placaServer: placa,
+                }),
+            })
+                .then(function (resposta) {
+                    console.log("resposta: ", resposta);
+
+                    if (resposta.ok) {
+                        cardErro.style.display = "block";
+
+                        mensagem_erro.innerHTML =
+                            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+                        alert("Cadastro realizado com sucesso!")
+
+                        setTimeout(() => {
+                            window.location = "cadastroLote.html";
+                        }, "2000");
+
+                        limparFormulario();
+                        finalizarAguardar();
+                    } else {
+                        throw "Houve um erro ao tentar realizar o cadastro!";
+                    }
+                })
+                .catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+                    finalizarAguardar();
+                });
+
+
+        }
+
+    }
+
+
+
+
+
+    function voltarTela() {
         window.location = "opcoesCadastro.html";
     }
+
+    function sumirMensagem() {
+        cardErro.style.display = "none";
+    }
+
 </script>
