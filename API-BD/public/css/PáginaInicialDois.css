@@ -4,6 +4,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 body {
+
+    display: flex;
+    flex-direction: row;
+
     margin: 0;
     padding: 0;
     background-color: #EDE3DA;
@@ -11,8 +15,7 @@ body {
     height: 100vh;
     width: 100vw;
 
-    display: flex;
-    flex-direction: row;
+    font-family: "Roboto", sans-serif;
 
 }
 
@@ -294,69 +297,7 @@ body {
 
     color: #FFFFFF;
 
-}
-
-#divListas {
-
-    display: flex;
-    height: 55vh;
-
-}
-
-.containerLista {
-
-    height: 100%;
-
-    border: 2px solid black;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
-
-    overflow-y: scroll;
-
-}
-
-.direita {
-
-    border-left: 3px solid #880000;
-
-}
-
-nav {
-    background-color: #F4EFEB;
-    color: #A60000;
-    height: 10%;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.celula-nav {
-    display: flex;
-    width: 15%;
-    justify-content: center;
-    font-weight: 900;
-}
-
-.celula-nav span {
-    font-weight: 700;
-    font-size: 14pt;
-    font-family: "Roboto", sans-serif;
-    font-weight: 650;
-    font-style: normal;
-    color: #A60000;
-}
-
-.listaCaminhaoInstavel {
-
-    width: 100%;
-    height: 57.4vh;
-
-    padding-top: 1%;
-    padding-left: 2%;
-    padding-right: 2%;
-
-}
+} 
 
 .containerTitulo {
 
@@ -385,99 +326,122 @@ nav {
 
 }
 
-.containerLista {
+#divListas {
 
-    height: 90%;
-
-    background-color: white;
-
-    font-family: "Roboto", sans-serif;
-    font-weight: 500;
-    font-style: normal;
+    display: flex;
+    height: 55vh;
 
 }
 
-.containerLista a {
+.listaCaminhaoInstavel {
+
+    width: 100%;
+    height: 55vh;
+
+    padding-top: 1%;
+    padding-left: 2%;
+    padding-right: 2%;
+
+}
+
+.containerLista {
+
+    height: 100%;
+    width: 100%;
+
+    border: 2px solid black;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+
+    overflow-y: scroll;
+
+}
+
+table {
+
+    height: 90%;
+    background-color: white;
+
+    font-size: 15pt;
+
+}
+
+table a {
+
     text-decoration: none;
     color: black;
 
 }
 
-.linha {
-    height: 15%;
+.headerLista {
+
+    border-top-left-radius: 18px;
+    background-color: #F4EFEB;
+
+    height: 13%;
+    width: 100%;
+
+}
+
+tr {
+
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-right: 2%;
-    padding-left: 10%;
+
+    height: 15%;
+
+    border-bottom: 1px solid #c7c7c7;
+
+}
+
+th {
+
+    width: 17%;
+
+    font-weight: 900;
+    font-size: 17pt;
+    color: #A60000;
+
+}
+
+td {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 100%;
+    width: 17%;
 
 }
 
 .linhaImpar {
+
     background-color: white;
 
 }
 
 .linhaPar {
+
     background-color: #E8E8E8;
 
 }
 
-.truckSensor {
-    display: flex;
-    flex-direction: column;
-}
-
-.truckSensor {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-left: 8px;
-}
-
 .placa {
-    font-size: 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+
+    font-weight: bold;
 
 }
 
 .sensor {
+
+    font-weight: 500;
     color: #697077;
-}
-
-.celula {
-    height: 100%;
-    width: 15%;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.foraIntervalo {
-    height: 50%;
-    width: 45%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #880000;
-    border-radius: 20px;
-
-    color: #E1E1E1;
-
-}
-
-#alinharTextoAve {
-    margin-left: 5%;
-
-}
-
-#alinharTextoSuino {
-    height: 50%;
-    width: 45%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: 2%;
 }
 
 /* -------------------- */
