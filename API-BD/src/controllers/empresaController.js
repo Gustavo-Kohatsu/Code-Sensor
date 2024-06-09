@@ -14,14 +14,6 @@ var empresaModel = require("../models/empresaModel");
 //   });
 // }
 
-function ultimaEmpresaCadastrada(req, res) {
-//   var id = req.params.id;
-
-  empresaModel.ultimaEmpresaCadastrada().then((resultado) => {
-    res.status(200).json(resultado);
-  });
-}
-
 
 function cadastrar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
@@ -67,7 +59,71 @@ function cadastrar(req, res) {
     }
 }
 
+function ultimaEmpresaCadastrada(req, res) {
+    //   var id = req.params.id;
+
+    empresaModel.ultimaEmpresaCadastrada().then((resultado) => {
+        res.status(200).json(resultado);
+    });
+}
+
+function listarKpiTemperatura(req, res) {
+    var fkEmpresa = req.params.fkEmpresa;
+
+    empresaModel.listarKpiTemperatura(fkEmpresa)
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send('Nenhum resultado encontrado!');
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+            console.log(`Houve um erro ao buscar o que foi solicitado! ${erro.sqlMessage}`);
+            res.status(500).json(erro.sqlMessage)
+        })
+}
+
+function listarKpiUmidade(req, res) {
+    var fkEmpresa = req.params.fkEmpresa;
+
+    empresaModel.listarKpiUmidade(fkEmpresa)
+    .then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send('Nenhum resultado encontrado!');
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log(`Houve um erro ao buscar o que foi solicitado! ${erro.sqlMessage}`);
+        res.status(500).json(erro.sqlMessage)
+    })
+    
+}
+
+function pegarPorcentagemInstaveis(req, res) {
+    var fkEmpresa = req.params.fkEmpresa;
+
+    empresaModel.pegarPorcentagemInstaveis(fkEmpresa)
+    .then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send('Nenhum resultado encontrado!');
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log(`Houve um erro ao buscar o que foi solicitado! ${erro.sqlMessage}`);
+        res.status(500).json(sqlMessage);
+    })
+}
+
+
 module.exports = {
     cadastrar,
-    ultimaEmpresaCadastrada
+    ultimaEmpresaCadastrada,
+    listarKpiTemperatura,
+    listarKpiUmidade,
+    pegarPorcentagemInstaveis
 }

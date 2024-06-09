@@ -24,4 +24,16 @@ router.get("/ultimaEmpresaCadastrada", function (req, res) {
   empresaController.ultimaEmpresaCadastrada(req, res);
 });
 
+router.get("/listarKpiTemperatura/:fkEmpresa", function (req, res) {
+  empresaController.listarKpiTemperatura(req, res);
+});
+
+router.get("/listarKpiUmidade/:fkEmpresa", function (req, res) {
+  empresaController.listarKpiUmidade(req, res);
+});
+
+router.get("/pegarPorcentagemInstaveis/:fkEmpresa", function (req, res) {
+  empresaController.pegarPorcentagemInstaveis(req, res);
+})
+
 module.exports = router;

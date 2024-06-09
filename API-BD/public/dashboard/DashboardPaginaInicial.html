@@ -45,7 +45,7 @@
                 <img src="../assets/imagens/temperaturaComAlerta.png">
                 <span>
                     <h2>CAMINHÕES INSTÁVEIS</h2>
-                    <h1>13</h1>
+                    <h1 id="instaveis_gerais_temperatura"></h1>
                     <h4>Por Temperatura</h4>
                 </span>
             </div>
@@ -54,7 +54,7 @@
                 <img src="../assets/imagens/umidadeComAlerta.png" class="iconeKpi">
                 <span>
                     <h2>CAMINHÕES INSTÁVEIS</h2>
-                    <h1>22</h1>
+                    <h1 id="instaveis_gerais_umidade"></h1>
                     <h4>Por Umidade</h4>
                 </span>
             </div>
@@ -64,7 +64,7 @@
                 <span>
 
                     <h2>PORCENTAGEM DE INSTÁVEIS</h2>
-                    <h1>0.5%</h1>
+                    <h1 id="porcentagem_instaveis"></h1>
                 </span>
             </div>
 
@@ -149,3 +149,94 @@
 </body>
 
 </html>
+
+<script>
+    setInterval(pegarCaminhoesInstaveisPorTemperatura, 2000);
+    setInterval(pegarCaminhoesInstaveisPorUmidade, 2000);
+    setInterval(pegarPorcentagemInstaveis, 2000);
+    pegarCaminhoesInstaveisPorTemperatura();
+    pegarCaminhoesInstaveisPorUmidade();
+    pegarPorcentagemInstaveis();
+
+    function pegarCaminhoesInstaveisPorTemperatura() {
+        var fkEmpresa = sessionStorage.getItem('ID_EMPRESA');
+
+        var kpiTemperaturaInstavel = document.querySelector('#instaveis_gerais_temperatura');
+
+        fetch(`/empresas/listarKpiTemperatura/${fkEmpresa}`)
+            .then(function (response) {
+                if (response.ok) {
+                    response.json().then(function (resposta) {
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                        sessionStorage.TEMPERATURA_INSTAVEL = resposta[0].instaveisGerais_temperatura;
+                        kpiTemperaturaInstavel.innerHTML = sessionStorage.getItem('TEMPERATURA_INSTAVEL');
+                    });
+                } else {
+                    console.log("Nenhum valor encontrado ou ocorreu algum erro na API!");
+                    alert("Nenhum valor encontrado ou ocorreu algum erro na API!");
+                }
+            })
+            .catch(function (error) {
+                console.log(`Erro na captura dos dados para o gráfico: ${error.message}`);
+                alert(`Erro na captura dos dados para o gráfico: ${error.message}`);
+            });
+
+        return false;
+
+    }
+
+    function pegarCaminhoesInstaveisPorUmidade() {
+        var fkEmpresa = sessionStorage.getItem('ID_EMPRESA');
+
+        var kpiUmidadeInstavel = document.querySelector('#instaveis_gerais_umidade');
+
+        fetch(`/empresas/listarKpiUmidade/${fkEmpresa}`)
+            .then(function (response) {
+                if (response.ok) {
+                    response.json().then(function (resposta) {
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                        sessionStorage.UMIDADE_INSTAVEL = resposta[0].instaveisGerais_umidade;
+                        kpiUmidadeInstavel.innerHTML = sessionStorage.getItem('UMIDADE_INSTAVEL');
+                    });
+                } else {
+                    console.log("Nenhum valor encontrado ou ocorreu algum erro na API!");
+                    alert("Nenhum valor encontrado ou ocorreu algum erro na API!");
+                }
+            })
+            .catch(function (error) {
+                console.log(`Erro na captura dos dados para o gráfico: ${error.message}`);
+                alert(`Erro na captura dos dados para o gráfico: ${error.message}`);
+            });
+
+        return false;
+
+    }
+
+    function pegarPorcentagemInstaveis() {
+        var fkEmpresa = sessionStorage.getItem("ID_EMPRESA");
+
+        var kpiPorcentagemInstaveis = document.querySelector('#porcentagem_instaveis');
+
+        fetch(`/empresas/pegarPorcentagemInstaveis/${fkEmpresa}`)
+            .then(function (response) {
+                if (response.ok) {
+                    response.json().then(function (resposta) {
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                        sessionStorage.PORCENTAGEM_INSTAVEIS = resposta[0].Porcentagem;
+                        kpiPorcentagemInstaveis.innerHTML = `${sessionStorage.getItem('PORCENTAGEM_INSTAVEIS')}%`;
+                    });
+                } else {
+                    console.log("Nenhum valor encontrado ou ocorreu algum erro na API!");
+                    alert("Nenhum valor encontrado ou ocorreu algum erro na API!");
+                }
+            })
+            .catch(function (error) {
+                console.log(`Erro na captura dos dados para o gráfico: ${error.message}`);
+                alert(`Erro na captura dos dados para o gráfico: ${error.message}`);
+            });
+
+        return false
+
+    }
+
+</script>
