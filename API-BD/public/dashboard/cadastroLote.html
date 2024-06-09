@@ -10,7 +10,7 @@
     <script src="../js/sessao.js"></script>
 </head>
 
-<body>
+<body onload="atualizarCaminhao()">
 
     <div id="menuLateral">
         <div class="alerta_erro">
@@ -50,141 +50,6 @@
                         <h1>CADASTRADOS</h1>
                     </div>
                     <div id="card-lotesCadastrados">
-                        <div class="card-lote">
-                            <div class="card-lote-titulo">
-                                <h2>Lote 1</h2>
-                            </div>
-                            <div class="dados-lote">
-                                <span class="especificacao">
-                                    <span class="negrito">Tipo de carne:</span class="negrito"> Bovina
-                                </span>
-                                <span class="especificacao">
-                                    <span class="negrito">Carnes embaladas:</span class="negrito"> 20
-                                </span>
-                                <span class="especificacao">
-                                    <span class="negrito">Placa do veículo:</span class="negrito"> AAAA111
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="card-lote">
-                            <div class="card-lote-titulo">
-                                <h2>Lote 3</h2>
-                            </div>
-                            <div class="dados-lote">
-                                <span class="especificacao">
-                                    <span class="negrito">Tipo de carne:</span class="negrito"> Ave
-                                </span>
-                                <span class="especificacao">
-                                    <span class="negrito">Carnes embaladas:</span class="negrito"> 18
-                                </span>
-                                <span class="especificacao">
-                                    <span class="negrito">Placa do veículo:</span class="negrito"> ACAA111
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="card-lote">
-                            <div class="card-lote-titulo">
-                                <h2>Lote 5</h2>
-                            </div>
-                            <div class="dados-lote">
-                                <span class="especificacao">
-                                    <span class="negrito">Tipo de carne:</span class="negrito"> Ave
-                                </span>
-                                <span class="especificacao">
-                                    <span class="negrito">Carnes embaladas:</span class="negrito"> 21
-                                </span>
-                                <span class="especificacao">
-                                    <span class="negrito">Placa do veículo:</span class="negrito"> AEAA111
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="card-lote">
-                            <div class="card-lote-titulo">
-                                <h2>Lote 7</h2>
-                            </div>
-                            <div class="dados-lote">
-                                <span class="especificacao">
-                                    <span class="negrito">Tipo de carne:</span class="negrito"> Suína
-                                </span>
-                                <span class="especificacao">
-                                    <span class="negrito">Carnes embaladas:</span class="negrito"> 40
-                                </span>
-                                <span class="especificacao">
-                                    <span class="negrito">Placa do veículo:</span class="negrito"> ABDC111
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="card-lote">
-                            <div class="card-lote-titulo">
-                                <h2>Lote 2</h2>
-                            </div>
-                            <div class="dados-lote">
-                                <span class="especificacao">
-                                    <span class="negrito">Tipo de carne:</span class="negrito"> Suína
-                                </span>
-                                <span class="especificacao">
-                                    <span class="negrito">Carnes embaladas:</span class="negrito"> 19
-                                </span>
-                                <span class="especificacao">
-                                    <span class="negrito">Placa do veículo:</span class="negrito"> ABAA111
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="card-lote">
-                            <div class="card-lote-titulo">
-                                <h2>Lote 4</h2>
-                            </div>
-                            <div class="dados-lote">
-                                <span class="especificacao">
-                                    <span class="negrito">Tipo de carne:</span class="negrito"> Bovina
-                                </span>
-                                <span class="especificacao">
-                                    <span class="negrito">Carnes embaladas:</span class="negrito"> 19
-                                </span>
-                                <span class="especificacao">
-                                    <span class="negrito">Placa do veículo:</span class="negrito"> ADAA111
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="card-lote">
-                            <div class="card-lote-titulo">
-                                <h2>Lote 6</h2>
-                            </div>
-                            <div class="dados-lote">
-                                <span class="especificacao">
-                                    <span class="negrito">Tipo de carne:</span class="negrito"> Bovina
-                                </span>
-                                <span class="especificacao">
-                                    <span class="negrito">Carnes embaladas:</span class="negrito"> 40
-                                </span>
-                                <span class="especificacao">
-                                    <span class="negrito">Placa do veículo:</span class="negrito"> AFAA111
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="card-lote">
-                            <div class="card-lote-titulo">
-                                <h2>Lote 8</h2>
-                            </div>
-                            <div class="dados-lote">
-                                <span class="especificacao">
-                                    <span class="negrito">Tipo de carne:</span class="negrito"> Ave
-                                </span>
-                                <span class="especificacao">
-                                    <span class="negrito">Carnes embaladas:</span class="negrito"> 25
-                                </span>
-                                <span class="especificacao">
-                                    <span class="negrito">Placa do veículo:</span class="negrito"> GHFE123
-                                </span>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div id="insertDados">
@@ -216,7 +81,7 @@
                             </div>
                         </div>
                         <div id="bota-cadastrarLote">
-                            <button onclick="cas()">Cadastrar Lote</button>
+                            <button onclick="cadastrarLote()">Cadastrar Lote</button>
                         </div>
                         <div id="div_aguardar" class="loading-div">
                             <img src="../assets/circle-loading.gif" id="loading-gif" />
@@ -236,7 +101,7 @@
     var fkEmpresa = sessionStorage.ID_EMPRESA;
 
 
-    function cas() {
+    function cadastrarLote() {
 
         aguardar();
 
@@ -252,7 +117,7 @@
             return false;
         }
 
-        if (carneVar != "Bovina" && carneVar != "Ave" && carneVar != "Suína") {
+        if (carneVar != "bovina" && carneVar != "carne de ave" && carneVar != "suína") {
             alert("Apenas são aceitos os seguintes tipo de carne: Bovina, Ave, Suína");
         } else {
             aguardar();
@@ -274,9 +139,6 @@
 
                     if (resposta.ok) {
                         cardErro.style.display = "block";
-
-                        mensagem_erro.innerHTML =
-                            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
                         alert("Cadastro realizado com sucesso!")
 
                         setTimeout(() => {
@@ -300,15 +162,103 @@
     }
 
 
-
-
-
     function voltarTela() {
         window.location = "opcoesCadastro.html";
     }
 
     function sumirMensagem() {
         cardErro.style.display = "none";
+    }
+
+    function atualizarCaminhao() {
+        fetch(`/caminhao/listarLotes/${fkEmpresa}`).then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                    var lotes = document.getElementById("card-lotesCadastrados");
+                    // lotes.innerHTML = "";
+
+
+
+                    for (let i = 0; i < resposta.length; i++) {
+                        var totalLote = resposta[i];
+
+                        var divCardLote = document.createElement("div");
+                        divCardLote.classList.add("card-lote");
+
+                        var divcard_lote_titulo = document.createElement("div");
+                        divcard_lote_titulo.classList.add("card-lote-titulo");
+
+                        var h2_titulo = document.createElement("h2");
+
+                        var divdDdos_lote = document.createElement("div");
+                        divdDdos_lote.classList.add("dados-lote");
+
+                        var span_especificaocao = document.createElement("span");
+                        span_especificaocao.classList.add("especificacao");
+
+                        var span_negrito = document.createElement("span");
+                        span_negrito.classList.add("negrito");
+                        
+                        var span_tipo_carne = document.createElement("span");
+
+                        var span_especificaocao_qtd_embalada = document.createElement("span");
+                        span_especificaocao_qtd_embalada.classList.add("especificacao");
+
+                        var span_negrito_qtd_embalada = document.createElement("span");
+                        span_negrito_qtd_embalada.classList.add("negrito");
+
+                        var span_qtd_embalada= document.createElement("span");
+
+                        var span_especificaocao_placa = document.createElement("span");
+                        span_especificaocao_placa.classList.add("especificacao");
+
+                        var span_negrito_placa = document.createElement("span");
+                        span_negrito_placa.classList.add("negrito");
+
+                        var span_placa= document.createElement("span");
+
+
+                        h2_titulo.innerHTML = `Lote: ${totalLote.idLote}`;
+                        span_negrito.innerHTML = `Tipo de carne: `;
+                        span_tipo_carne.innerHTML = `${totalLote.tipoCarne}`;
+                        span_negrito_qtd_embalada.innerHTML = `Carnes embaladas: `;
+                        span_qtd_embalada.innerHTML = `${totalLote.carnesEmbaladas}`;
+                        span_negrito_placa.innerHTML = `Placa do veículo: `
+                        span_placa.innerHTML = `${totalLote.fkPlaca}`
+
+                        lotes.appendChild(divCardLote);
+                        divCardLote.appendChild(divcard_lote_titulo);
+                        divcard_lote_titulo.appendChild(h2_titulo);
+                        divCardLote.appendChild(divdDdos_lote);
+                        divdDdos_lote.appendChild(span_especificaocao);
+                        span_especificaocao.appendChild(span_negrito);
+                        span_especificaocao.appendChild(span_tipo_carne);
+                        divdDdos_lote.appendChild(span_especificaocao_qtd_embalada);
+                        span_especificaocao_qtd_embalada.appendChild(span_negrito_qtd_embalada);
+                        span_especificaocao_qtd_embalada.appendChild(span_qtd_embalada);
+                        divdDdos_lote.appendChild(span_especificaocao_placa);
+                        span_especificaocao_placa.appendChild(span_negrito_placa);
+                        span_especificaocao_placa.appendChild(span_placa);
+
+
+
+
+
+
+
+                    }
+
+                    finalizarAguardar();
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+            finalizarAguardar();
+        });
     }
 
 </script>

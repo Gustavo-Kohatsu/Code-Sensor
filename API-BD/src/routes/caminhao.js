@@ -3,12 +3,11 @@ var router = express.Router();
 
 var caminhaoController = require("../controllers/caminhaoController");
 
-router.get("/:empresaId", function (req, res) {
-  aquarioController.buscarAquariosPorEmpresa(req, res);
+
+
+router.get("/listarLotes/:fkEmpresa", function (req, res) {
+  caminhaoController.listarLotes(req, res);
 });
 
-router.post("/cadastrar", function (req, res) {
-  aquarioController.cadastrar(req, res);
-})
 
 module.exports = router;
