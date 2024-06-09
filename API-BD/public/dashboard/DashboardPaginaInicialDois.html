@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="SRC/imagens/favicon.png" type="image/x-icon">
 </head>
 
-<body>
+<body onload="listarCaminhoes(), kpiQtdTemperaturaInstavel(), kpiQtdUmidadeInstavel(), kpiPorcentagemInstavel()">
 
     <div id="menuLateral">
 
@@ -43,7 +43,7 @@
                 <img src="../assets/imagens/temperaturaComAlerta.png">
                 <span>
                     <h2>CAMINHÕES INSTÁVEIS</h2>
-                    <h1>13</h1>
+                    <h1 id="qtdTemperatura"></h1>
                     <h4>Por Temperatura</h4>
                 </span>
             </div>
@@ -52,7 +52,7 @@
                 <img src="../assets/imagens/umidadeComAlerta.png" class="iconeKpi">
                 <span>
                     <h2>CAMINHÕES INSTÁVEIS</h2>
-                    <h1>22</h1>
+                    <h1 id="qtdUmidade"></h1>
                     <h4>Por Umidade</h4>
                 </span>
             </div>
@@ -62,7 +62,7 @@
                 <span>
 
                     <h2>PORCENTAGEM DE INSTÁVEIS</h2>
-                    <h1>0.5%</h1>
+                    <h1 id="porcentagem"></h1>
                 </span>
             </div>
 
@@ -74,9 +74,9 @@
 
         <div id="divListas">
 
-            <div class="listaCaminhaoInstavel">
+            <div class="listaCaminhaoInstavel" id="listaCaminhoes">
 
-                <table class="containerLista">
+                <table class="containerLista" id="tabelaCaminhoes">
 
                     <tr class="headerLista">
                         <th>Caminhão e Sensor</th>
@@ -85,7 +85,7 @@
                         <th>Última Umidade</th>
                     </tr>
 
-                    <tr class="linhaImpar">
+                    <!-- <tr id="linha" class="linhaImpar">
                         <td>
                             <div class="placa">
                             <a href="DashboardCaminhaoIndividual.html">
@@ -97,9 +97,9 @@
                         <td>Bovina</td>
                         <td>2ºC</td>
                         <td>85%</td>
-                    </tr>
+                    </tr> -->
 
-                    <tr class="linhaPar">
+                    <!-- <tr class="linhaPar">
                         <td>
                             <div class="placa">
                                 <a href="DashboardCaminhaoIndividual.html">
@@ -111,7 +111,7 @@
                         <td>Ave</td>
                         <td>4ºC</td>
                         <td>86%</td>
-                    </tr>
+                    </tr> -->
 
                 </table>
 
@@ -124,3 +124,175 @@
 </body>
 
 </html>
+
+<script>
+
+    let fkEmpresa = sessionStorage.getItem('ID_EMPRESA');
+
+    setInterval(kpiQtdTemperaturaInstavel, 2000);
+    setInterval(kpiQtdUmidadeInstavel, 2000);
+    setInterval(kpiPorcentagemInstavel, 2000);
+
+    function kpiQtdTemperaturaInstavel() {
+
+        fetch(`/empresas/qtdTemperaturaInstavelFilial/${fkEmpresa}`).then(function (response) {
+            if (response.ok) {
+
+                response.json().then(function (resposta) {
+
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    sessionStorage.QTD_TEMPERATURA_INSTAVEL = resposta[0].qtdInstaveisTemperatura;
+
+                    qtdTemperatura.innerHTML = sessionStorage.getItem('QTD_TEMPERATURA_INSTAVEL');
+
+                })
+            } else {
+
+                console.log('Nenhum valor econtrado ou erro na API!');
+
+            }
+
+        })
+            .catch(function (error) {
+
+                console.log(`Erro na captura dos para a KPI ${error.message}`);
+
+            });
+
+        return false;
+
+    }
+
+    function kpiQtdUmidadeInstavel() {
+
+        fetch(`/empresas/qtdUmidadeInstavelFilial/${fkEmpresa}`).then(function (response) {
+            if (response.ok) {
+
+                response.json().then(function (resposta) {
+
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    sessionStorage.QTD_UMIDADE_INSTAVEL = resposta[0].qtdInstaveisUmidade;
+
+                    qtdUmidade.innerHTML = sessionStorage.getItem('QTD_UMIDADE_INSTAVEL');
+
+                })
+            } else {
+
+                console.log('Nenhum valor econtrado ou erro na API!');
+
+            }
+
+        })
+            .catch(function (error) {
+
+                console.log(`Erro na captura dos para a KPI ${error.message}`);
+
+            });
+
+        return false;
+
+    }
+
+    function kpiPorcentagemInstavel() {
+
+        fetch(`/empresas/porcentagemInstavelFilial/${fkEmpresa}`).then(function (response) {
+            if (response.ok) {
+
+                response.json().then(function (resposta) {
+
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    sessionStorage.PORCENTAGEM_INSTAVEL = resposta[0].porcentagemInstavelFilial;
+
+                    porcentagem.innerHTML = `${sessionStorage.getItem('PORCENTAGEM_INSTAVEL')}%`
+
+                })
+            } else {
+
+                console.log('Nenhum valor econtrado ou erro na API!');
+
+            }
+
+        })
+            .catch(function (error) {
+
+                console.log(`Erro na captura dos para a KPI ${error.message}`);
+
+            });
+
+        return false;
+
+    }
+
+    function listarCaminhoes() {
+
+        fetch(`/empresas/listarCaminhoes/${fkEmpresa}`).then(function (resposta) {
+
+            if (resposta.ok) {
+                if (resposta.status == 204) {
+                    listaCaminhoes.innerHTML = "<h1>Nenhum caminhão foi encontrado.</h1>"
+                    throw "Nenhum resultado encontrado!!";
+                }
+
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                    for (let i = 0; i < resposta.length; i++) {
+                        var dados = resposta[i];
+
+                        let tipoCarne = dados.tipoCarne;
+                        tipoCarne = tipoCarne.replace(tipoCarne[0], tipoCarne[0].toUpperCase())
+
+                        tabelaCaminhoes.innerHTML += ` <tr id="linha${i}">
+                        <td>
+                            <div class="placa">
+                            <a href="DashboardCaminhaoIndividual.html">
+                            ${dados.placa}
+                            </a>
+                            <span class="sensor">Sensor ${dados.idSensor}</span>
+                        </div>
+                        </td>
+                        <td>${tipoCarne}</td>
+                        <td><span id="temperatura${i}">${dados.temperatura}ºC</span></td>
+                        <td><span id="umidade${i}">${dados.umidade}%</span></td>
+                    </tr>`;
+
+                        if (i % 2 == 0) {
+
+                            document.getElementById(`linha${i}`).classList.add("linhaImpar");
+
+                        } else {
+
+                            document.getElementById(`linha${i}`).classList.add("linhaPar");
+
+                        }
+
+                        if (dados.temperatura > 4 || dados.temperatura < 0) {
+
+                            document.getElementById(`temperatura${i}`).classList.add("critico");
+
+                        }
+
+                        if (dados.umidade < 85 || dados.umidade > 95) {
+
+                            document.getElementById(`umidade${i}`).classList.add("critico");
+
+                        }
+
+                        if (i == resposta.length-1) {
+
+                            document.getElementById(`linha${i}`).style.borderBottomLeftRadius = "18px";
+
+                        }
+
+                    }
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+        });
+
+    }
+
+</script>

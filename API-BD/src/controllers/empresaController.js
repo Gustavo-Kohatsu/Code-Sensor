@@ -88,42 +88,121 @@ function listarKpiUmidade(req, res) {
     var fkEmpresa = req.params.fkEmpresa;
 
     empresaModel.listarKpiUmidade(fkEmpresa)
-    .then(function (resultado) {
-        if (resultado.length > 0) {
-            res.status(200).json(resultado);
-        } else {
-            res.status(204).send('Nenhum resultado encontrado!');
-        }
-    }).catch(function (erro) {
-        console.log(erro);
-        console.log(`Houve um erro ao buscar o que foi solicitado! ${erro.sqlMessage}`);
-        res.status(500).json(erro.sqlMessage)
-    })
-    
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send('Nenhum resultado encontrado!');
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+            console.log(`Houve um erro ao buscar o que foi solicitado! ${erro.sqlMessage}`);
+            res.status(500).json(erro.sqlMessage)
+        })
+
 }
 
 function pegarPorcentagemInstaveis(req, res) {
     var fkEmpresa = req.params.fkEmpresa;
 
     empresaModel.pegarPorcentagemInstaveis(fkEmpresa)
-    .then(function (resultado) {
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send('Nenhum resultado encontrado!');
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+            console.log(`Houve um erro ao buscar o que foi solicitado! ${erro.sqlMessage}`);
+            res.status(500).json(sqlMessage);
+        })
+}
+
+function listarCaminhoes(req, res) {
+    let fkEmpresa = req.params.fkEmpresa;
+
+    empresaModel.listarCaminhoes(fkEmpresa).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
-            res.status(204).send('Nenhum resultado encontrado!');
+            res.status(204).send("Nenhum resultado encontrado!")
         }
     }).catch(function (erro) {
+
         console.log(erro);
-        console.log(`Houve um erro ao buscar o que foi solicitado! ${erro.sqlMessage}`);
-        res.status(500).json(sqlMessage);
-    })
+        console.log("Houve um erro ao buscar a lista de caminhões: ", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+
+    });
+
 }
 
+function qtdTemperaturaInstavelFilial(req, res) {
+    let fkEmpresa = req.params.fkEmpresa;
+
+    empresaModel.qtdTemperaturaInstavelFilial(fkEmpresa).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+
+        console.log(erro);
+        console.log("Houve um erro ao buscar a quantidade de temperaturas instáveis (Filial): ", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+
+    });
+
+}
+
+function qtdUmidadeInstavelFilial(req, res) {
+    let fkEmpresa = req.params.fkEmpresa;
+
+    empresaModel.qtdUmidadeInstavelFilial(fkEmpresa).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+
+        console.log(erro);
+        console.log("Houve um erro ao buscar a quantidade de umidades instáveis (Filial): ", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+
+    });
+
+}
+
+function porcentagemInstavelFilial(req, res) {
+    let fkEmpresa = req.params.fkEmpresa;
+
+    empresaModel.porcentagemInstavelFilial(fkEmpresa).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+
+        console.log(erro);
+        console.log("Houve um erro ao buscar a porcentagem de instáveis (Filial): ", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+
+    });
+
+}
 
 module.exports = {
     cadastrar,
     ultimaEmpresaCadastrada,
     listarKpiTemperatura,
     listarKpiUmidade,
-    pegarPorcentagemInstaveis
+    pegarPorcentagemInstaveis,
+    qtdTemperaturaInstavelFilial,
+    qtdUmidadeInstavelFilial,
+    porcentagemInstavelFilial,
+    listarCaminhoes
 }
