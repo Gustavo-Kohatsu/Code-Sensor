@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeSensor | Caminhão Individual</title>
+    <link rel="stylesheet" href="../css/DashboardCaminhaoIndividual.css">
+    <link rel="shortcut icon" href="../assets/imagens/favicon.png" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <div id="menuLateral">
+
+        <h1>Code<br><span id="sensor">Sensor</span></h1>
+
+        <h2>Olá, Claudio</h2>
+
+        <div id="containerBotoes">
+
+            <a id="botaoInicial" href="DashboardPaginaInicial.html">PÁGINA INICIAL</a>
+            <a class="botao" href="tela_caminhoesRegistrados.html">CAMINHÕES</a>
+
+            <a id="botaoSair" href="../Site Institucional/public/index.html">SAIR</a>
+
+        </div>
+
+    </div>
+
+    <div id="containerTudo">
+
+        <div class="containerTitulo">
+
+            <h1 class="titulo">
+                CAMINHÃO - NCZ2329
+            </h1>
+
+        </div>
+
+        <div id="containerKpi">
+            <div class="kpi" id="kpiTemperatura">
+                <img src="../assets/imagens/temperaturaIdeal.png" alt="">
+                <span>
+                    TEMPERATURA MAIS RECENTE
+                    <h2 id="temperaturaMaisRecente"></h2>
+                    <h6 id="statusTemperatura"></h6>
+                </span>
+            </div>
+
+            <div class="kpi" id="kpiUmidade">
+                <img src="../assets/imagens/umidadeIdeal.png" alt="">
+                <span>
+                    UMIDADE MAIS RECENTE
+                    <h2 id="UmidadeMaisRecente"></h2>
+                    <h6 id="statusUmidade"></h6>
+                </span>
+            </div>
+
+        </div>
+
+        <div class="containerSubTitulo">
+
+            <h2 class="subTitulo">
+                TEMPERATURA
+            </h2>
+
+            <h2 class="subTitulo">
+                UMIDADE
+            </h2>
+
+        </div>
+
+        <div id="graficos">
+
+            <div class="containerGrafico" id="esquerda">
+
+                <h3>Temperaturas recentemente registradas</h3>
+                <canvas id="temperatura"></canvas>
+
+            </div>
+
+            <div class="containerGrafico">
+
+                <h3>Umidades recentemente registradas</h3>
+                <canvas id="umidade"></canvas>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    pegarTemperaturaMaisRecente()
+    pegarUmidadeMaisRecente()
+
+    function pegarTemperaturaMaisRecente() {
+        var fkEmpresa = sessionStorage.getItem('ID_EMPRESA');
+        fetch(
+            `/empresas/pegarTemperaturaMaisRecente/${fkEmpresa}`
+        ).then(function (response) {
+            if (response.ok) {
+
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    sessionStorage.TEMPERATURA_MAIS_RECENTE = resposta[0].temperaturaRecente;
+                    temperaturaMaisRecente.innerHTML = sessionStorage.getItem('TEMPERATURA_MAIS_RECENTE');
+
+                })
+            } else {
+
+                console.log('Nenhum valor econtrado ou erro na API!');
+
+            }
+
+        })
+            .catch(function (error) {
+
+                console.log(`Erro na captura dos para a KPI ${error.message}`);
+
+            });
+
+        return false;
+
+    }
+    function pegarUmidadeMaisRecente() {
+        var fkEmpresa = sessionStorage.getItem('ID_EMPRESA');
+        fetch(
+            `/empresas/pegarUmidadeMaisRecente/${fkEmpresa}`
+        ).then(function (response) {
+            if (response.ok) {
+
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    sessionStorage.UMIDADE_MAIS_RECENTE = resposta[0].umidadeRecente;
+                    UmidadeMaisRecente.innerHTML = sessionStorage.getItem('UMIDADE_MAIS_RECENTE');
+
+                })
+            } else {
+
+                console.log('Nenhum valor econtrado ou erro na API!');
+
+            }
+
+        })
+            .catch(function (error) {
+
+                console.log(`Erro na captura dos para a KPI ${error.message}`);
+            });
+
+        return false;
+
+    }
+
+    const temperatura = document.getElementById('temperatura');
+
+    new Chart(temperatura, {
+        type: 'line',
+        data: {
+            labels: ['07:00', '07:10', '07:20', '07:30', '07:40', '07:50', '08:00'],
+            datasets: [{
+                label: 'NCZ2329',
+                data: [0,4,5],
+                borderWidth: 1,
+                backgroundColor: "#abacff",
+                borderColor: '#abacff'
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: false
+                }
+            }
+        }
+    });
+
+    const umidade = document.getElementById('umidade');
+
+    new Chart(umidade, {
+        type: 'line',
+        data: {
+            labels: ['07:00', '07:10', '07:20', '07:30', '07:40', '07:50', '08:00'],
+            datasets: [{
+                label: 'NCZ2329',
+                data: [85, 86, 87, 88, 86, 87, 85],
+                borderWidth: 1,
+                backgroundColor: "#abacff",
+                borderColor: '#abacff'
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: false
+                }
+            }
+        }
+    });
+
+</script>

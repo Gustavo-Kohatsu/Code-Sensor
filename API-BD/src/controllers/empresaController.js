@@ -195,6 +195,27 @@ function porcentagemInstavelFilial(req, res) {
 
 }
 
+function pegarTemperaturaMaisRecente(req, res) {
+    let fkEmpresa = req.params.fkEmpresa;
+
+    empresaModel.pegarTemperaturaMaisRecente(fkEmpresa).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+
+        console.log(erro);
+        console.log("Houve um erro ao buscar a última medida de temperatura ", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+
+    });
+
+}
+
+
+
 module.exports = {
     cadastrar,
     ultimaEmpresaCadastrada,
@@ -204,5 +225,6 @@ module.exports = {
     qtdTemperaturaInstavelFilial,
     qtdUmidadeInstavelFilial,
     porcentagemInstavelFilial,
-    listarCaminhoes
+    listarCaminhoes,
+    pegarTemperaturaMaisRecente
 }

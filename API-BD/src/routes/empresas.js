@@ -52,4 +52,9 @@ router.get("/listarCaminhoes/:fkEmpresa", function (req, res) {
   empresaController.listarCaminhoes(req, res);
 })
 
+router.get("/pegarTemperaturaMaisRecente/:fkEmpresa", function (req, res) {
+  empresaController.pegarTemperaturaMaisRecente(req, res);
+})
+
+
 module.exports = router;
