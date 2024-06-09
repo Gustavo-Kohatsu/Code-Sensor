@@ -5,7 +5,7 @@ var empresaController = require("../controllers/empresaController");
 
 //Recebendo os dados do html e direcionando para a função cadastrar de usuarioController.js
 router.post("/cadastrar", function (req, res) {
-    empresaController.cadastrar(req, res);
+  empresaController.cadastrar(req, res);
 })
 
 // router.get("/buscar", function (req, res) {
@@ -34,6 +34,22 @@ router.get("/listarKpiUmidade/:fkEmpresa", function (req, res) {
 
 router.get("/pegarPorcentagemInstaveis/:fkEmpresa", function (req, res) {
   empresaController.pegarPorcentagemInstaveis(req, res);
+})
+
+router.get("/qtdTemperaturaInstavelFilial/:fkEmpresa", function (req, res) {
+  empresaController.qtdTemperaturaInstavelFilial(req, res);
+})
+
+router.get("/qtdUmidadeInstavelFilial/:fkEmpresa", function (req, res) {
+  empresaController.qtdUmidadeInstavelFilial(req, res);
+})
+
+router.get("/porcentagemInstavelFilial/:fkEmpresa", function (req, res) {
+  empresaController.porcentagemInstavelFilial(req, res);
+})
+
+router.get("/listarCaminhoes/:fkEmpresa", function (req, res) {
+  empresaController.listarCaminhoes(req, res);
 })
 
 module.exports = router;

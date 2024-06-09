@@ -342,6 +342,8 @@ body {
     padding-left: 2%;
     padding-right: 2%;
 
+    overflow-y: scroll;
+
 }
 
 .containerLista {
@@ -353,13 +355,11 @@ body {
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
 
-    overflow-y: scroll;
-
 }
 
 table {
 
-    height: 90%;
+    height: 100%;
     background-color: white;
 
     font-size: 15pt;
@@ -378,7 +378,7 @@ table a {
     border-top-left-radius: 18px;
     background-color: #F4EFEB;
 
-    height: 13%;
+    height: 100%;
     width: 100%;
 
 }
@@ -389,7 +389,7 @@ tr {
     justify-content: space-between;
     align-items: center;
 
-    height: 15%;
+    height: 100%;
 
     border-bottom: 1px solid #c7c7c7;
 
@@ -442,6 +442,16 @@ td {
 
     font-weight: 500;
     color: #697077;
+}
+
+.critico {
+
+    background-color: #880000;
+    color: white;
+
+    padding: 2%;
+    border-radius: 50px;
+
 }
 
 /* -------------------- */
