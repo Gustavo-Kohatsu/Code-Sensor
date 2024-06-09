@@ -21,7 +21,7 @@
 
             <button onclick="botaoInicial()" id="botaoInicial">PÁGINA INICIAL</button>
             <button onclick="botaoCaminhoes()" class="botao">CAMINHÕES</button>
-            <button onclick="botaoCadastrar()" class="botao">CADASTRO</button>
+            <button id="btn_superior" style="display: block;" onclick="botaoCadastrar()" class="botao">CADASTRO</button>
 
             <button onclick="botaoSair()" id="botaoSair">SAIR</button>
 
@@ -253,4 +253,17 @@
     function botaoSair(){
         window.location.href = "../Site Institucional/public/index.html";
     }
+
+    var tipo = sessionStorage.TIPO_USUARIO;
+    function validarSuperior(){
+        if(tipo == "superior"){
+            btn_superior.style.display = "block";
+        }else{
+            btn_superior.style.display = "none";
+
+        }
+
+    }
+
+    window.onload = validarSuperior;
 </script>

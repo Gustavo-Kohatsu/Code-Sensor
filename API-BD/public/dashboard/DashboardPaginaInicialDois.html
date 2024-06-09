@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="SRC/imagens/favicon.png" type="image/x-icon">
 </head>
 
-<body onload="listarCaminhoes(), kpiQtdTemperaturaInstavel(), kpiQtdUmidadeInstavel(), kpiPorcentagemInstavel()">
+<body onload="listarCaminhoes(), kpiQtdTemperaturaInstavel(), kpiQtdUmidadeInstavel(), kpiPorcentagemInstavel(),validarSuperior()">
 
     <div id="menuLateral">
 
@@ -20,8 +20,8 @@
 
         <div id="containerBotoes">
             <a id="botaoInicial" href="DashboardPaginaInicial.html">PÁGINA INICIAL</a>
-            <a class="botao" href="#">CAMINHÕES</a>
-            <a class="botao" href="opcoesCadastro.html">CADASTRO</a>
+            <a class="botao" href="tela_caminhoesRegistrados.html">CAMINHÕES</a>
+            <a id="btn_superior" style="display: none;" class="botao" href="opcoesCadastro.html">CADASTRO</a>
 
             <a id="botaoSair" href="../Site Institucional/public/index.html">SAIR</a>
         </div>
@@ -292,6 +292,17 @@
         }).catch(function (resposta) {
             console.error(resposta);
         });
+
+    }
+
+    var tipo = sessionStorage.TIPO_USUARIO;
+    function validarSuperior(){
+        if(tipo == "superior"){
+            btn_superior.style.display = "flex";
+        }else{
+            btn_superior.style.display = "none";
+
+        }
 
     }
 

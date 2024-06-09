@@ -8,6 +8,19 @@
     <link rel="stylesheet" href="../css/PaginaInicialDashboard.css">
     <link rel="shortcut icon" href="../assets/imagens/favicon.png" type="image/x-icon">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var tipo = sessionStorage.TIPO_USUARIO;
+        function validarSuperior() {
+            if (tipo == "superior") {
+                btn_superior.style.display = "flex";
+            } else {
+                btn_superior.style.display = "none";
+                window.location = "DashboardPaginaInicialDois.html";
+            }
+
+        }
+        window.onload = validarSuperior;
+    </script>
 </head>
 
 <body>
@@ -22,7 +35,7 @@
 
             <a id="botaoInicial" href="DashboardPaginaInicial.html">PÁGINA INICIAL</a>
             <a class="botao" href="tela_caminhoesRegistrados.html">CAMINHÕES</a>
-            <a class="botao" href="opcoesCadastro.html">CADASTRO</a>
+            <a id="btn_superior" style="display: none;" class="botao" href="opcoesCadastro.html">CADASTRO</a>
 
             <a id="botaoSair" href="../index.html">SAIR</a>
 
@@ -178,7 +191,7 @@
             })
             .catch(function (error) {
                 console.log(`Erro na captura dos dados para o gráfico: ${error.message}`);
-                alert(`Erro na captura dos dados para o gráfico: ${error.message}`);
+                // alert(`Erro na captura dos dados para o gráfico: ${error.message}`);
             });
 
         return false;
@@ -205,7 +218,7 @@
             })
             .catch(function (error) {
                 console.log(`Erro na captura dos dados para o gráfico: ${error.message}`);
-                alert(`Erro na captura dos dados para o gráfico: ${error.message}`);
+                // alert(`Erro na captura dos dados para o gráfico: ${error.message}`);
             });
 
         return false;
@@ -232,11 +245,13 @@
             })
             .catch(function (error) {
                 console.log(`Erro na captura dos dados para o gráfico: ${error.message}`);
-                alert(`Erro na captura dos dados para o gráfico: ${error.message}`);
+                // alert(`Erro na captura dos dados para o gráfico: ${error.message}`);
             });
 
         return false
 
     }
+
+
 
 </script>
