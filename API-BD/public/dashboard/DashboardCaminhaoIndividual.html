@@ -75,8 +75,7 @@
         <div id="graficos">
 
             <div class="containerGrafico" id="esquerda">
-
-                <h3>Temperaturas recentemente registradas</h3>
+                <br>
                 <canvas id="temperatura"></canvas>
 
             </div>
@@ -179,8 +178,10 @@
       .then((data) => {
         const ctx = document.getElementById("temperatura").getContext("2d");
 
-        const labels = data.map((item) => item.dtLeitura);
-        const dados = data.map((item) => item.temperatura);
+        const reversedData = data.reverse();
+
+        const labels = reversedData.map((item) => item.dtLeitura);
+        const dados = reversedData.map((item) => item.temperatura);
 
         console.log(labels, dados);
 
@@ -190,7 +191,7 @@
             labels: labels,
             datasets: [
               {
-                label: "Quantidades escolhidas",
+                label: " Temperaturas registradas",
                 color: "white",
                 data: dados,
                 backgroundColor: "#179928",
@@ -203,7 +204,7 @@
             plugins: {
               title: {
                 display: true,
-                text: "Maiores torcidas",
+                text: "Temperaturas recentemente registradas",
                 font: {
                   size: 20,
                 },
@@ -230,72 +231,5 @@
       });
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const temperatura = document.getElementById('temperatura');
-
-    // new Chart(temperatura, {
-    //     type: 'line',
-    //     data: {
-    //         labels: ['07:00', '07:10', '07:20', '07:30', '07:40', '07:50', '08:00'],
-    //         datasets: [{
-    //             label: 'NCZ2329',
-    //             data: [0,4,5],
-    //             borderWidth: 1,
-    //             backgroundColor: "#abacff",
-    //             borderColor: '#abacff'
-    //         }]
-    //     },
-    //     options: {
-    //         scales: {
-    //             y: {
-    //                 beginAtZero: false
-    //             }
-    //         }
-    //     }
-    // });
-
-    // const umidade = document.getElementById('umidade');
-
-    // new Chart(umidade, {
-    //     type: 'line',
-    //     data: {
-    //         labels: ['07:00', '07:10', '07:20', '07:30', '07:40', '07:50', '08:00'],
-    //         datasets: [{
-    //             label: 'NCZ2329',
-    //             data: [85, 86, 87, 88, 86, 87, 85],
-    //             borderWidth: 1,
-    //             backgroundColor: "#abacff",
-    //             borderColor: '#abacff'
-    //         }]
-    //     },
-    //     options: {
-    //         scales: {
-    //             y: {
-    //                 beginAtZero: false
-    //             }
-    //         }
-    //     }
-    // });
 
 </script>

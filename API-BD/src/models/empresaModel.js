@@ -1,4 +1,4 @@
-const { pegarUmidadeMaisRecente, mostrarDadosUmidade, mostrarDadosUmidadeGrafico } = require("../controllers/empresaController");
+/* const { pegarUmidadeMaisRecente, mostrarDadosUmidade, mostrarDadosUmidadeGrafico } = require("../controllers/empresaController"); */
 var database = require("../database/config");
 
 function ultimaEmpresaCadastrada() {
@@ -103,7 +103,7 @@ function pegarPorcentagemInstaveis(fkEmpresa) {
 
 function listarFiliais(fkEmpresa) {
   console.log('Estou no empresaModel.js: FUNCTION listarFiliais()');
-  
+
   var instrucaoSql = `
   select 
 	  filial.nome_fantasia as nome_filial,
@@ -151,7 +151,7 @@ function pegarInstaveisGeral(id_filial) {
   JOIN leitura l ON s.idSensor = l.fkSensor
   WHERE (e.idEmpresa = ${id_filial});
   `;
-  
+
   console.log(`Executando a instrução SQL: \n${instrucaoSql}`);
   return database.executar(instrucaoSql);
 }
@@ -272,6 +272,27 @@ limit 1
   return database.executar(instrucaoSql);
 }
 
+function pegarUmidadeMaisRecente(fkEmpresa) {
+  console.log("Estou no empresaModel: Função pegarUmidadeMaisRecente");
+
+  var instrucaoSql = `
+  select 
+    lei.umidade as umidadeRecente,
+    lei.dtLeitura
+from 
+    leitura lei
+join sensor se on se.idSensor = lei.fkSensor
+join  veiculo  vei on vei.placa = se.fkPlaca
+join empresa emp on emp.idEmpresa = vei.fkEmpresa
+where idEmpresa = ${fkEmpresa}
+order by 
+    lei.dtLeitura desc
+  limit 1;
+  `
+  console.log(`Executando a instrução SQL: \n${instrucaoSql}`);
+  return database.executar(instrucaoSql)
+}
+
 function mostrarDadosTemperatura(fkEmpresa) {
 
   console.log('Estou no empresaModel: Função mostrarDadosTemperatura');
@@ -279,7 +300,7 @@ function mostrarDadosTemperatura(fkEmpresa) {
   var instrucaoSql = `
  select 
     lei.temperatura,
-    lei.dtLeitura
+    substring(lei.dtLeitura, 12, 19) as dtLeitura
 from 
     leitura lei
 join sensor se on se.idSensor = lei.fkSensor
@@ -311,6 +332,7 @@ module.exports = {
   porcentagemInstavelFilial,
   listarCaminhoes,
   pegarTemperaturaMaisRecente,
+  pegarUmidadeMaisRecente,
   mostrarDadosTemperatura,
 
 };

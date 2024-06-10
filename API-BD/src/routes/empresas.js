@@ -68,6 +68,10 @@ router.get("/pegarTemperaturaMaisRecente/:fkEmpresa", function (req, res) {
   empresaController.pegarTemperaturaMaisRecente(req, res);
 });
 
+router.get("/pegarUmidadeMaisRecente/:fkEmpresa", function (req, res) {
+  empresaController.pegarUmidadeMaisRecente(req, res);
+});
+
 router.get("/mostrarDadosTemperatura/:fkEmpresa", function (req, res) {
   empresaController.mostrarDadosTemperatura(req, res);
 });

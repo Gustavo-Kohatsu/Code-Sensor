@@ -267,6 +267,21 @@ function pegarTemperaturaMaisRecente(req, res) {
 
 }
 
+function pegarUmidadeMaisRecente(req, res) {
+    let fkEmpresa = req.params.fkEmpresa;
+
+    empresaModel.pegarUmidadeMaisRecente(fkEmpresa).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send('Nenhum resultado encontrado!')
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log(`Houve um erro ao buscar a última medida de temperatura ${erro.sqlMessage}`);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
 
 function mostrarDadosTemperatura(req, res) {
     let fkEmpresa = req.params.fkEmpresa;
@@ -304,5 +319,6 @@ module.exports = {
     porcentagemInstavelFilial,
     listarCaminhoes,
     pegarTemperaturaMaisRecente,
+    pegarUmidadeMaisRecente,
     mostrarDadosTemperatura
 }
