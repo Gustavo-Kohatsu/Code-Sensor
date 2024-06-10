@@ -101,6 +101,7 @@
 <script>
     pegarTemperaturaMaisRecente()
     pegarUmidadeMaisRecente()
+    mostrarDadosTemperatura()
 
     function pegarTemperaturaMaisRecente() {
         var fkEmpresa = sessionStorage.getItem('ID_EMPRESA');
@@ -159,51 +160,142 @@
         return false;
 
     }
+    function mostrarDadosTemperatura() {
 
-    const temperatura = document.getElementById('temperatura');
-
-    new Chart(temperatura, {
-        type: 'line',
-        data: {
-            labels: ['07:00', '07:10', '07:20', '07:30', '07:40', '07:50', '08:00'],
-            datasets: [{
-                label: 'NCZ2329',
-                data: [0,4,5],
-                borderWidth: 1,
-                backgroundColor: "#abacff",
-                borderColor: '#abacff'
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: false
-                }
-            }
+        let fkEmpresa = sessionStorage.getItem('ID_EMPRESA');
+   
+    fetch(`/empresas/mostrarDadosTemperatura/${fkEmpresa}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Erro ao buscar os dados");
         }
-    });
+        return response.json();
+      })
+      .then((data) => {
+        const ctx = document.getElementById("temperatura").getContext("2d");
 
-    const umidade = document.getElementById('umidade');
+        const labels = data.map((item) => item.dtLeitura);
+        const dados = data.map((item) => item.temperatura);
 
-    new Chart(umidade, {
-        type: 'line',
-        data: {
-            labels: ['07:00', '07:10', '07:20', '07:30', '07:40', '07:50', '08:00'],
-            datasets: [{
-                label: 'NCZ2329',
-                data: [85, 86, 87, 88, 86, 87, 85],
+        console.log(labels, dados);
+
+        new Chart(ctx, {
+          type: "line",
+          data: {
+            labels: labels,
+            datasets: [
+              {
+                label: "Quantidades escolhidas",
+                color: "white",
+                data: dados,
+                backgroundColor: "#179928",
+                borderColor: "#179928",
                 borderWidth: 1,
-                backgroundColor: "#abacff",
-                borderColor: '#abacff'
-            }]
-        },
-        options: {
+              },
+            ],
+          },
+          options: {
+            plugins: {
+              title: {
+                display: true,
+                text: "Maiores torcidas",
+                font: {
+                  size: 20,
+                },
+                padding: {
+                  top: 3,
+                  bottom: 3,
+                },
+              },
+            },
             scales: {
-                y: {
-                    beginAtZero: false
-                }
-            }
-        }
-    });
+              y: {
+                beginAtZero: true,
+                ticks: {
+                  stepSize: 1,
+                  precision: 0,
+                },
+              },
+            },
+          },
+        });
+      })
+      .catch((error) => {
+        console.error("Erro no gráfico", error);
+      });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const temperatura = document.getElementById('temperatura');
+
+    // new Chart(temperatura, {
+    //     type: 'line',
+    //     data: {
+    //         labels: ['07:00', '07:10', '07:20', '07:30', '07:40', '07:50', '08:00'],
+    //         datasets: [{
+    //             label: 'NCZ2329',
+    //             data: [0,4,5],
+    //             borderWidth: 1,
+    //             backgroundColor: "#abacff",
+    //             borderColor: '#abacff'
+    //         }]
+    //     },
+    //     options: {
+    //         scales: {
+    //             y: {
+    //                 beginAtZero: false
+    //             }
+    //         }
+    //     }
+    // });
+
+    // const umidade = document.getElementById('umidade');
+
+    // new Chart(umidade, {
+    //     type: 'line',
+    //     data: {
+    //         labels: ['07:00', '07:10', '07:20', '07:30', '07:40', '07:50', '08:00'],
+    //         datasets: [{
+    //             label: 'NCZ2329',
+    //             data: [85, 86, 87, 88, 86, 87, 85],
+    //             borderWidth: 1,
+    //             backgroundColor: "#abacff",
+    //             borderColor: '#abacff'
+    //         }]
+    //     },
+    //     options: {
+    //         scales: {
+    //             y: {
+    //                 beginAtZero: false
+    //             }
+    //         }
+    //     }
+    // });
 
 </script>

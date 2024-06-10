@@ -1,4 +1,4 @@
-const { pegarUmidadeMaisRecente } = require("../controllers/empresaController");
+const { pegarUmidadeMaisRecente, mostrarDadosUmidade, mostrarDadosUmidadeGrafico } = require("../controllers/empresaController");
 var database = require("../database/config");
 
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucaoSql
@@ -202,6 +202,31 @@ limit 1
   return database.executar(instrucaoSql);
 }
 
+function mostrarDadosTemperatura(fkEmpresa) {
+
+  console.log('Estou no empresaModel: Função mostrarDadosTemperatura');
+
+  var instrucaoSql = `
+ select 
+    lei.temperatura,
+    lei.dtLeitura
+from 
+    leitura lei
+join sensor se on se.idSensor = lei.fkSensor
+join  veiculo  vei on vei.placa = se.fkPlaca
+join empresa emp on emp.idEmpresa = vei.fkEmpresa
+where idEmpresa = ${fkEmpresa}
+order by 
+    lei.dtLeitura desc
+limit 7
+;
+`;
+
+  console.log(`Executando a instrução SQL: \n${instrucaoSql}`);
+  return database.executar(instrucaoSql);
+}
+
+
 module.exports = {
   cadastrar,
   ultimaEmpresaCadastrada,
@@ -213,6 +238,7 @@ module.exports = {
   porcentagemInstavelFilial,
   listarCaminhoes,
   pegarTemperaturaMaisRecente,
+  mostrarDadosTemperatura,
 
 };
 

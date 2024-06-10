@@ -56,5 +56,9 @@ router.get("/pegarTemperaturaMaisRecente/:fkEmpresa", function (req, res) {
   empresaController.pegarTemperaturaMaisRecente(req, res);
 })
 
+router.get("/mostrarDadosTemperatura/:fkEmpresa", function (req, res) {
+  empresaController.mostrarDadosTemperatura(req, res);
+})
+
 
 module.exports = router;
