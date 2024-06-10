@@ -34,31 +34,42 @@ router.get("/listarKpiUmidade/:fkEmpresa", function (req, res) {
 
 router.get("/pegarPorcentagemInstaveis/:fkEmpresa", function (req, res) {
   empresaController.pegarPorcentagemInstaveis(req, res);
+});
+
+router.get("/listarFiliais/:fkEmpresa", function(req, res) {
+  empresaController.listarFiliais(req, res);
+})
+
+router.get("/pegarInstaveisPorFilial/:id_filial", function(req, res) {
+  empresaController.pegarInstaveisPorFilial(req, res);
+})
+
+router.get("/pegarInstaveisGeral/:id_filial", function(req, res) {
+  empresaController.pegarInstaveisGeral(req, res);
 })
 
 router.get("/qtdTemperaturaInstavelFilial/:fkEmpresa", function (req, res) {
   empresaController.qtdTemperaturaInstavelFilial(req, res);
-})
+});
 
 router.get("/qtdUmidadeInstavelFilial/:fkEmpresa", function (req, res) {
   empresaController.qtdUmidadeInstavelFilial(req, res);
-})
+});
 
 router.get("/porcentagemInstavelFilial/:fkEmpresa", function (req, res) {
   empresaController.porcentagemInstavelFilial(req, res);
-})
+});
 
 router.get("/listarCaminhoes/:fkEmpresa", function (req, res) {
   empresaController.listarCaminhoes(req, res);
-})
+});
 
 router.get("/pegarTemperaturaMaisRecente/:fkEmpresa", function (req, res) {
   empresaController.pegarTemperaturaMaisRecente(req, res);
-})
+});
 
 router.get("/mostrarDadosTemperatura/:fkEmpresa", function (req, res) {
   empresaController.mostrarDadosTemperatura(req, res);
-})
-
+});
 
 module.exports = router;

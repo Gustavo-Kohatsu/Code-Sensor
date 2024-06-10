@@ -84,75 +84,9 @@
         </div>
 
         <div class="Filial">
-            <div class="Linha">
-                <div class="containerKPIFilial">
-                    <h2>FILIAL A</h2>
-                    <div class="KPiCaminhao">
-                        <img src="../assets/imagens/caminhaozinho.png" alt="">
-                        <span>
+            <div class="Linha" id="listaCaminhoesFilial">
 
-                            CAMINHÕES 5/24
 
-                        </span>
-                    </div>
-                </div>
-                <div class="containerKPIFilial">
-                    <h2>FILIAL B</h2>
-                    <div class="KPiCaminhao">
-                        <img src="../assets/imagens/caminhaozinho.png" alt="">
-                        <span>
-
-                            CAMINHÕES 14/23
-
-                        </span>
-                    </div>
-                </div>
-                <div class="containerKPIFilial">
-                    <h2>FILIAL C</h2>
-                    <div class="KPiCaminhao">
-                        <img src="../assets/imagens/caminhaozinho.png" alt="">
-                        <span>
-
-                            CAMINHÕES 7/31
-
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class="Linha">
-                <div class="containerKPIFilial">
-                    <h2>FILIAL D</h2>
-                    <div class="KPiCaminhao">
-                        <img src="../assets/imagens/caminhaozinho.png" alt="">
-                        <span>
-
-                            CAMINHÕES 5/27
-
-                        </span>
-                    </div>
-                </div>
-                <div class="containerKPIFilial">
-                    <h2>FILIAL E</h2>
-                    <div class="KPiCaminhao">
-                        <img src="../assets/imagens/caminhaozinho.png" alt="">
-                        <span>
-
-                            CAMINHÕES 2/23
-
-                        </span>
-                    </div>
-                </div>
-                <div class="containerKPIFilial">
-                    <h2>FILIAL F</h2>
-                    <div class="KPiCaminhao">
-                        <img src="../assets/imagens/caminhaozinho.png" alt="">
-                        <span>
-
-                            CAMINHÕES 2/15
-
-                        </span>
-                    </div>
-                </div>
             </div>
 
         </div>
@@ -167,9 +101,11 @@
     setInterval(pegarCaminhoesInstaveisPorTemperatura, 2000);
     setInterval(pegarCaminhoesInstaveisPorUmidade, 2000);
     setInterval(pegarPorcentagemInstaveis, 2000);
+
     pegarCaminhoesInstaveisPorTemperatura();
     pegarCaminhoesInstaveisPorUmidade();
     pegarPorcentagemInstaveis();
+    listarFiliais();
 
     function pegarCaminhoesInstaveisPorTemperatura() {
         var fkEmpresa = sessionStorage.getItem('ID_EMPRESA');
@@ -235,7 +171,7 @@
                 if (response.ok) {
                     response.json().then(function (resposta) {
                         console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                        sessionStorage.PORCENTAGEM_INSTAVEIS = resposta[0].Porcentagem;
+                        sessionStorage.PORCENTAGEM_INSTAVEIS = resposta[0].porcentagem_instaveis;
                         kpiPorcentagemInstaveis.innerHTML = `${sessionStorage.getItem('PORCENTAGEM_INSTAVEIS')}%`;
                     });
                 } else {
@@ -250,6 +186,82 @@
 
         return false
 
+    }
+
+    function listarFiliais() {
+        var fkEmpresa = sessionStorage.getItem('ID_EMPRESA');
+
+        fetch(`/empresas/listarFiliais/${fkEmpresa}`, { cache: "no-store" })
+            .then(function (response) {
+                if (response.ok) {
+                    response.json().then(function (resposta) {
+                        const filiais = resposta;
+
+                        console.log(filiais);
+                        console.log(`Dados recebidos: ${JSON.stringify(filiais)}`);
+
+                        for (let filial of filiais) {
+                            sessionStorage.ID_FILIAL = filial.idFilial;
+
+                            var id_filial = sessionStorage.getItem('ID_FILIAL');
+                            pegarInstaveisGeral(id_filial);
+
+                            fetch(`/empresas/pegarInstaveisPorFilial/${id_filial}`, { cache: "no-store" })
+                                .then(function (resposta) {
+                                    if (resposta.ok) {
+                                        resposta.json().then(function (response) {
+
+                                            listaCaminhoesFilial.innerHTML += `
+                                            <div class="containerKPIFilial">
+                                                <h2>${filial.nome_filial}</h2>
+                                                <a href="DashboardPaginaInicialDois.html" class="card_caminhaoFilial" name="${filial.idFilial}" id="filialHref">
+                                                    <div class="KPiCaminhao">
+                                                        <img src="../assets/imagens/caminhaozinho.png" alt="">
+                                                        <span>
+                                                            CAMINHÕES ${response[0].caminhoes_instaveis}/${sessionStorage.getItem("CAMINHOES_INSTAVEIS_GERAL")}
+                                                        </span>
+                                                     </div>
+                                                </a>
+                                            </div>
+                                            `;
+
+                                            var filialLink = document.querySelector('#filialHref');
+                                            
+                                            console.log(filialLink.name);
+
+                                            filialLink.addEventListener('click', () => {
+                                                sessionStorage.ID_FILIAL = filialLink.name;
+                                                console.log(filialLink.name)
+
+                                            });
+                                        })
+
+                                    }
+                                })
+                        }
+
+                    })
+                } else {
+                    alert('Algum erro na API ou nenhum dado encontrado...')
+
+                }
+            }).catch(function (error) {
+                console.log(`Erro na obtenção dos dados: ${error.message}`)
+            })
+
+    }
+
+    function pegarInstaveisGeral(id_filial) {
+        fetch(`/empresas/pegarInstaveisGeral/${id_filial}`, { cache: "no-store" })
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    resposta.json().then(function (response) {
+                        sessionStorage.CAMINHOES_INSTAVEIS_GERAL = response[0].caminhoes_instaveis_gerais;
+
+                    })
+
+                }
+            })
     }
 
 

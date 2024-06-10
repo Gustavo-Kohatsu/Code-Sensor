@@ -119,6 +119,59 @@ function pegarPorcentagemInstaveis(req, res) {
         })
 }
 
+function listarFiliais(req, res) {
+    var fkEmpresa = req.params.fkEmpresa;
+
+    empresaModel.listarFiliais(fkEmpresa)
+    .then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send('Nenhum resultado encontrado!');
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log(`Houve um erro ao buscar o que foi solicitado! ${erro.sqlMessage}`);
+        res.status(500).json(sqlMessage);
+    })
+}
+
+function pegarInstaveisPorFilial(req, res) {
+    var id_filial = req.params.id_filial;
+
+    empresaModel.pegarInstaveisPorFilial(id_filial)
+    .then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!");
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log(`Houve um erro ao buscar o que foi solicitado! ${erro.sqlMessage}`);
+        res.status(500).json(sqlMessage);
+    })
+}
+
+function pegarInstaveisGeral(req, res) {
+    var id_filial = req.params.id_filial;
+
+    empresaModel.pegarInstaveisGeral(id_filial)
+    .then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!");
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log(`Houve um erro ao buscar o que foi solicitado! ${erro.sqlMessage}`);
+        res.status(500).json(sqlMessage);
+    })
+}
+
+
+
 function listarCaminhoes(req, res) {
     let fkEmpresa = req.params.fkEmpresa;
 
@@ -243,6 +296,9 @@ module.exports = {
     listarKpiTemperatura,
     listarKpiUmidade,
     pegarPorcentagemInstaveis,
+    listarFiliais,
+    pegarInstaveisPorFilial,
+    pegarInstaveisGeral,
     qtdTemperaturaInstavelFilial,
     qtdUmidadeInstavelFilial,
     porcentagemInstavelFilial,
