@@ -44,23 +44,23 @@
         <div id="inputsCadastro">
           <div id="colunaInputs1">
             <div class="inputPadronizado">
-              <label for="input_nome2">Nome</label>
+              <label for="input_nome">Nome Empresa</label>
               <div class="inputLinha">
-                <input id="input_nome2" />
+                <input id="input_nome" />
               </div>
             </div>
 
             <div class="inputPadronizado">
-              <label for="input_email2">E-mail</label>
+              <label for="input_email">E-mail</label>
               <div class="inputLinha">
-                <input id="input_email2" />
+                <input id="input_email" />
               </div>
             </div>
 
             <div class="inputPadronizado">
-              <label for="input_telefone2">Telefone</label>
+              <label for="input_telefone">Telefone</label>
               <div class="inputLinha">
-                <input id="input_telefone2" />
+                <input id="input_telefone" />
               </div>
             </div>
           </div>
@@ -68,24 +68,34 @@
           <div id="colunaInputs2">
 
             <div class="inputPadronizado">
-              <label for="input_cpf">CPF</label>
+              <label for="input_cnpj">CNPJ</label>
               <div class="inputLinha">
-                <input type="text" id="input_cpf" />
+                <input type="text" id="input_cnpj" />
               </div>
             </div>
 
             <div class="inputPadronizado">
-              <label for="input_senha">Senha</label>
+              <label for="input_cep">CEP</label>
+              <div class="inputLinha">
+                <input id="input_cep" />
+              </div>
+            </div>
+
+            <div
+              style="color: black; font-size: x-larger; display: flex;align-items: center;justify-content: center; padding: 7%;">
+              Você está quase lá, preencha os dados e cadastre suas filiais.
+              <!-- <label for="input_senha">Senha</label>
               <div class="inputLinha">
                 <input id="input_senha" type="text" onkeyup="validarSenha()" />
               </div>
-              <div class="validacaoSenha"></div>
+              <div class="validacaoSenha"></div> -->
             </div>
+
           </div>
         </div>
 
         <div id="botaoCriar">
-          <button onclick="cadastrarPrimeiroUsuario()">Cadastrar</button>
+          <button onclick="cadastrar()">Criar</button>
         </div>
         <div id="div_aguardar" class="loading-div">
           <img src="../assets/circle-loading.gif" id="loading-gif" />
@@ -156,10 +166,10 @@
 
             mensagem_erro.innerHTML =
               "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
-            alert("Cadastro realizado com sucesso! Redirecionando para tela de Login...")
+            alert("Cadastro realizado com sucesso!")
 
             setTimeout(() => {
-              cadastrarPrimeiroUsuario()
+              telacadastrarPrimeiroUsuario()
             }, "2000");
 
             limparFormulario();
@@ -176,10 +186,10 @@
 
   }
 
-  function cadastrarPrimeiroUsuario() {
-    card.innerHTML = `<div id="titulos">
-          <h1>CADASTRO</h1>
-          <h2>FILIAL</h2>
+  function telacadastrarPrimeiroUsuario() {
+    card.innerHTML = `        <div id="titulos">
+          <h1>CADASTRE UM GERENTE</h1>
+          <!-- <h2></h2> -->
         </div>
 
         <div id="inputsCadastro">
@@ -216,9 +226,9 @@
             </div>
 
             <div class="inputPadronizado">
-              <label for="input_senha2">Senha</label>
+              <label for="input_senha">Senha</label>
               <div class="inputLinha">
-                <input id="input_senha2" type="text" onkeyup="validarSenha()" />
+                <input id="input_senha" type="text" onkeyup="validarSenha()" />
               </div>
               <div class="validacaoSenha"></div>
             </div>
@@ -232,18 +242,23 @@
           <img src="../assets/circle-loading.gif" id="loading-gif" />
         </div>`
 
-    var nomeVar = input_nome2.value;
+
+
+    function cadastrarPrimeiroUsuario() {
+      var nomeVar = input_nome2.value;
     var emailVar = input_email2.value;
     var telefoneVar = input_telefone2.value;
     var cpfVar = input_cpf.value;
     var senhaVar = input_senha.value;
+
+    let idUltimaEmpresaCadastrada = 0
 
     fetch(`/empresas/ultimaEmpresaCadastrada`, { cache: 'no-store' })
       .then(function (response) {
         if (response.ok) {
           response.json().then(function (resposta) {
             console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-            const idUltimaEmpresaCadastrada = ultima_empresa_cadastrada;
+            idUltimaEmpresaCadastrada = ultima_empresa_cadastrada;
           });
         } else {
           console.error('Nenhum dado encontrado ou erro na API');
@@ -272,7 +287,7 @@
       alert('Email inválido!')
     } else {
       aguardar();
-      fetch("/funcionario/cadastrar", {
+      fetch("/usuarios/cadastrarPrimeiroUsuario", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -284,7 +299,7 @@
           emailServer: emailVar,
           telefoneServer: telefoneVar,
           cpfServer: cpfVar,
-          cepServer: cepVar,
+          senhaServer: senhaVar,
           idUltimaEmpresaCadastradaServer: idUltimaEmpresaCadastrada
         }),
       })
@@ -296,11 +311,11 @@
 
             mensagem_erro.innerHTML =
               "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
-            alert("Cadastro realizado com sucesso! Redirecionando para tela de Login...")
+            alert("Cadastro realizado com sucesso!")
 
-            setTimeout(() => {
-              cadastrarPrimeiroUsuario()
-            }, "2000");
+            // setTimeout(() => {
+            //   cadastrarPrimeiroUsuario()
+            // }, "2000");
 
             limparFormulario();
             finalizarAguardar();
@@ -315,74 +330,76 @@
     }
 
   }
-
-  function validarSenha() {
-    document.querySelector('.validacaoSenha').innerHTML = '';
-
-    const senhaValidacao = input_senha.value;
-
-    // VERIFICAÇÃO letras minúsculas
-    let arrayLower = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-    let lowerInPasswd = false;
-
-    for (let l = 0; l < arrayLower.length; l++) {
-      if (senhaValidacao.includes(arrayLower[l])) {
-        lowerInPasswd = true;
-      }
     }
 
-    // VERIFICAÇÃO letras maiúsculas
-    let arrayUpper = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-    let upperInPasswd = false;
 
-    for (let u = 0; u < arrayUpper.length; u++) {
-      if (senhaValidacao.includes(arrayUpper[u])) {
-        upperInPasswd = true;
+    function validarSenha() {
+      document.querySelector('.validacaoSenha').innerHTML = '';
+
+      const senhaValidacao = input_senha.value;
+
+      // VERIFICAÇÃO letras minúsculas
+      let arrayLower = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+      let lowerInPasswd = false;
+
+      for (let l = 0; l < arrayLower.length; l++) {
+        if (senhaValidacao.includes(arrayLower[l])) {
+          lowerInPasswd = true;
+        }
       }
 
-    }
+      // VERIFICAÇÃO letras maiúsculas
+      let arrayUpper = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+      let upperInPasswd = false;
 
-    // VERIFICAÇÃO NUMÉRICA 
-    let arrayNumbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-    let numberInPasswd = false;
+      for (let u = 0; u < arrayUpper.length; u++) {
+        if (senhaValidacao.includes(arrayUpper[u])) {
+          upperInPasswd = true;
+        }
 
-    for (let n = 0; n < arrayNumbers.length; n++) {
-      if (senhaValidacao.includes(arrayNumbers[n])) {
-        numberInPasswd = true;
+      }
+
+      // VERIFICAÇÃO NUMÉRICA 
+      let arrayNumbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+      let numberInPasswd = false;
+
+      for (let n = 0; n < arrayNumbers.length; n++) {
+        if (senhaValidacao.includes(arrayNumbers[n])) {
+          numberInPasswd = true;
+        }
+      }
+
+      // VERIFICAÇÃO caracteres especiais
+      let arraySpecialChar = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_'];
+      let specialCharInPasswd = false;
+
+      for (let s = 0; s < arraySpecialChar.length; s++) {
+        if (senhaValidacao.includes(arraySpecialChar[s])) {
+          specialCharInPasswd = true;
+        }
+      }
+
+      if (senhaValidacao.length >= 12 &&
+        ((upperInPasswd) &&
+          (lowerInPasswd) &&
+          (numberInPasswd) &&
+          (specialCharInPasswd))
+      ) {
+        document.querySelector('.validacaoSenha').innerHTML = `<span style="color: #188F05;"><strong>- - - - - Forte</strong></span>`
+
+      } else if (senhaValidacao.length >= 8 &&
+        ((upperInPasswd) ||
+          (lowerInPasswd) ||
+          (numberInPasswd) ||
+          (specialCharInPasswd))
+      ) {
+        document.querySelector('.validacaoSenha').innerHTML = `<span style="color: #F88206;"><strong>- - - Média</strong></span>`
+
+      } else if (senhaValidacao.length >= 1) {
+        document.querySelector('.validacaoSenha').innerHTML = `<span style="color: #B2101F"><strong>- - Fraca</strong></span>`
       }
     }
-
-    // VERIFICAÇÃO caracteres especiais
-    let arraySpecialChar = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_'];
-    let specialCharInPasswd = false;
-
-    for (let s = 0; s < arraySpecialChar.length; s++) {
-      if (senhaValidacao.includes(arraySpecialChar[s])) {
-        specialCharInPasswd = true;
-      }
+    function sumirMensagem() {
+      cardErro.style.display = "none";
     }
-
-    if (senhaValidacao.length >= 12 &&
-      ((upperInPasswd) &&
-        (lowerInPasswd) &&
-        (numberInPasswd) &&
-        (specialCharInPasswd))
-    ) {
-      document.querySelector('.validacaoSenha').innerHTML = `<span style="color: #188F05;"><strong>- - - - - Forte</strong></span>`
-
-    } else if (senhaValidacao.length >= 8 &&
-      ((upperInPasswd) ||
-        (lowerInPasswd) ||
-        (numberInPasswd) ||
-        (specialCharInPasswd))
-    ) {
-      document.querySelector('.validacaoSenha').innerHTML = `<span style="color: #F88206;"><strong>- - - Média</strong></span>`
-
-    } else if (senhaValidacao.length >= 1) {
-      document.querySelector('.validacaoSenha').innerHTML = `<span style="color: #B2101F"><strong>- - Fraca</strong></span>`
-    }
-  }
-  function sumirMensagem() {
-    cardErro.style.display = "none";
-  }
 </script>

@@ -1,6 +1,16 @@
 const { pegarUmidadeMaisRecente, mostrarDadosUmidade, mostrarDadosUmidadeGrafico } = require("../controllers/empresaController");
 var database = require("../database/config");
 
+<<<<<<< HEAD
+function ultimaEmpresaCadastrada() {
+  var instrucaoSql = `SELECT max(idEmpresa) as ultima_empresa_cadastrada 
+                      FROM empresa limit 1`;
+
+  return database.executar(instrucaoSql);
+}
+
+=======
+>>>>>>> fa975b734f4e585783073b214c17d38e6bc6c964
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucaoSql
 function cadastrar(nome, email, cnpj, telefone, cep, idEmpresa) {
   console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nome, email);
