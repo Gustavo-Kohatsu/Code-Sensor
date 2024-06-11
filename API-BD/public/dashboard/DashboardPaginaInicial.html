@@ -10,8 +10,9 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         var tipo = sessionStorage.TIPO_USUARIO;
+        var verificarFilialMatriz = sessionStorage.getItem("TIPO_EMPRESA");
         function validarSuperior() {
-            if (tipo == "superior") {
+            if (tipo == "superior" && verificarFilialMatriz == 'matriz') {
                 btn_superior.style.display = "flex";
             } else {
                 btn_superior.style.display = "none";

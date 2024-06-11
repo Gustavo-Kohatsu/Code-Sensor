@@ -173,9 +173,10 @@ function pegarInstaveisGeral(req, res) {
 
 
 function listarCaminhoes(req, res) {
+    let idFilial = req.params.idFilial;
     let fkEmpresa = req.params.fkEmpresa;
 
-    empresaModel.listarCaminhoes(fkEmpresa).then(function (resultado) {
+    empresaModel.listarCaminhoes(idFilial, fkEmpresa).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -192,9 +193,10 @@ function listarCaminhoes(req, res) {
 }
 
 function qtdTemperaturaInstavelFilial(req, res) {
+    let idFilial = req.params.idFilial;
     let fkEmpresa = req.params.fkEmpresa;
 
-    empresaModel.qtdTemperaturaInstavelFilial(fkEmpresa).then(function (resultado) {
+    empresaModel.qtdTemperaturaInstavelFilial(idFilial, fkEmpresa).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -211,9 +213,10 @@ function qtdTemperaturaInstavelFilial(req, res) {
 }
 
 function qtdUmidadeInstavelFilial(req, res) {
+    let idFilial = req.params.idFilial;
     let fkEmpresa = req.params.fkEmpresa;
 
-    empresaModel.qtdUmidadeInstavelFilial(fkEmpresa).then(function (resultado) {
+    empresaModel.qtdUmidadeInstavelFilial(idFilial, fkEmpresa).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -230,9 +233,10 @@ function qtdUmidadeInstavelFilial(req, res) {
 }
 
 function porcentagemInstavelFilial(req, res) {
+    let idFilial = req.params.idFilial;
     let fkEmpresa = req.params.fkEmpresa;
 
-    empresaModel.porcentagemInstavelFilial(fkEmpresa).then(function (resultado) {
+    empresaModel.porcentagemInstavelFilial(idFilial, fkEmpresa).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {

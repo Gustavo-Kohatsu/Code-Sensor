@@ -127,7 +127,18 @@
 
 <script>
 
+    let idFilial = sessionStorage.getItem('ID_FILIAL');
     let fkEmpresa = sessionStorage.getItem('ID_EMPRESA');
+    
+    let tipoEmpresa = sessionStorage.getItem('TIPO_EMPRESA');
+    
+    if (tipoEmpresa == 'filial') {
+
+        idFilial = fkEmpresa;
+
+    }
+
+    // Apenas dados da Filial. Se matriz quiser olhar? ID_EMPRESA = ID_FILIAL
 
     setInterval(kpiQtdTemperaturaInstavel, 2000);
     setInterval(kpiQtdUmidadeInstavel, 2000);
@@ -135,7 +146,7 @@
 
     function kpiQtdTemperaturaInstavel() {
 
-        fetch(`/empresas/qtdTemperaturaInstavelFilial/${fkEmpresa}`).then(function (response) {
+        fetch(`/empresas/qtdTemperaturaInstavelFilial/${idFilial}/${fkEmpresa}`).then(function (response) {
             if (response.ok) {
 
                 response.json().then(function (resposta) {
@@ -165,7 +176,7 @@
 
     function kpiQtdUmidadeInstavel() {
 
-        fetch(`/empresas/qtdUmidadeInstavelFilial/${fkEmpresa}`).then(function (response) {
+        fetch(`/empresas/qtdUmidadeInstavelFilial/${idFilial}/${fkEmpresa}`).then(function (response) {
             if (response.ok) {
 
                 response.json().then(function (resposta) {
@@ -195,7 +206,7 @@
 
     function kpiPorcentagemInstavel() {
 
-        fetch(`/empresas/porcentagemInstavelFilial/${fkEmpresa}`).then(function (response) {
+        fetch(`/empresas/porcentagemInstavelFilial/${idFilial}/${fkEmpresa}`).then(function (response) {
             if (response.ok) {
 
                 response.json().then(function (resposta) {
@@ -225,7 +236,7 @@
 
     function listarCaminhoes() {
 
-        fetch(`/empresas/listarCaminhoes/${fkEmpresa}`).then(function (resposta) {
+        fetch(`/empresas/listarCaminhoes/${idFilial}/${fkEmpresa}`).then(function (resposta) {
 
             if (resposta.ok) {
                 if (resposta.status == 204) {

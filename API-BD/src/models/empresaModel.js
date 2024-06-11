@@ -98,13 +98,13 @@ function listarFiliais(fkEmpresa) {
   console.log('Estou no empresaModel.js: FUNCTION listarFiliais()');
 
   var instrucaoSql = `
-  select 
+    select 
 	  filial.nome_fantasia as nome_filial,
     filial.idempresa as idFilial
   from empresa as filial
   inner join empresa as matriz
   on filial.fkMatriz = matriz.idEmpresa
-  where filial.fkMatriz is not null and filial.fkMatriz = ${fkEmpresa};
+  where filial.fkMatriz is not null and matriz.idEmpresa = ${fkEmpresa};
   `;
 
   console.log(`Executando a instrução SQL: \n${instrucaoSql}`);
@@ -149,20 +149,22 @@ function pegarInstaveisGeral(id_filial) {
   return database.executar(instrucaoSql);
 }
 
-function qtdTemperaturaInstavelFilial(fkEmpresa) {
+function qtdTemperaturaInstavelFilial(idFilial, fkEmpresa) {
 
   console.log('Estou no empresaModel: Função qtdTemperaturaInstavelFilial');
 
   var instrucaoSql = `
-  select count(DISTINCT vei.placa) as qtdInstaveisTemperatura
+      select	count(vei.placa) as qtdInstaveisTemperatura
   from leitura
   join sensor se
   on leitura.fksensor = se.idSensor
   join veiculo vei
   on se.fkPlaca = vei.Placa
-  join empresa emp
-  on vei.fkEmpresa = emp.idEmpresa
-  where emp.idEmpresa = ${fkEmpresa} and leitura.temperatura > 4 or leitura.temperatura < 0;
+  join empresa filial
+  on vei.fkEmpresa = filial.idEmpresa
+  join empresa matriz
+  on filial.fkmatriz = matriz.idempresa
+  where (filial.idEmpresa = ${idFilial} or matriz.fkmatriz = ${fkEmpresa}) and (leitura.temperatura > 4 or leitura.temperatura < 0);
   `;
 
   console.log(`Executando a instrução SQL: \n${instrucaoSql}`);
@@ -170,20 +172,22 @@ function qtdTemperaturaInstavelFilial(fkEmpresa) {
 
 }
 
-function qtdUmidadeInstavelFilial(fkEmpresa) {
+function qtdUmidadeInstavelFilial(idFilial, fkEmpresa) {
 
   console.log('Estou no empresaModel: Função qtdUmidadeInstavelFilial');
 
   var instrucaoSql = `
-  select	count(DISTINCT vei.placa) as qtdInstaveisUmidade
+  select	count( vei.placa) as qtdInstaveisUmidade
   from leitura
   join sensor se
   on leitura.fksensor = se.idSensor
   join veiculo vei
   on se.fkPlaca = vei.Placa
-  join empresa emp
-  on vei.fkEmpresa = emp.idEmpresa
-  where emp.idEmpresa = ${fkEmpresa} and (leitura.umidade > 95 or leitura.umidade < 85);
+  join empresa filial
+  on vei.fkEmpresa = filial.idEmpresa
+  join empresa matriz
+  on filial.fkmatriz = matriz.idempresa
+  where (filial.idEmpresa = ${idFilial} or matriz.fkmatriz = ${fkEmpresa}) and (leitura.umidade > 95 or leitura.umidade < 85);
   `;
 
   console.log(`Executando a instrução SQL: \n${instrucaoSql}`);
@@ -191,30 +195,33 @@ function qtdUmidadeInstavelFilial(fkEmpresa) {
 
 }
 
-function porcentagemInstavelFilial(fkEmpresa) {
+function porcentagemInstavelFilial(idFilial, fkEmpresa) {
 
   console.log('Estou no empresaModel: Função porcentagemInstavelFilial');
 
   var instrucaoSql = `
- SELECT 
+ SELECT
     ROUND((instaveis.caminhoes_instaveis / total.total_caminhoes) * 100, 0) AS porcentagemInstavelFilial
   FROM (SELECT COUNT(DISTINCT v.placa) AS caminhoes_instaveis
-		FROM veiculo v 
-        JOIN empresa e ON v.fkEmpresa = e.idEmpresa
+                FROM veiculo v
+        JOIN empresa filial ON v.fkEmpresa = filial.idEmpresa
+        JOIN empresa matriz ON filial.fkMatriz = matriz.idempresa
         JOIN sensor s ON v.placa = s.fkPlaca
         JOIN leitura l ON s.idSensor = l.fkSensor
-        WHERE 	(e.idEmpresa = ${fkEmpresa})
-				AND 
+        WHERE   (filial.idempresa = ${idFilial} or matriz.fkmatriz = ${fkEmpresa})
+                                AND
                 (
-                (l.temperatura IS NOT NULL AND (l.temperatura < 0 OR l.temperatura > 4)) OR 
+                (l.temperatura IS NOT NULL AND (l.temperatura < 0 OR l.temperatura > 4)) OR
                 (l.umidade IS NOT NULL AND (l.umidade < 85 OR l.umidade > 95))
                 )
     ) AS instaveis,
-    
+
     (SELECT COUNT(DISTINCT v.placa) AS total_caminhoes
-    FROM veiculo v 
-    JOIN empresa e ON v.fkEmpresa = e.idEmpresa
-    WHERE (e.idEmpresa = ${fkEmpresa})
+    FROM veiculo v
+    JOIN empresa filial ON v.fkEmpresa = filial.idEmpresa
+    JOIN empresa matriz ON filial.fkMatriz = matriz.idempresa
+    
+    WHERE (filial.idEmpresa = ${idFilial} or matriz.fkmatriz = ${fkEmpresa})
     ) AS total;
   `;
 
@@ -223,7 +230,7 @@ function porcentagemInstavelFilial(fkEmpresa) {
 
 }
 
-function listarCaminhoes(fkEmpresa) {
+function listarCaminhoes(idFilial, fkEmpresa) {
 
   console.log('Estou no empresaModel: Função - listarCaminhoes');
 
@@ -237,7 +244,7 @@ function listarCaminhoes(fkEmpresa) {
     inner join sensor s on v.placa = s.fkPlaca
     inner join lote l on v.placa = l.fkPlaca
     inner join leitura lei on s.idSensor = lei.fkSensor
-    where v.fkEmpresa = ${fkEmpresa} and (lei.umidade > 95 or lei.umidade < 85 or lei.temperatura > 4 or lei.temperatura < 0);
+    where (v.fkEmpresa = ${idFilial} or v.fkEmpresa = ${fkEmpresa}) and (lei.umidade > 95 or lei.umidade < 85 or lei.temperatura > 4 or lei.temperatura < 0);
     `;
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);

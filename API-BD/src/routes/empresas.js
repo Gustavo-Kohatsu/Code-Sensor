@@ -48,19 +48,19 @@ router.get("/pegarInstaveisGeral/:id_filial", function(req, res) {
   empresaController.pegarInstaveisGeral(req, res);
 })
 
-router.get("/qtdTemperaturaInstavelFilial/:fkEmpresa", function (req, res) {
+router.get("/qtdTemperaturaInstavelFilial/:idFilial/:fkEmpresa", function (req, res) {
   empresaController.qtdTemperaturaInstavelFilial(req, res);
 });
 
-router.get("/qtdUmidadeInstavelFilial/:fkEmpresa", function (req, res) {
+router.get("/qtdUmidadeInstavelFilial/:idFilial/:fkEmpresa", function (req, res) {
   empresaController.qtdUmidadeInstavelFilial(req, res);
 });
 
-router.get("/porcentagemInstavelFilial/:fkEmpresa", function (req, res) {
+router.get("/porcentagemInstavelFilial/:idFilial/:fkEmpresa", function (req, res) {
   empresaController.porcentagemInstavelFilial(req, res);
 });
 
-router.get("/listarCaminhoes/:fkEmpresa", function (req, res) {
+router.get("/listarCaminhoes/:idFilial/:fkEmpresa", function (req, res) {
   empresaController.listarCaminhoes(req, res);
 });
 

@@ -7,6 +7,22 @@
     <title>CodeSensor | Cadastro</title>
     <link rel="stylesheet" href="../css/opcoesCadastro.css">
     <link rel="shortcut icon" href="../assets/imagens/favicon.png" type="image/x-icon">
+    <script>
+        var tipo = sessionStorage.TIPO_USUARIO;
+        var verificarFilialMatriz = sessionStorage.getItem("TIPO_EMPRESA");
+        function validarFilial() {
+            if (tipo == "superior" && verificarFilialMatriz == 'matriz') {
+                btn_superior.style.display = "flex";
+                botaoCadastro.style.display = "flex";
+            } else if (tipo == "superior" && verificarFilialMatriz == 'filial') {
+                botaoCadastro.style.display = "none";
+            } else {
+                btn_superior.style.display = "none";
+                window.location = "DashboardPaginaInicialDois.html";
+            }
+        }
+        window.onload = validarFilial;
+    </script>
 </head>
 
 <body>
@@ -21,9 +37,9 @@
 
             <a id="botaoInicial" href="DashboardPaginaInicial.html">PÁGINA INICIAL</a>
             <a class="botao" href="tela_caminhoesRegistrados.html">CAMINHÕES</a>
-            <a class="botao" href="opcoesCadastro.html">CADASTRO</a>
+            <a class="botao" id="btn_superior" href="opcoesCadastro.html">CADASTRO</a>
 
-            <a id="botaoSair" href="../Site Institucional/public/index.html">SAIR</a>
+            <a id="botaoSair" href="../index.html">SAIR</a>
 
         </div>
 
@@ -44,7 +60,7 @@
             <h2 id="tituloCadastro">Qual cadastro você gostaria de fazer?</h2>
 
             <div id="containerOpcoesCadastro">
-                <a href="cadastroEmpresa.html">Empresa</a>
+                <a id="botaoCadastro" style="display: none;" href="cadastroEmpresa.html">Filial</a>
                 <a href="cadastroFunc.html">Funcionário</a>
                 <a href="cadastroLote.html">Lote</a>
             </div>
