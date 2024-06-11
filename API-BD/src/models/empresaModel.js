@@ -2,7 +2,7 @@
 var database = require("../database/config");
 
 function ultimaEmpresaCadastrada() {
-  var instrucaoSql = `SELECT max(idEmpresa) as ultima_empresa_cadastrada 
+  var instrucaoSql = `SELECT max(idEmpresa) as ultima_empresa_cadastrada
                       FROM empresa limit 1`;
 
   return database.executar(instrucaoSql);
@@ -17,13 +17,6 @@ function cadastrar(nome, email, cnpj, telefone, cep, idEmpresa) {
   var instrucaoSql = `
       INSERT INTO empresa (nome_fantasia, email, cnpj, telefone, cep, fkMatriz) VALUES ('${nome}', '${email}', '${cnpj}', '${telefone}','${cep}', '${idEmpresa}');`;
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
-  return database.executar(instrucaoSql);
-}
-
-function ultimaEmpresaCadastrada() {
-  var instrucaoSql = `SELECT max(id) as ultima_empresa_cadastrada 
-                      FROM empresa limit 1`;
-
   return database.executar(instrucaoSql);
 }
 

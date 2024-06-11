@@ -37,6 +37,7 @@ function autenticar(req, res) {
 }
 function cadastrarPrimeiroUsuario(req, res) {
     var nome = req.body.nomeServer;
+    console.log(req.body);
     var email = req.body.emailServer;
     var cpf = req.body.cpfServer;
     var tipo =  'superior' // req.body.tipoServer;
