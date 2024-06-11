@@ -64,19 +64,19 @@ router.get("/listarCaminhoes/:fkEmpresa", function (req, res) {
   empresaController.listarCaminhoes(req, res);
 });
 
-router.get("/pegarTemperaturaMaisRecente/:fkEmpresa", function (req, res) {
+router.get("/pegarTemperaturaMaisRecente/:placaCaminhao", function (req, res) {
   empresaController.pegarTemperaturaMaisRecente(req, res);
 });
 
-router.get("/pegarUmidadeMaisRecente/:fkEmpresa", function (req, res) {
+router.get("/pegarUmidadeMaisRecente/:placaCaminhao", function (req, res) {
   empresaController.pegarUmidadeMaisRecente(req, res);
 });
 
-router.get("/mostrarDadosTemperatura/:fkEmpresa", function (req, res) {
+router.get("/mostrarDadosTemperatura/:placaCaminhao", function (req, res) {
   empresaController.mostrarDadosTemperatura(req, res);
 });
 
-router.get("/mostrarDadosUmidade/:fkEmpresa", function (req, res) {
+router.get("/mostrarDadosUmidade/:placaCaminhao", function (req, res) {
   empresaController.mostrarDadosUmidade(req, res);
 });
 

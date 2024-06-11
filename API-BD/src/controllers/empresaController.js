@@ -249,9 +249,9 @@ function porcentagemInstavelFilial(req, res) {
 }
 
 function pegarTemperaturaMaisRecente(req, res) {
-    let fkEmpresa = req.params.fkEmpresa;
+    let placaCaminhao = req.params.placaCaminhao;
 
-    empresaModel.pegarTemperaturaMaisRecente(fkEmpresa).then(function (resultado) {
+    empresaModel.pegarTemperaturaMaisRecente(placaCaminhao).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -268,9 +268,9 @@ function pegarTemperaturaMaisRecente(req, res) {
 }
 
 function pegarUmidadeMaisRecente(req, res) {
-    let fkEmpresa = req.params.fkEmpresa;
+    let placaCaminhao = req.params.placaCaminhao;
 
-    empresaModel.pegarUmidadeMaisRecente(fkEmpresa).then(function (resultado) {
+    empresaModel.pegarUmidadeMaisRecente(placaCaminhao).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -284,9 +284,9 @@ function pegarUmidadeMaisRecente(req, res) {
 }
 
 function mostrarDadosTemperatura(req, res) {
-    let fkEmpresa = req.params.fkEmpresa;
+    let placaCaminhao = req.params.placaCaminhao;
 
-    empresaModel.mostrarDadosTemperatura(fkEmpresa).then(function (resultado) {
+    empresaModel.mostrarDadosTemperatura(placaCaminhao).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -302,9 +302,9 @@ function mostrarDadosTemperatura(req, res) {
 }
 
 function mostrarDadosUmidade(req, res) {
-    let fkEmpresa = req.params.fkEmpresa;
+    let placaCaminhao = req.params.placaCaminhao;
 
-    empresaModel.mostrarDadosUmidade(fkEmpresa).then(function (resultado) {
+    empresaModel.mostrarDadosUmidade(placaCaminhao).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -321,7 +321,7 @@ function mostrarDadosUmidade(req, res) {
 }
 
 function listarCaminhaoPesquisado(req, res) {
-    
+
     let fkEmpresa = req.params.fkEmpresa;
     let placa = req.params.placa;
 

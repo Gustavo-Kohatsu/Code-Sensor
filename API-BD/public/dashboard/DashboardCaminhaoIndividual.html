@@ -34,7 +34,7 @@
         <div class="containerTitulo">
 
             <h1 class="titulo">
-                CAMINHÃO - NCZ2329
+                CAMINHÃO - <span id="placaTitulo">-</span>
             </h1>
 
         </div>
@@ -103,9 +103,10 @@
     mostrarDadosUmidade()
 
     function pegarTemperaturaMaisRecente() {
-        var fkEmpresa = sessionStorage.getItem('ID_EMPRESA');
+      var placaCaminhao = sessionStorage.getItem('PLACA_CAMINHAO');
+      placaTitulo.innerHTML = placaCaminhao;
         fetch(
-            `/empresas/pegarTemperaturaMaisRecente/${fkEmpresa}`
+            `/empresas/pegarTemperaturaMaisRecente/${placaCaminhao}`
         ).then(function (response) {
             if (response.ok) {
 
@@ -132,9 +133,9 @@
 
     }
     function pegarUmidadeMaisRecente() {
-        var fkEmpresa = sessionStorage.getItem('ID_EMPRESA');
+      var placaCaminhao = sessionStorage.getItem('PLACA_CAMINHAO');
         fetch(
-            `/empresas/pegarUmidadeMaisRecente/${fkEmpresa}`
+            `/empresas/pegarUmidadeMaisRecente/${placaCaminhao}`
         ).then(function (response) {
             if (response.ok) {
 
@@ -161,9 +162,9 @@
     }
     function mostrarDadosTemperatura() {
 
-        let fkEmpresa = sessionStorage.getItem('ID_EMPRESA');
+        var placaCaminhao = sessionStorage.getItem('PLACA_CAMINHAO');
    
-    fetch(`/empresas/mostrarDadosTemperatura/${fkEmpresa}`, {
+    fetch(`/empresas/mostrarDadosTemperatura/${placaCaminhao}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -233,9 +234,9 @@
 
 function mostrarDadosUmidade() {
 
-        let fkEmpresa = sessionStorage.getItem('ID_EMPRESA');
+        var placaCaminhao = sessionStorage.getItem('PLACA_CAMINHAO');
    
-    fetch(`/empresas/mostrarDadosUmidade/${fkEmpresa}`, {
+    fetch(`/empresas/mostrarDadosUmidade/${placaCaminhao}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
