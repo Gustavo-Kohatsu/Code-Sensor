@@ -80,4 +80,9 @@ router.get("/mostrarDadosUmidade/:fkEmpresa", function (req, res) {
   empresaController.mostrarDadosUmidade(req, res);
 });
 
+router.get("/listarCaminhaoPesquisado/:fkEmpresa/:placa", function (req, res) {
+  empresaController.listarCaminhaoPesquisado(req, res);
+});
+
+
 module.exports = router;
