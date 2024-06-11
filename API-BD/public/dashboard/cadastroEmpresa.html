@@ -35,6 +35,7 @@
     </div>
 
     <div id="card-main">
+      
       <div id="card">
         <div id="titulos">
           <h1>CADASTRO</h1>
@@ -100,7 +101,10 @@
         <div id="div_aguardar" class="loading-div">
           <img src="../assets/circle-loading.gif" id="loading-gif" />
         </div>
+
+        
       </div>
+
     </div>
   </div>
 </body>
@@ -172,7 +176,7 @@
               telacadastrarPrimeiroUsuario()
             }, "2000");
 
-            limparFormulario();
+            /* limparFormulario(); */
             finalizarAguardar();
           } else {
             throw "Houve um erro ao tentar realizar o cadastro!";
@@ -242,7 +246,7 @@
           <img src="../assets/circle-loading.gif" id="loading-gif" />
         </div>`
 
-
+      }
 
     function cadastrarPrimeiroUsuario() {
       var nomeVar = input_nome2.value;
@@ -251,14 +255,12 @@
     var cpfVar = input_cpf.value;
     var senhaVar = input_senha.value;
 
-    let idUltimaEmpresaCadastrada = 0
-
     fetch(`/empresas/ultimaEmpresaCadastrada`, { cache: 'no-store' })
       .then(function (response) {
         if (response.ok) {
           response.json().then(function (resposta) {
             console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-            idUltimaEmpresaCadastrada = ultima_empresa_cadastrada;
+            sessionStorage.ID_ULTIMA_EMPRESA_CADASTRADA = resposta[0].ultima_empresa_cadastrada;
           });
         } else {
           console.error('Nenhum dado encontrado ou erro na API');
@@ -287,7 +289,7 @@
       alert('Email inválido!')
     } else {
       aguardar();
-      fetch("/usuarios/cadastrarPrimeiroUsuario", {
+      fetch(`/usuarios/cadastrarPrimeiroUsuario`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -300,7 +302,7 @@
           telefoneServer: telefoneVar,
           cpfServer: cpfVar,
           senhaServer: senhaVar,
-          idUltimaEmpresaCadastradaServer: idUltimaEmpresaCadastrada
+          idUltimaEmpresaCadastradaServer: sessionStorage.getItem('ID_ULTIMA_EMPRESA_CADASTRADA')
         }),
       })
         .then(function (resposta) {
@@ -317,7 +319,7 @@
             //   cadastrarPrimeiroUsuario()
             // }, "2000");
 
-            limparFormulario();
+            /* limparFormulario(); */
             finalizarAguardar();
           } else {
             throw "Houve um erro ao tentar realizar o cadastro!";
@@ -330,7 +332,7 @@
     }
 
   }
-    }
+
 
 
     function validarSenha() {
