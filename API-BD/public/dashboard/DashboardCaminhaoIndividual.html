@@ -8,6 +8,18 @@
     <link rel="stylesheet" href="../css/DashboardCaminhaoIndividual.css">
     <link rel="shortcut icon" href="../assets/imagens/favicon.png" type="image/x-icon">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      var tipo = sessionStorage.TIPO_USUARIO;
+      var verificarFilialMatriz = sessionStorage.getItem("TIPO_EMPRESA");
+      function validarFilial() {
+          if (tipo == "superior") {
+              btn_superior.style.display = "flex";
+          } else {
+              btn_superior.style.display = "none";
+          }
+      }
+      window.onload = validarFilial;
+  </script>
 </head>
 
 <body>
@@ -22,8 +34,9 @@
 
             <a id="botaoInicial" href="DashboardPaginaInicial.html">PÁGINA INICIAL</a>
             <a class="botao" href="tela_caminhoesRegistrados.html">CAMINHÕES</a>
+            <a id="btn_superior" style="display: none;" class="botao" href="opcoesCadastro.html">CADASTRO</a>
 
-            <a id="botaoSair" href="../Site Institucional/public/index.html">SAIR</a>
+            <a id="botaoSair" href="../index.html">SAIR</a>
 
         </div>
 
@@ -41,7 +54,7 @@
 
         <div id="containerKpi">
             <div class="kpi" id="kpiTemperatura">
-                <img src="../assets/imagens/temperaturaIdeal.png" alt="">
+                <img id="imagemDeInformacao" src="../assets/imagens/temperaturaIdeal.png" alt="">
                 <span>
                     TEMPERATURA MAIS RECENTE
                     <h2 id="temperaturaMaisRecente"></h2>
@@ -50,7 +63,7 @@
             </div>
 
             <div class="kpi" id="kpiUmidade">
-                <img src="../assets/imagens/umidadeIdeal.png" alt="">
+                <img id="imagemDeInformacaoUmidade" src="../assets/imagens/umidadeIdeal.png" alt="">
                 <span>
                     UMIDADE MAIS RECENTE
                     <h2 id="UmidadeMaisRecente"></h2>
@@ -97,10 +110,18 @@
 </html>
 
 <script>
+    setInterval(pegarTemperaturaMaisRecente,2000);
+    setInterval(pegarUmidadeMaisRecente,2000);
+
     pegarTemperaturaMaisRecente()
     pegarUmidadeMaisRecente()
     mostrarDadosTemperatura()
     mostrarDadosUmidade()
+
+
+    let tagImagem = document.getElementById('imagemDeInformacao');
+    let tagImagemUmidade = document.getElementById('imagemDeInformacaoUmidade')
+
 
     function pegarTemperaturaMaisRecente() {
       var placaCaminhao = sessionStorage.getItem('PLACA_CAMINHAO');
@@ -114,6 +135,17 @@
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     sessionStorage.TEMPERATURA_MAIS_RECENTE = resposta[0].temperaturaRecente;
                     temperaturaMaisRecente.innerHTML = sessionStorage.getItem('TEMPERATURA_MAIS_RECENTE');
+                    if(resposta[0].temperaturaRecente >4){
+                      kpiTemperatura.style.backgroundColor = "red";
+                      tagImagem.src = '../assets/imagens/temperaturaAcima.png';
+                    }else if(resposta[0].temperaturaRecente <0){
+                      kpiTemperatura.style.backgroundColor = "red";
+                      tagImagem.src = '../assets/imagens/temperaturaAbaixo.png';
+                    }else {
+                      kpiTemperatura.style.backgroundColor = "green";
+                      tagImagem.src = '../assets/imagens/temperaturaIdeal.png';
+                    }
+                    
 
                 })
             } else {
@@ -143,6 +175,16 @@
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     sessionStorage.UMIDADE_MAIS_RECENTE = resposta[0].umidadeRecente;
                     UmidadeMaisRecente.innerHTML = sessionStorage.getItem('UMIDADE_MAIS_RECENTE');
+                    if(resposta[0].umidadeRecente > 95){
+                      kpiUmidade.style.backgroundColor = "red";
+                      tagImagemUmidade.src = '../assets/imagens/umidadeAcima.png';
+                    }else if(resposta[0].umidadeRecente < 85){
+                      kpiUmidade.style.backgroundColor = "red";
+                      tagImagemUmidade.src = '../assets/imagens/umidadeAbaixo.png';
+                    }else {
+                      kpiUmidade.style.backgroundColor = "green";
+                      tagImagemUmidade.src = '../assets/imagens/umidadeIdeal.png';
+                    }
 
                 })
             } else {
