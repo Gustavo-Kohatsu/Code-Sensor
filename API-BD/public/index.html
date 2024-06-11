@@ -265,39 +265,41 @@
         </div>
 
     </div>
+    <form action="https://api.staticforms.xyz/submit" method="post">
+        <input type="hidden" name="accessKey" value="b6d2b268-e74c-4c19-9650-cbab22ff63b5">
+        <div class="entreEmContato" id="entreEmContato">
 
-    <div class="entreEmContato" id="entreEmContato">
+            <div class="containerEntreEmContato">
+                <h1 class="titulos" id="tituloContato">ENTRE EM CONTATO</h1>
 
-        <div class="containerEntreEmContato">
-            <h1 class="titulos" id="tituloContato">ENTRE EM CONTATO</h1>
+                <div class="containerInputs">
+                    <p class="textoContato">Nome:</p>
+                    <input name="name" type="text" class="inputs">
+                </div>
 
-            <div class="containerInputs">
-                <p class="textoContato">Nome:</p>
-                <input type="text" class="inputs">
-            </div>
+                <div class="containerInputs">
+                    <p class="textoContato">E-mail:</p>
+                    <input name="email" type="text" class="inputs">
+                </div>
 
-            <div class="containerInputs">
-                <p class="textoContato">E-mail:</p>
-                <input type="text" class="inputs">
-            </div>
+                <!-- <div class="containerInputs">
+                    <p class="textoContato">Telefone:</p>
+                    <input name="telefone" type="text" class="inputs">
+                </div> -->
 
-            <div class="containerInputs">
-                <p class="textoContato">Digite qual o assunto:</p>
-                <input type="text" class="inputs">
-            </div>
+                <div class="containerMensagem">
+                    <p class="textoContato">Digite sua mensagem:</p>
+                    <textarea name="message" name="Digite sua mensagem:" id="textarea_mensagem" cols="30" rows="10"></textarea>
+                </div>
 
-            <div class="containerMensagem">
-                <p class="textoContato">Digite sua mensagem:</p>
-                <textarea name="Digite sua mensagem:" id="textarea_mensagem" cols="30" rows="10"></textarea>
-            </div>
+                <div id="centralizarBotao">
+                    <button class="botao" id="enviar">Enviar</button>
+                </div>
 
-            <div id="centralizarBotao">
-                <button class="botao" id="enviar">Enviar</button>
             </div>
 
         </div>
-
-    </div>
+    </form>
 
     <footer>
 
