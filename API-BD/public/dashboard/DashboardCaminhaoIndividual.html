@@ -82,7 +82,6 @@
 
             <div class="containerGrafico">
 
-                <h3>Umidades recentemente registradas</h3>
                 <canvas id="umidade"></canvas>
 
             </div>
@@ -101,6 +100,7 @@
     pegarTemperaturaMaisRecente()
     pegarUmidadeMaisRecente()
     mostrarDadosTemperatura()
+    mostrarDadosUmidade()
 
     function pegarTemperaturaMaisRecente() {
         var fkEmpresa = sessionStorage.getItem('ID_EMPRESA');
@@ -205,6 +205,78 @@
               title: {
                 display: true,
                 text: "Temperaturas recentemente registradas",
+                font: {
+                  size: 20,
+                },
+                padding: {
+                  top: 3,
+                  bottom: 3,
+                },
+              },
+            },
+            scales: {
+              y: {
+                beginAtZero: true,
+                ticks: {
+                  stepSize: 1,
+                  precision: 0,
+                },
+              },
+            },
+          },
+        });
+      })
+      .catch((error) => {
+        console.error("Erro no gráfico", error);
+      });
+}
+
+function mostrarDadosUmidade() {
+
+        let fkEmpresa = sessionStorage.getItem('ID_EMPRESA');
+   
+    fetch(`/empresas/mostrarDadosUmidade/${fkEmpresa}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Erro ao buscar os dados");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        const ctx = document.getElementById("umidade").getContext("2d");
+
+        const reversedData = data.reverse();
+
+        const labels = reversedData.map((item) => item.dtLeitura);
+        const dados = reversedData.map((item) => item.umidade);
+
+        console.log(labels, dados);
+
+        new Chart(ctx, {
+          type: "line",
+          data: {
+            labels: labels,
+            datasets: [
+              {
+                label: " Umidades registradas",
+                color: "white",
+                data: dados,
+                backgroundColor: "#179928",
+                borderColor: "#179928",
+                borderWidth: 1,
+              },
+            ],
+          },
+          options: {
+            plugins: {
+              title: {
+                display: true,
+                text: "Umidades recentemente registradas",
                 font: {
                   size: 20,
                 },

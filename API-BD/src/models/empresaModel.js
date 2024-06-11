@@ -317,6 +317,30 @@ limit 7
   return database.executar(instrucaoSql);
 }
 
+function mostrarDadosUmidade(fkEmpresa) {
+
+  console.log('Estou no empresaModel: Função mostrarDadosUmidade');
+
+  var instrucaoSql = `
+ select 
+    lei.umidade,
+    substring(lei.dtLeitura, 12, 19) as dtLeitura
+from 
+    leitura lei
+join sensor se on se.idSensor = lei.fkSensor
+join  veiculo  vei on vei.placa = se.fkPlaca
+join empresa emp on emp.idEmpresa = vei.fkEmpresa
+where idEmpresa = ${fkEmpresa}
+order by 
+    lei.dtLeitura desc
+limit 7
+;
+`;
+
+  console.log(`Executando a instrução SQL: \n${instrucaoSql}`);
+  return database.executar(instrucaoSql);
+}
+
 
 module.exports = {
   cadastrar,
@@ -334,7 +358,7 @@ module.exports = {
   pegarTemperaturaMaisRecente,
   pegarUmidadeMaisRecente,
   mostrarDadosTemperatura,
-
+  mostrarDadosUmidade
 };
 
 
