@@ -127,6 +127,7 @@
                         for (let i = 0; i < resposta.length; i++) {
                             var dados = resposta[i];
 
+                            let idPlaca = dados.placa;
                             let tipoCarne = dados.tipoCarne;
                             tipoCarne = tipoCarne.replace(tipoCarne[0], tipoCarne[0].toUpperCase())
 
@@ -140,7 +141,7 @@
                 <tr class="linha">
                     <td>
                         <div class="placa">
-                            <a href="DashboardCaminhaoIndividual.html">
+                            <a href='DashboardCaminhaoIndividual.html' id='${idPlaca}' onclick='guardarPlaca(this.id)'>
                             ${dados.placa}
                             </a>
                             <span class="sensor">${dados.idSensor}</span>
@@ -171,6 +172,12 @@
             }).catch(function (resposta) {
                 console.error(resposta);
             });
+
+    }
+
+    function guardarPlaca(idPlaca) {
+
+        sessionStorage.PLACA_CAMINHAO = idPlaca;
 
     }
 

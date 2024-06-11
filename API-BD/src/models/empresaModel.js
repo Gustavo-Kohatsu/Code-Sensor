@@ -154,7 +154,7 @@ function qtdTemperaturaInstavelFilial(fkEmpresa) {
   console.log('Estou no empresaModel: Função qtdTemperaturaInstavelFilial');
 
   var instrucaoSql = `
-  select count(vei.placa) as qtdInstaveisTemperatura
+  select count(DISTINCT vei.placa) as qtdInstaveisTemperatura
   from leitura
   join sensor se
   on leitura.fksensor = se.idSensor
@@ -175,7 +175,7 @@ function qtdUmidadeInstavelFilial(fkEmpresa) {
   console.log('Estou no empresaModel: Função qtdUmidadeInstavelFilial');
 
   var instrucaoSql = `
-  select	count(vei.placa) as qtdInstaveisUmidade
+  select	count(DISTINCT vei.placa) as qtdInstaveisUmidade
   from leitura
   join sensor se
   on leitura.fksensor = se.idSensor
@@ -196,24 +196,26 @@ function porcentagemInstavelFilial(fkEmpresa) {
   console.log('Estou no empresaModel: Função porcentagemInstavelFilial');
 
   var instrucaoSql = `
-  SELECT
-    round((instaveis.Caminhoes_instaveis / totais.Caminhoes_totais) * 100, 0) AS porcentagemInstavelFilial
-  FROM
-    (SELECT COUNT(emp.idEmpresa) AS Caminhoes_instaveis
-     FROM leitura
-     JOIN sensor se ON leitura.fksensor = se.idSensor
-     JOIN veiculo vei ON se.fkPlaca = vei.Placa
-     JOIN empresa emp ON vei.fkEmpresa = emp.idEmpresa
-     WHERE emp.idEmpresa = 1
-       AND (leitura.umidade > 95 OR leitura.umidade < 85 OR leitura.temperatura > 4 OR leitura.temperatura < 0)
+ SELECT 
+    ROUND((instaveis.caminhoes_instaveis / total.total_caminhoes) * 100, 0) AS porcentagemInstavelFilial
+  FROM (SELECT COUNT(DISTINCT v.placa) AS caminhoes_instaveis
+		FROM veiculo v 
+        JOIN empresa e ON v.fkEmpresa = e.idEmpresa
+        JOIN sensor s ON v.placa = s.fkPlaca
+        JOIN leitura l ON s.idSensor = l.fkSensor
+        WHERE 	(e.idEmpresa = ${fkEmpresa})
+				AND 
+                (
+                (l.temperatura IS NOT NULL AND (l.temperatura < 0 OR l.temperatura > 4)) OR 
+                (l.umidade IS NOT NULL AND (l.umidade < 85 OR l.umidade > 95))
+                )
     ) AS instaveis,
-    (SELECT COUNT(emp.idEmpresa) AS Caminhoes_totais
-     FROM leitura
-     JOIN sensor se ON leitura.fksensor = se.idSensor
-     JOIN veiculo vei ON se.fkPlaca = vei.Placa
-     JOIN empresa emp ON vei.fkEmpresa = emp.idEmpresa
-     WHERE emp.idEmpresa = 1
-    ) AS totais;
+    
+    (SELECT COUNT(DISTINCT v.placa) AS total_caminhoes
+    FROM veiculo v 
+    JOIN empresa e ON v.fkEmpresa = e.idEmpresa
+    WHERE (e.idEmpresa = ${fkEmpresa})
+    ) AS total;
   `;
 
   console.log(`Executando a instrução SQL: \n${instrucaoSql}`);
@@ -243,7 +245,7 @@ function listarCaminhoes(fkEmpresa) {
 
 }
 
-function pegarTemperaturaMaisRecente(fkEmpresa) {
+function pegarTemperaturaMaisRecente(placaCaminhao) {
 
   console.log('Estou no empresaModel: Função pegarTemperaturaMaisRecente');
 
@@ -255,7 +257,7 @@ from
 join sensor se on se.idSensor = lei.fkSensor
 join  veiculo  vei on vei.placa = se.fkPlaca
 join empresa emp on emp.idEmpresa = vei.fkEmpresa
-where idEmpresa = ${fkEmpresa}
+where vei.placa = '${placaCaminhao}'
 order by 
     lei.dtLeitura desc
 limit 1
@@ -265,7 +267,7 @@ limit 1
   return database.executar(instrucaoSql);
 }
 
-function pegarUmidadeMaisRecente(fkEmpresa) {
+function pegarUmidadeMaisRecente(placaCaminhao) {
   console.log("Estou no empresaModel: Função pegarUmidadeMaisRecente");
 
   var instrucaoSql = `
@@ -277,7 +279,7 @@ from
 join sensor se on se.idSensor = lei.fkSensor
 join  veiculo  vei on vei.placa = se.fkPlaca
 join empresa emp on emp.idEmpresa = vei.fkEmpresa
-where idEmpresa = ${fkEmpresa}
+where vei.placa = '${placaCaminhao}'
 order by 
     lei.dtLeitura desc
   limit 1;
@@ -286,7 +288,7 @@ order by
   return database.executar(instrucaoSql)
 }
 
-function mostrarDadosTemperatura(fkEmpresa) {
+function mostrarDadosTemperatura(placaCaminhao) {
 
   console.log('Estou no empresaModel: Função mostrarDadosTemperatura');
 
@@ -299,7 +301,7 @@ from
 join sensor se on se.idSensor = lei.fkSensor
 join  veiculo  vei on vei.placa = se.fkPlaca
 join empresa emp on emp.idEmpresa = vei.fkEmpresa
-where idEmpresa = ${fkEmpresa}
+where vei.placa = '${placaCaminhao}'
 order by 
     lei.dtLeitura desc
 limit 7
@@ -310,7 +312,7 @@ limit 7
   return database.executar(instrucaoSql);
 }
 
-function mostrarDadosUmidade(fkEmpresa) {
+function mostrarDadosUmidade(placaCaminhao) {
 
   console.log('Estou no empresaModel: Função mostrarDadosUmidade');
 
@@ -323,7 +325,7 @@ from
 join sensor se on se.idSensor = lei.fkSensor
 join  veiculo  vei on vei.placa = se.fkPlaca
 join empresa emp on emp.idEmpresa = vei.fkEmpresa
-where idEmpresa = ${fkEmpresa}
+where vei.placa = '${placaCaminhao}'
 order by 
     lei.dtLeitura desc
 limit 7
