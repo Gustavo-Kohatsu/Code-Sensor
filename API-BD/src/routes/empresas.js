@@ -76,4 +76,13 @@ router.get("/mostrarDadosTemperatura/:fkEmpresa", function (req, res) {
   empresaController.mostrarDadosTemperatura(req, res);
 });
 
+router.get("/mostrarDadosUmidade/:fkEmpresa", function (req, res) {
+  empresaController.mostrarDadosUmidade(req, res);
+});
+
+router.get("/listarCaminhaoPesquisado/:fkEmpresa/:placa", function (req, res) {
+  empresaController.listarCaminhaoPesquisado(req, res);
+});
+
+
 module.exports = router;

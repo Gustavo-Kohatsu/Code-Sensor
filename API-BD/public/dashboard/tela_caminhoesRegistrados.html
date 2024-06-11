@@ -44,13 +44,14 @@
             <div class="containerPesquisa">
                 <div id="pesquisa">
                     <img src="../assets/imagens/Vector.png" alt="Lupa de pesquisa">
-                    <input placeholder="Pesquisa">
+                    <input placeholder="Pesquisa" id="pesquisa_placa">
+                    <button onclick="listarCaminhaoPesquisado()">Pesquisar</button>
                 </div>
             </div>
 
             <table class="containerLista" id="tabelaCaminhoes">
 
-                <tr class="headerLista">
+                <!-- <tr class="headerLista">
                     <th>Caminhão e Sensor</th>
                     <th>Tipo de Carne</th>
                     <th>Última Temperatura</th>
@@ -69,7 +70,7 @@
                     <td>Bovina</td>
                     <td>2ºC</td>
                     <td>85%</td>
-                </tr>
+                </tr> -->
 
             </table>
         </div>
@@ -105,4 +106,72 @@
     }
 
     window.onload = validarSuperior;
+
+    function listarCaminhaoPesquisado() {
+
+        const placa = pesquisa_placa.value;
+        const fkEmpresa = sessionStorage.getItem("ID_EMPRESA");
+
+        fetch(`/empresas/listarCaminhaoPesquisado/${fkEmpresa}/${placa.toUpperCase()}`)
+            .then(function (resposta) {
+
+                if (resposta.ok) {
+                    if (resposta.status == 204) {
+                        listaCaminhoes.innerHTML = "<h1>Não foi encontrado um caminhão com essa placa.</h1>"
+                        throw "Nenhum resultado encontrado!!";
+                    }
+
+                    resposta.json().then(function (resposta) {
+                        console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                        for (let i = 0; i < resposta.length; i++) {
+                            var dados = resposta[i];
+
+                            let tipoCarne = dados.tipoCarne;
+                            tipoCarne = tipoCarne.replace(tipoCarne[0], tipoCarne[0].toUpperCase())
+
+                            tabelaCaminhoes.innerHTML = `<tr class="headerLista">
+                    <th>Caminhão e Sensor</th>
+                    <th>Tipo de Carne</th>
+                    <th>Última Temperatura</th>
+                    <th>Última Umidade</th>
+                </tr>
+
+                <tr class="linha">
+                    <td>
+                        <div class="placa">
+                            <a href="DashboardCaminhaoIndividual.html">
+                            ${dados.placa}
+                            </a>
+                            <span class="sensor">${dados.idSensor}</span>
+                        </div>
+                    </td>
+                    <td>${tipoCarne}</td>
+                    <td><span id="temperatura${i}">${dados.temperatura}ºC</span></td>
+                    <td><span id="umidade${i}">${dados.umidade}%</span></td>
+                </tr>`;
+
+                            if (dados.temperatura > 4 || dados.temperatura < 0) {
+
+                                document.getElementById(`temperatura${i}`).classList.add("critico");
+
+                            }
+
+                            if (dados.umidade < 85 || dados.umidade > 95) {
+
+                                document.getElementById(`umidade${i}`).classList.add("critico");
+
+                            }
+
+                        }
+                    });
+                } else {
+                    throw ('Houve um erro na API!');
+                }
+            }).catch(function (resposta) {
+                console.error(resposta);
+            });
+
+    }
+
 </script>

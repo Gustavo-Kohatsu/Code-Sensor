@@ -278,7 +278,7 @@ function pegarUmidadeMaisRecente(req, res) {
         }
     }).catch(function (erro) {
         console.log(erro);
-        console.log(`Houve um erro ao buscar a última medida de temperatura ${erro.sqlMessage}`);
+        console.log(`Houve um erro ao buscar a última medida de umidade ${erro.sqlMessage}`);
         res.status(500).json(erro.sqlMessage);
     });
 }
@@ -299,10 +299,47 @@ function mostrarDadosTemperatura(req, res) {
         res.status(500).json(erro.sqlMessage);
 
     });
+}
+
+function mostrarDadosUmidade(req, res) {
+    let fkEmpresa = req.params.fkEmpresa;
+
+    empresaModel.mostrarDadosUmidade(fkEmpresa).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+
+        console.log(erro);
+        console.log("Houve um erro ao buscar a última medida de umidade ", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+
+    });
 
 }
 
+function listarCaminhaoPesquisado(req, res) {
+    
+    let fkEmpresa = req.params.fkEmpresa;
+    let placa = req.params.placa;
 
+    empresaModel.listarCaminhaoPesquisado(fkEmpresa, placa).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+
+        console.log(erro);
+        console.log("Houve um erro ao buscar os dados do caminhão pesquisado", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+
+    });
+
+}
 
 
 module.exports = {
@@ -320,5 +357,7 @@ module.exports = {
     listarCaminhoes,
     pegarTemperaturaMaisRecente,
     pegarUmidadeMaisRecente,
-    mostrarDadosTemperatura
+    mostrarDadosTemperatura,
+    mostrarDadosUmidade,
+    listarCaminhaoPesquisado
 }
