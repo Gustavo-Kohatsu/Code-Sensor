@@ -112,6 +112,8 @@
 <script>
     setInterval(pegarTemperaturaMaisRecente,2000);
     setInterval(pegarUmidadeMaisRecente,2000);
+    setInterval(mostrarDadosTemperatura, 3000);
+    setInterval(mostrarDadosUmidade, 3000);
 
     pegarTemperaturaMaisRecente()
     pegarUmidadeMaisRecente()
@@ -180,7 +182,7 @@
                       tagImagemUmidade.src = '../assets/imagens/umidadeAcima.png';
                     }else if(resposta[0].umidadeRecente < 85){
                       kpiUmidade.style.backgroundColor = "red";
-                      tagImagemUmidade.src = '../assets/imagens/umidadeAbaixo.png';
+                      tagImagemUmidade.src = "../assets/imagens/umidadeAbaixo.png";
                     }else {
                       kpiUmidade.style.backgroundColor = "green";
                       tagImagemUmidade.src = '../assets/imagens/umidadeIdeal.png';
