@@ -235,16 +235,24 @@ function listarCaminhoes(idFilial, fkEmpresa) {
   console.log('Estou no empresaModel: Função - listarCaminhoes');
 
   var instrucaoSql = `
-    select v.placa,
-	     s.idSensor,
-       l.tipoCarne,
-       lei.temperatura,
-       lei.umidade
-    from veiculo v
-    inner join sensor s on v.placa = s.fkPlaca
-    inner join lote l on v.placa = l.fkPlaca
-    inner join leitura lei on s.idSensor = lei.fkSensor
-    where (v.fkEmpresa = ${idFilial} or v.fkEmpresa = ${fkEmpresa}) and (lei.umidade > 95 or lei.umidade < 85 or lei.temperatura > 4 or lei.temperatura < 0);
+  select 
+    v.placa,
+    s.idSensor,
+    l.tipoCarne,
+    lei.dtLeitura,
+    lei.temperatura,
+    lei.umidade
+  from veiculo v
+  inner join sensor s on v.placa = s.fkPlaca
+  inner join lote l on v.placa = l.fkPlaca
+  inner join  (
+      select fkSensor, max(dtLeitura) as maxDtLeitura
+      from leitura
+      group by fkSensor
+  ) as ult_lei on s.idSensor = ult_lei.fkSensor
+  inner join leitura lei on s.idSensor = lei.fkSensor and ult_lei.maxDtLeitura = lei.dtLeitura
+  where (v.fkEmpresa = ${idFilial} or v.fkEmpresa = ${fkEmpresa}) and (lei.umidade > 95 or lei.umidade < 85 or lei.temperatura > 4 or lei.temperatura < 0)
+  order by lei.dtLeitura desc;
     `;
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
