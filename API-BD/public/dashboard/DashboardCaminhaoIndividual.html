@@ -2,212 +2,212 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CodeSensor | Caminhão Individual</title>
-    <link rel="stylesheet" href="../css/DashboardCaminhaoIndividual.css">
-    <link rel="shortcut icon" href="../assets/imagens/favicon.png" type="image/x-icon">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-      var tipo = sessionStorage.TIPO_USUARIO;
-      var verificarFilialMatriz = sessionStorage.getItem("TIPO_EMPRESA");
-      function validarFilial() {
-          if (tipo == "superior") {
-              btn_superior.style.display = "flex";
-          } else {
-              btn_superior.style.display = "none";
-          }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CodeSensor | Caminhão Individual</title>
+  <link rel="stylesheet" href="../css/DashboardCaminhaoIndividual.css">
+  <link rel="shortcut icon" href="../assets/imagens/favicon.png" type="image/x-icon">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    var tipo = sessionStorage.TIPO_USUARIO;
+    var verificarFilialMatriz = sessionStorage.getItem("TIPO_EMPRESA");
+    function validarFilial() {
+      if (tipo == "superior") {
+        btn_superior.style.display = "flex";
+      } else {
+        btn_superior.style.display = "none";
       }
-      window.onload = validarFilial;
+    }
+    window.onload = validarFilial;
   </script>
 </head>
 
 <body>
 
-    <div id="menuLateral">
+  <div id="menuLateral">
 
-        <h1>Code<br><span id="sensor">Sensor</span></h1>
+    <h1>Code<br><span id="sensor">Sensor</span></h1>
 
-        <h2>Olá, Claudio</h2>
+    <h2>Olá, Claudio</h2>
 
-        <div id="containerBotoes">
+    <div id="containerBotoes">
 
-            <a id="botaoInicial" href="DashboardPaginaInicial.html">PÁGINA INICIAL</a>
-            <a class="botao" href="tela_caminhoesRegistrados.html">CAMINHÕES</a>
-            <a id="btn_superior" style="display: none;" class="botao" href="opcoesCadastro.html">CADASTRO</a>
+      <a id="botaoInicial" href="DashboardPaginaInicial.html">PÁGINA INICIAL</a>
+      <a class="botao" href="tela_caminhoesRegistrados.html">CAMINHÕES</a>
+      <a id="btn_superior" style="display: none;" class="botao" href="opcoesCadastro.html">CADASTRO</a>
 
-            <a id="botaoSair" href="../index.html">SAIR</a>
-
-        </div>
+      <a id="botaoSair" href="../index.html">SAIR</a>
 
     </div>
 
-    <div id="containerTudo">
+  </div>
 
-        <div class="containerTitulo">
+  <div id="containerTudo">
 
-            <h1 class="titulo">
-                CAMINHÃO - <span id="placaTitulo">-</span>
-            </h1>
+    <div class="containerTitulo">
 
-        </div>
-
-        <div id="containerKpi">
-            <div class="kpi" id="kpiTemperatura">
-                <img id="imagemDeInformacao" src="../assets/imagens/temperaturaIdeal.png" alt="">
-                <span>
-                    TEMPERATURA MAIS RECENTE
-                    <h2 id="temperaturaMaisRecente"></h2>
-                    <h6 id="statusTemperatura"></h6>
-                </span>
-            </div>
-
-            <div class="kpi" id="kpiUmidade">
-                <img id="imagemDeInformacaoUmidade" src="../assets/imagens/umidadeIdeal.png" alt="">
-                <span>
-                    UMIDADE MAIS RECENTE
-                    <h2 id="UmidadeMaisRecente"></h2>
-                    <h6 id="statusUmidade"></h6>
-                </span>
-            </div>
-
-        </div>
-
-        <div class="containerSubTitulo">
-
-            <h2 class="subTitulo">
-                TEMPERATURA
-            </h2>
-
-            <h2 class="subTitulo">
-                UMIDADE
-            </h2>
-
-        </div>
-
-        <div id="graficos">
-
-            <div class="containerGrafico" id="esquerda">
-                <br>
-                <canvas id="temperatura"></canvas>
-
-            </div>
-
-            <div class="containerGrafico">
-
-                <canvas id="umidade"></canvas>
-
-            </div>
-
-        </div>
+      <h1 class="titulo">
+        CAMINHÃO - <span id="placaTitulo">-</span>
+      </h1>
 
     </div>
 
+    <div id="containerKpi">
+      <div class="kpi" id="kpiTemperatura">
+        <img id="imagemDeInformacao" src="../assets/imagens/temperaturaIdeal.png" alt="">
+        <span>
+          TEMPERATURA MAIS RECENTE
+          <h2 id="temperaturaMaisRecente"></h2>
+          <h6 id="statusTemperatura"></h6>
+        </span>
+      </div>
+
+      <div class="kpi" id="kpiUmidade">
+        <img id="imagemDeInformacaoUmidade" src="../assets/imagens/umidadeIdeal.png" alt="">
+        <span>
+          UMIDADE MAIS RECENTE
+          <h2 id="UmidadeMaisRecente"></h2>
+          <h6 id="statusUmidade"></h6>
+        </span>
+      </div>
+
     </div>
+
+    <div class="containerSubTitulo">
+
+      <h2 class="subTitulo">
+        TEMPERATURA
+      </h2>
+
+      <h2 class="subTitulo">
+        UMIDADE
+      </h2>
+
+    </div>
+
+    <div id="graficos">
+
+      <div class="containerGrafico" id="esquerda">
+        <br>
+        <canvas id="temperatura"></canvas>
+
+      </div>
+
+      <div class="containerGrafico">
+
+        <canvas id="umidade"></canvas>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  </div>
 
 </body>
 
 </html>
 
 <script>
-    setInterval(pegarTemperaturaMaisRecente,2000);
-    setInterval(pegarUmidadeMaisRecente,2000);
-    setInterval(mostrarDadosTemperatura, 3000);
-    setInterval(mostrarDadosUmidade, 3000);
+  setInterval(pegarTemperaturaMaisRecente, 2000);
+  setInterval(pegarUmidadeMaisRecente, 2000);
+  setInterval(mostrarDadosTemperatura, 3000);
+  setInterval(mostrarDadosUmidade, 3000);
 
-    pegarTemperaturaMaisRecente()
-    pegarUmidadeMaisRecente()
-    mostrarDadosTemperatura()
-    mostrarDadosUmidade()
+  pegarTemperaturaMaisRecente()
+  pegarUmidadeMaisRecente()
+  mostrarDadosTemperatura()
+  mostrarDadosUmidade()
 
+  let tagImagem = document.getElementById('imagemDeInformacao');
+  let tagImagemUmidade = document.getElementById('imagemDeInformacaoUmidade')
 
-    let tagImagem = document.getElementById('imagemDeInformacao');
-    let tagImagemUmidade = document.getElementById('imagemDeInformacaoUmidade')
+  function pegarTemperaturaMaisRecente() {
+    var placaCaminhao = sessionStorage.getItem('PLACA_CAMINHAO');
+    placaTitulo.innerHTML = placaCaminhao;
+    fetch(
+      `/empresas/pegarTemperaturaMaisRecente/${placaCaminhao}`
+    ).then(function (response) {
+      if (response.ok) {
 
+        response.json().then(function (resposta) {
+          console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+          sessionStorage.TEMPERATURA_MAIS_RECENTE = resposta[0].temperaturaRecente;
+          temperaturaMaisRecente.innerHTML = sessionStorage.getItem('TEMPERATURA_MAIS_RECENTE');
+          if (resposta[0].temperaturaRecente > 4) {
+            kpiTemperatura.style.backgroundColor = "red";
+            tagImagem.src = '../assets/imagens/temperaturaAcima.png';
+          } else if (resposta[0].temperaturaRecente < 0) {
+            kpiTemperatura.style.backgroundColor = "red";
+            tagImagem.src = '../assets/imagens/temperaturaAbaixo.png';
+          } else {
+            kpiTemperatura.style.backgroundColor = "green";
+            tagImagem.src = '../assets/imagens/temperaturaIdeal.png';
+          }
 
-    function pegarTemperaturaMaisRecente() {
-      var placaCaminhao = sessionStorage.getItem('PLACA_CAMINHAO');
-      placaTitulo.innerHTML = placaCaminhao;
-        fetch(
-            `/empresas/pegarTemperaturaMaisRecente/${placaCaminhao}`
-        ).then(function (response) {
-            if (response.ok) {
-
-                response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                    sessionStorage.TEMPERATURA_MAIS_RECENTE = resposta[0].temperaturaRecente;
-                    temperaturaMaisRecente.innerHTML = sessionStorage.getItem('TEMPERATURA_MAIS_RECENTE');
-                    if(resposta[0].temperaturaRecente >4){
-                      kpiTemperatura.style.backgroundColor = "red";
-                      tagImagem.src = '../assets/imagens/temperaturaAcima.png';
-                    }else if(resposta[0].temperaturaRecente <0){
-                      kpiTemperatura.style.backgroundColor = "red";
-                      tagImagem.src = '../assets/imagens/temperaturaAbaixo.png';
-                    }else {
-                      kpiTemperatura.style.backgroundColor = "green";
-                      tagImagem.src = '../assets/imagens/temperaturaIdeal.png';
-                    }
-                    
-
-                })
-            } else {
-
-                console.log('Nenhum valor econtrado ou erro na API!');
-
-            }
 
         })
-            .catch(function (error) {
+      } else {
 
-                console.log(`Erro na captura dos para a KPI ${error.message}`);
+        console.log('Nenhum valor econtrado ou erro na API!');
 
-            });
+      }
 
-        return false;
+    })
+      .catch(function (error) {
 
-    }
-    function pegarUmidadeMaisRecente() {
-      var placaCaminhao = sessionStorage.getItem('PLACA_CAMINHAO');
-        fetch(
-            `/empresas/pegarUmidadeMaisRecente/${placaCaminhao}`
-        ).then(function (response) {
-            if (response.ok) {
+        console.log(`Erro na captura dos para a KPI ${error.message}`);
 
-                response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                    sessionStorage.UMIDADE_MAIS_RECENTE = resposta[0].umidadeRecente;
-                    UmidadeMaisRecente.innerHTML = sessionStorage.getItem('UMIDADE_MAIS_RECENTE');
-                    if(resposta[0].umidadeRecente > 95){
-                      kpiUmidade.style.backgroundColor = "red";
-                      tagImagemUmidade.src = '../assets/imagens/umidadeAcima.png';
-                    }else if(resposta[0].umidadeRecente < 85){
-                      kpiUmidade.style.backgroundColor = "red";
-                      tagImagemUmidade.src = "../assets/imagens/umidadeAbaixo.png";
-                    }else {
-                      kpiUmidade.style.backgroundColor = "green";
-                      tagImagemUmidade.src = '../assets/imagens/umidadeIdeal.png';
-                    }
+      });
 
-                })
-            } else {
+    return false;
 
-                console.log('Nenhum valor econtrado ou erro na API!');
+  }
+  function pegarUmidadeMaisRecente() {
+    var placaCaminhao = sessionStorage.getItem('PLACA_CAMINHAO');
+    fetch(
+      `/empresas/pegarUmidadeMaisRecente/${placaCaminhao}`
+    ).then(function (response) {
+      if (response.ok) {
 
-            }
+        response.json().then(function (resposta) {
+          console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+          sessionStorage.UMIDADE_MAIS_RECENTE = resposta[0].umidadeRecente;
+          UmidadeMaisRecente.innerHTML = sessionStorage.getItem('UMIDADE_MAIS_RECENTE');
+          if (resposta[0].umidadeRecente > 95) {
+            kpiUmidade.style.backgroundColor = "red";
+            tagImagemUmidade.src = '../assets/imagens/umidadeAcima.png';
+          } else if (resposta[0].umidadeRecente < 85) {
+            kpiUmidade.style.backgroundColor = "red";
+            tagImagemUmidade.src = "../assets/imagens/umidadeAbaixo.png";
+          } else {
+            kpiUmidade.style.backgroundColor = "green";
+            tagImagemUmidade.src = '../assets/imagens/umidadeIdeal.png';
+          }
 
         })
-            .catch(function (error) {
+      } else {
 
-                console.log(`Erro na captura dos para a KPI ${error.message}`);
-            });
+        console.log('Nenhum valor econtrado ou erro na API!');
 
-        return false;
+      }
 
-    }
-    function mostrarDadosTemperatura() {
+    })
+      .catch(function (error) {
 
-        var placaCaminhao = sessionStorage.getItem('PLACA_CAMINHAO');
-   
+        console.log(`Erro na captura dos para a KPI ${error.message}`);
+      });
+
+    return false;
+
+  }
+
+  let temperaturaChart;
+  function mostrarDadosTemperatura() {
+
+    var placaCaminhao = sessionStorage.getItem('PLACA_CAMINHAO');
+
     fetch(`/empresas/mostrarDadosTemperatura/${placaCaminhao}`, {
       method: "GET",
       headers: {
@@ -230,7 +230,11 @@
 
         console.log(labels, dados);
 
-        new Chart(ctx, {
+        if (temperaturaChart) {
+          temperaturaChart.destroy();
+        }
+
+        temperaturaChart = new Chart(ctx, {
           type: "line",
           data: {
             labels: labels,
@@ -242,6 +246,7 @@
                 backgroundColor: "#179928",
                 borderColor: "#179928",
                 borderWidth: 1,
+                lineTension: 0.5
               },
             ],
           },
@@ -274,12 +279,13 @@
       .catch((error) => {
         console.error("Erro no gráfico", error);
       });
-}
+  }
 
-function mostrarDadosUmidade() {
+  let umidadeChart;
+  function mostrarDadosUmidade() {
 
-        var placaCaminhao = sessionStorage.getItem('PLACA_CAMINHAO');
-   
+    var placaCaminhao = sessionStorage.getItem('PLACA_CAMINHAO');
+
     fetch(`/empresas/mostrarDadosUmidade/${placaCaminhao}`, {
       method: "GET",
       headers: {
@@ -302,7 +308,11 @@ function mostrarDadosUmidade() {
 
         console.log(labels, dados);
 
-        new Chart(ctx, {
+        if (umidadeChart) {
+          umidadeChart.destroy();
+        }
+
+        umidadeChart = new Chart(ctx, {
           type: "line",
           data: {
             labels: labels,
@@ -314,6 +324,7 @@ function mostrarDadosUmidade() {
                 backgroundColor: "#179928",
                 borderColor: "#179928",
                 borderWidth: 1,
+                lineTension: 0.5
               },
             ],
           },
@@ -346,7 +357,7 @@ function mostrarDadosUmidade() {
       .catch((error) => {
         console.error("Erro no gráfico", error);
       });
-}
+  }
 
 
 </script>
