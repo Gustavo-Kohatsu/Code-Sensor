@@ -80,7 +80,7 @@ router.get("/mostrarDadosUmidade/:placaCaminhao", function (req, res) {
   empresaController.mostrarDadosUmidade(req, res);
 });
 
-router.get("/listarCaminhaoPesquisado/:fkEmpresa/:placa", function (req, res) {
+router.get("/listarCaminhaoPesquisado/:idFilial/:fkEmpresa/:placa", function (req, res) {
   empresaController.listarCaminhaoPesquisado(req, res);
 });
 

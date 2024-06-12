@@ -351,7 +351,7 @@ limit 7
   return database.executar(instrucaoSql);
 }
 
-function listarCaminhaoPesquisado(fkEmpresa, placa) {
+function listarCaminhaoPesquisado(idFilial, fkEmpresa, placa) {
 
   console.log('Estou no empresaModel: Função - listarCaminhoes');
 
@@ -366,11 +366,13 @@ function listarCaminhaoPesquisado(fkEmpresa, placa) {
     inner join sensor s on v.placa = s.fkPlaca
     inner join lote l on v.placa = l.fkPlaca
     inner join leitura lei on s.idSensor = lei.fkSensor
-    where v.fkEmpresa = ${fkEmpresa}
+    inner join empresa as filial on v.fkEmpresa = filial.idEmpresa
+    inner join empresa as matriz on filial.fkMatriz = matriz.idEmpresa
+    where (filial.idEmpresa = ${idFilial} or matriz.fkMatriz = ${fkEmpresa})
     and v.placa = '${placa}'
     order by 
     lei.dtLeitura desc
-limit 1;
+    limit 1;
     `;
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);

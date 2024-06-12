@@ -326,10 +326,11 @@ function mostrarDadosUmidade(req, res) {
 
 function listarCaminhaoPesquisado(req, res) {
 
+    let idFilial = req.params.idFilial;
     let fkEmpresa = req.params.fkEmpresa;
     let placa = req.params.placa;
 
-    empresaModel.listarCaminhaoPesquisado(fkEmpresa, placa).then(function (resultado) {
+    empresaModel.listarCaminhaoPesquisado(idFilial, fkEmpresa, placa).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {

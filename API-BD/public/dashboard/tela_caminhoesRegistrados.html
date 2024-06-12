@@ -112,11 +112,11 @@
     window.onload = validarSuperior;
 
     function listarCaminhaoPesquisado() {
-
+        const idFilial = sessionStorage.getItem("ID_FILIAL");
         const placa = pesquisa_placa.value;
         const fkEmpresa = sessionStorage.getItem("ID_EMPRESA");
 
-        fetch(`/empresas/listarCaminhaoPesquisado/${fkEmpresa}/${placa.toUpperCase()}`)
+        fetch(`/empresas/listarCaminhaoPesquisado/${idFilial}/${fkEmpresa}/${placa.toUpperCase()}`)
             .then(function (resposta) {
 
                 if (resposta.ok) {
