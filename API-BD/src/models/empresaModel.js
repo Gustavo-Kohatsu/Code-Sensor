@@ -34,7 +34,7 @@ function listarKpiTemperatura(idFilial, fkEmpresa) {
     ON veic.fkEmpresa = filial.idEmpresa
     inner join empresa as matriz
     on filial.fkMatriz = matriz.idEmpresa
-    WHERE (filial.idEmpresa = ${idFilial} OR matriz.fkMatriz = ${fkEmpresa})
+    WHERE (filial.idEmpresa = ${idFilial} OR matriz.fkMatriz = ${fkEmpresa} or filial.fkMatriz = ${fkEmpresa})
       AND leit.temperatura IS NOT NULL 
       AND (leit.temperatura < 0 OR leit.temperatura > 4);
   `;
@@ -108,7 +108,7 @@ function listarFiliais(fkEmpresa) {
   from empresa as filial
   inner join empresa as matriz
   on filial.fkMatriz = matriz.idEmpresa
-  where filial.fkMatriz is not null and matriz.idEmpresa = ${fkEmpresa};
+  where filial.fkMatriz is not null and matriz.idEmpresa = ${fkEmpresa} order by 2 asc ;
   `;
 
   console.log(`Executando a instrução SQL: \n${instrucaoSql}`);
@@ -130,6 +130,23 @@ function pegarInstaveisPorFilial(id_filial) {
                 (l.temperatura IS NOT NULL AND (l.temperatura < 0 OR l.temperatura > 4)) OR 
                 (l.umidade IS NOT NULL AND (l.umidade < 85 OR l.umidade > 95))
                 );
+  `;
+
+  console.log(`Executando a instrução SQL: \n${instrucaoSql}`);
+  return database.executar(instrucaoSql);
+}
+
+function pegarCaminhoesCadastradosPorFilial(id_filial) {
+  console.log('Estou no empresaModel.js: FUNCTION pegarCaminhoesCadastradosPorFilial()');
+
+  var instrucaoSql = `
+  SELECT 
+    COUNT(DISTINCT v.placa) AS caminhoes_instaveis_gerais
+	FROM veiculo v 
+  JOIN empresa e ON v.fkEmpresa = e.idEmpresa
+  JOIN sensor s ON v.placa = s.fkPlaca
+  JOIN leitura l ON s.idSensor = l.fkSensor
+  WHERE (e.idEmpresa = ${id_filial});
   `;
 
   console.log(`Executando a instrução SQL: \n${instrucaoSql}`);
@@ -162,7 +179,7 @@ function qtdTemperaturaInstavelFilial(idFilial, fkEmpresa) {
 	count(*) as qtdInstaveisTemperatura
   from veiculo v
   inner join sensor s on v.placa = s.fkPlaca
-  inner join lote l on v.placa = l.fkPlaca
+  left join lote l on v.placa = l.fkPlaca
   inner join  (
       select fkSensor, max(dtLeitura) as maxDtLeitura
       from leitura
@@ -187,7 +204,7 @@ function qtdUmidadeInstavelFilial(idFilial, fkEmpresa) {
 	count(*) as qtdInstaveisUmidade
   from veiculo v
   inner join sensor s on v.placa = s.fkPlaca
-  inner join lote l on v.placa = l.fkPlaca
+  left join lote l on v.placa = l.fkPlaca
   inner join  (
       select fkSensor, max(dtLeitura) as maxDtLeitura
       from leitura
@@ -247,13 +264,13 @@ function listarCaminhoes(idFilial, fkEmpresa) {
   select 
     v.placa,
     s.idSensor,
-    l.tipoCarne,
+    ifnull(l.tipoCarne, 'NÃO TEM LOTE') as tipoCarne,
     lei.dtLeitura,
     lei.temperatura,
     lei.umidade
   from veiculo v
   inner join sensor s on v.placa = s.fkPlaca
-  inner join lote l on v.placa = l.fkPlaca
+  left join lote l on v.placa = l.fkPlaca
   inner join  (
       select fkSensor, max(dtLeitura) as maxDtLeitura
       from leitura
@@ -397,6 +414,7 @@ module.exports = {
   pegarPorcentagemInstaveis,
   listarFiliais,
   pegarInstaveisPorFilial,
+  pegarCaminhoesCadastradosPorFilial,
   pegarInstaveisGeral,
   qtdTemperaturaInstavelFilial,
   qtdUmidadeInstavelFilial,

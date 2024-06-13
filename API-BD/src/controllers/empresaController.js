@@ -155,6 +155,23 @@ function pegarInstaveisPorFilial(req, res) {
     })
 }
 
+function pegarCaminhoesCadastradosPorFilial(req, res) {
+    var id_filial = req.params.id_filial;
+
+    empresaModel.pegarCaminhoesCadastradosPorFilial(id_filial)
+    .then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!");
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log(`Houve um erro ao buscar o que foi solicitado! ${erro.sqlMessage}`);
+        res.status(500).json(sqlMessage);
+    })
+}
+
 function pegarInstaveisGeral(req, res) {
     var id_filial = req.params.id_filial;
 
@@ -357,6 +374,7 @@ module.exports = {
     pegarPorcentagemInstaveis,
     listarFiliais,
     pegarInstaveisPorFilial,
+    pegarCaminhoesCadastradosPorFilial,
     pegarInstaveisGeral,
     qtdTemperaturaInstavelFilial,
     qtdUmidadeInstavelFilial,

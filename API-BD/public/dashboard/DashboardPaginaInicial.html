@@ -192,8 +192,74 @@
 
     }
 
-    function listarFiliais() {
+    async function listarFiliais() {
+    try {
+        const fkEmpresa = sessionStorage.getItem('ID_EMPRESA');
+        console.log('Entrando na função listarFiliais antes do primeiro fetch!');
+
+        const responseFiliais = await fetch(`/empresas/listarFiliais/${fkEmpresa}`, { cache: "no-store" });
+        if (!responseFiliais.ok) {
+            throw new Error('Erro ao buscar filiais');
+        }
+
+        const filiais = await responseFiliais.json();
+        console.log(filiais);
+        console.log(`Dados recebidos: ${JSON.stringify(filiais)}`);
+
+        for (let filial of filiais) {
+            sessionStorage.ID_FILIAL = filial.idFilial;
+            const id_filial = sessionStorage.getItem('ID_FILIAL');
+
+            const respostaInstaveis = await fetch(`/empresas/pegarInstaveisPorFilial/${id_filial}`, { cache: "no-store" });
+            if (!respostaInstaveis.ok) {
+                throw new Error('Erro ao buscar instáveis por filial');
+            }
+
+            const response = await respostaInstaveis.json();
+
+            const dadosRetornados = await fetch(`/empresas/pegarCaminhoesCadastradosPorFilial/${id_filial}`, { cache: "no-store" });
+            if (!dadosRetornados.ok) {
+                throw new Error('Erro ao buscar caminhões cadastrados por filial');
+            }
+
+            const dados = await dadosRetornados.json();
+            sessionStorage.CAMINHOES_INSTAVEIS_GERAL = dados[0].caminhoes_instaveis_gerais;
+
+            listaCaminhoesFilial.innerHTML += `
+                <div class="containerKPIFilial">
+                    <h2>${filial.nome_filial}</h2>
+                    <a href="DashboardPaginaInicialDois.html" class="card_caminhaoFilial" name="${filial.idFilial}" id="filialHref_${filial.idFilial}">
+                        <div class="KPiCaminhao">
+                            <img src="../assets/imagens/caminhaozinho.png" alt="">
+                            <span>
+                                CAMINHÕES ${response[0].caminhoes_instaveis}/${dados[0].caminhoes_instaveis_gerais}
+                            </span>
+                        </div>
+                    </a>
+                </div>
+            `;
+
+            filiais.forEach(filial => {
+            const filialLink = document.querySelector(`#filialHref_${filial.idFilial}`);
+            if (filialLink) {
+                console.log(filialLink);
+                filialLink.addEventListener('click', () => {
+                    sessionStorage.ID_FILIAL = filialLink.getAttribute('name');
+                    console.log(filialLink.getAttribute('name'));
+                });
+            }
+        });
+        }
+    } catch (error) {
+        console.log(`Erro na obtenção dos dados: ${error.message}`);
+        alert('Algum erro na API ou nenhum dado encontrado...');
+    }
+}
+
+
+    /* function listarFiliais() {
         var fkEmpresa = sessionStorage.getItem('ID_EMPRESA');
+        console.log('entrando na função listarFiliais antes do primeiro fetch!')
 
         fetch(`/empresas/listarFiliais/${fkEmpresa}`, { cache: "no-store" })
             .then(function (response) {
@@ -208,36 +274,48 @@
                             sessionStorage.ID_FILIAL = filial.idFilial;
 
                             var id_filial = sessionStorage.getItem('ID_FILIAL');
-                            pegarInstaveisGeral(id_filial);
+                            // pegarInstaveisGeral(id_filial);
 
                             fetch(`/empresas/pegarInstaveisPorFilial/${id_filial}`, { cache: "no-store" })
                                 .then(function (resposta) {
                                     if (resposta.ok) {
                                         resposta.json().then(function (response) {
 
-                                            listaCaminhoesFilial.innerHTML += `
-                                            <div class="containerKPIFilial">
-                                                <h2>${filial.nome_filial}</h2>
-                                                <a href="DashboardPaginaInicialDois.html" class="card_caminhaoFilial" name="${filial.idFilial}" id="filialHref">
-                                                    <div class="KPiCaminhao">
-                                                        <img src="../assets/imagens/caminhaozinho.png" alt="">
-                                                        <span>
-                                                            CAMINHÕES ${response[0].caminhoes_instaveis}/${sessionStorage.getItem("CAMINHOES_INSTAVEIS_GERAL")}
-                                                        </span>
-                                                     </div>
-                                                </a>
-                                            </div>
-                                            `;
+                                            fetch(`/empresas/pegarCaminhoesCadastradosPorFilial/${id_filial}`, { cache: "no-store" })
+                                                .then(function (dadosRetornados) {
+                                                    if (dadosRetornados.ok) {
 
-                                            var filialLink = document.querySelector('#filialHref');
-                                            
-                                            console.log(filialLink.name);
+                                                        console.log(`Dados recebidos: ${JSON.stringify(dadosRetornados)}`);
+                                                        dadosRetornados.json().then(function (dados) {
 
-                                            filialLink.addEventListener('click', () => {
-                                                sessionStorage.ID_FILIAL = filialLink.name;
-                                                console.log(filialLink.name)
+                                                            sessionStorage.CAMINHOES_INSTAVEIS_GERAL = dados[0].caminhoes_instaveis_gerais
 
-                                            });
+                                                            listaCaminhoesFilial.innerHTML += `
+                                                                <div class="containerKPIFilial">
+                                                                    <h2>${filial.nome_filial}</h2>
+                                                                    <a href="DashboardPaginaInicialDois.html" class="card_caminhaoFilial" name="${filial.idFilial}" id="filialHref">
+                                                                        <div class="KPiCaminhao">
+                                                                            <img src="../assets/imagens/caminhaozinho.png" alt="">
+                                                                            <span>
+                                                                                CAMINHÕES ${response[0].caminhoes_instaveis}/${dados[0].caminhoes_instaveis_gerais}
+                                                                            </span>
+                                                                        </div>
+                                                                    </a>
+                                                                </div>
+                                                                `;
+
+                                                            var filialLink = document.querySelector('#filialHref');
+
+                                                            console.log(filialLink.name);
+
+                                                            filialLink.addEventListener('click', () => {
+                                                                sessionStorage.ID_FILIAL = filialLink.name;
+                                                                console.log(filialLink.name)
+
+                                                            });
+                                                        })
+                                                    }
+                                                })
                                         })
 
                                     }
@@ -253,9 +331,10 @@
                 console.log(`Erro na obtenção dos dados: ${error.message}`)
             })
 
-    }
+    } */
 
     function pegarInstaveisGeral(id_filial) {
+        var filialLink = document.querySelector('#filialHref');
         fetch(`/empresas/pegarInstaveisGeral/${id_filial}`, { cache: "no-store" })
             .then(function (resposta) {
                 if (resposta.ok) {

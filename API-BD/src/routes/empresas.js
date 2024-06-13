@@ -44,6 +44,10 @@ router.get("/pegarInstaveisPorFilial/:id_filial", function(req, res) {
   empresaController.pegarInstaveisPorFilial(req, res);
 })
 
+router.get("/pegarCaminhoesCadastradosPorFilial/:id_filial", function(req, res) {
+  empresaController.pegarCaminhoesCadastradosPorFilial(req, res);
+})
+
 router.get("/pegarInstaveisGeral/:id_filial", function(req, res) {
   empresaController.pegarInstaveisGeral(req, res);
 })
