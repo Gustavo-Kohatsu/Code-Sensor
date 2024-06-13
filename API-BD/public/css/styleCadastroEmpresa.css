@@ -441,3 +441,43 @@ label {
     height: 50px;
     width: 50px;
 }
+
+#alinharFechar {
+
+    width: 100%;
+    height: 7%;
+
+    display: flex;
+    justify-content: right;
+
+    
+
+}
+
+#botaoFechar {
+    width: 10%;
+    height: 100%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    
+    border: none;
+
+    color: #880000;
+    font-size: 40pt;
+    font-weight: bold;
+
+    text-decoration: none;
+
+}
+
+#alinharFechar a:hover {
+    transition: .5s;
+   
+    background-color: rgb(180, 33, 33);
+    color: white;
+    border-radius: 17px;
+    width: 10%;
+}
