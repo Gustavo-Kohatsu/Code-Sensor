@@ -8,9 +8,10 @@
     <link rel="stylesheet" href="../css/tela_caminhoesRegistrados.css">
     <link rel="shortcut icon" href="../assets/imagens/favicon.png" type="image/x-icon">
     <script src="../js/sessao.js"></script>
+    
 </head>
 
-<body onload="validarSessao()">
+<body onload="validarSessao(), validarSuperior()">
 
     <div id="menuLateral">
 
@@ -23,7 +24,7 @@
             <button onclick="botaoInicial()" id="botaoInicial">PÁGINA INICIAL</button>
             <button onclick="botaoCaminhoes()" class="botao">CAMINHÕES</button>
             <button id="btn_superior" style="display: block;" onclick="botaoCadastrar()" class="botao">CADASTRO</button>
-            <a class="botao" href="https://suportecodesensor.hipporello.net/desk">SUPORTE</a>
+            <button class="botao" onclick="botaoSuporte()">SUPORTE</button>
 
             <button onclick="botaoSair()" id="botaoSair">SAIR</button>
 
@@ -45,9 +46,11 @@
             <h1 class="subTitulo">Insira a placa do caminhão que deseja pesquisar:</h1>
             <div class="containerPesquisa">
                 <div id="pesquisa">
-                    <img src="../assets/imagens/Vector.png" alt="Lupa de pesquisa">
                     <input placeholder="Pesquisa" id="pesquisa_placa">
-                    <button onclick="listarCaminhaoPesquisado()">Pesquisar</button>
+                    <button onclick="listarCaminhaoPesquisado()" style="background-color: transparent; border: none; margin-right: 5px; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+                        <img src="../assets/imagens/Vector.png" alt="Lupa de pesquisa">
+                    </button>
+                    <!-- <button onclick="listarCaminhaoPesquisado()">Pesquisar</button> -->
                 </div>
             </div>
 
@@ -109,8 +112,6 @@
         }
 
     }
-
-    window.onload = validarSuperior;
 
     function listarCaminhaoPesquisado() {
         const idFilial = sessionStorage.getItem("ID_FILIAL");
@@ -184,6 +185,9 @@
 
         sessionStorage.PLACA_CAMINHAO = idPlaca;
 
+    }
+    function botaoSuporte() {
+        window.location.href = 'https://suportecodesensor.hipporello.net/desk'
     }
 
 </script>

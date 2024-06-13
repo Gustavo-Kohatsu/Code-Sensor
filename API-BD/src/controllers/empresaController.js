@@ -68,9 +68,10 @@ function ultimaEmpresaCadastrada(req, res) {
 }
 
 function listarKpiTemperatura(req, res) {
+    var idFilial = req.params.idFilial;
     var fkEmpresa = req.params.fkEmpresa;
 
-    empresaModel.listarKpiTemperatura(fkEmpresa)
+    empresaModel.listarKpiTemperatura(idFilial, fkEmpresa)
         .then(function (resultado) {
             if (resultado.length > 0) {
                 res.status(200).json(resultado);
@@ -85,9 +86,10 @@ function listarKpiTemperatura(req, res) {
 }
 
 function listarKpiUmidade(req, res) {
+    var idFilial = req.params.idFilial;
     var fkEmpresa = req.params.fkEmpresa;
 
-    empresaModel.listarKpiUmidade(fkEmpresa)
+    empresaModel.listarKpiUmidade(idFilial, fkEmpresa)
         .then(function (resultado) {
             if (resultado.length > 0) {
                 res.status(200).json(resultado);

@@ -7,8 +7,8 @@
     <title>CodeSensor | Página Inicial</title>
     <link rel="stylesheet" href="../css/PaginaInicialDashboard.css">
     <link rel="shortcut icon" href="../assets/imagens/favicon.png" type="image/x-icon">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../js/sessao.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         var tipo = sessionStorage.TIPO_USUARIO;
         var verificarFilialMatriz = sessionStorage.getItem("TIPO_EMPRESA");
@@ -20,11 +20,10 @@
                 window.location = "DashboardPaginaInicialDois.html";
             }
         }
-        window.onload = validarSuperior;
     </script>
 </head>
 
-<body onload="validarSessao()">
+<body onload="validarSessao(),validarSuperior()">
 
     <div id="menuLateral">
 
@@ -111,10 +110,12 @@
 
     function pegarCaminhoesInstaveisPorTemperatura() {
         var fkEmpresa = sessionStorage.getItem('ID_EMPRESA');
+        var idFilial = sessionStorage.getItem('ID_FILIAL');
+
 
         var kpiTemperaturaInstavel = document.querySelector('#instaveis_gerais_temperatura');
 
-        fetch(`/empresas/listarKpiTemperatura/${fkEmpresa}`)
+        fetch(`/empresas/listarKpiTemperatura/${idFilial}/${fkEmpresa}`)
             .then(function (response) {
                 if (response.ok) {
                     response.json().then(function (resposta) {
@@ -138,10 +139,11 @@
 
     function pegarCaminhoesInstaveisPorUmidade() {
         var fkEmpresa = sessionStorage.getItem('ID_EMPRESA');
+        var idFilial = sessionStorage.getItem('ID_FILIAL');
 
         var kpiUmidadeInstavel = document.querySelector('#instaveis_gerais_umidade');
 
-        fetch(`/empresas/listarKpiUmidade/${fkEmpresa}`)
+        fetch(`/empresas/listarKpiUmidade/${idFilial}/${fkEmpresa}`)
             .then(function (response) {
                 if (response.ok) {
                     response.json().then(function (resposta) {

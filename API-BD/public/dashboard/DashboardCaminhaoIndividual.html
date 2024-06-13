@@ -9,9 +9,8 @@
   <link rel="shortcut icon" href="../assets/imagens/favicon.png" type="image/x-icon">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="../js/sessao.js"></script>
-  <script>
+  <!-- <script>
     var tipo = sessionStorage.TIPO_USUARIO;
-    var verificarFilialMatriz = sessionStorage.getItem("TIPO_EMPRESA");
     function validarFilial() {
       if (tipo == "superior") {
         btn_superior.style.display = "flex";
@@ -20,7 +19,7 @@
       }
     }
     window.onload = validarFilial;
-  </script>
+  </script> -->
 </head>
 
 <body onload="validarSessao()">
@@ -35,7 +34,9 @@
 
       <a id="botaoInicial" href="DashboardPaginaInicial.html">PÁGINA INICIAL</a>
       <a class="botao" href="tela_caminhoesRegistrados.html">CAMINHÕES</a>
-      <a id="btn_superior" style="display: none;" class="botao" href="opcoesCadastro.html">CADASTRO</a>
+      <a id="btn_superior" class="botao" href="opcoesCadastro.html">CADASTRO</a>
+      <a class="botao" href="https://suportecodesensor.hipporello.net/desk">SUPORTE</a>
+
 
       <a id="botaoSair" href="../index.html">SAIR</a>
 
