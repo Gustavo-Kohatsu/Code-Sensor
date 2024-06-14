@@ -822,8 +822,8 @@ ul{
     align-items: center;
 
     background-image: linear-gradient(rgba(0, 0, 0, 0.2),
-    rgba(0, 0, 0, 0.2)), url("../assets/imagens/fundoEntreEmContato.jpg");
-    background-size: 120% 100%;
+    rgba(0, 0, 0, 0.2)), url("../assets/imagens/bg_contactus.jpg");
+    background-size: 110% 100%;
     background-repeat: no-repeat;
 
     height: 100vh;
